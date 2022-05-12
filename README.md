@@ -34,7 +34,7 @@
 > - 같은 관광지에 있는 유저와 실시간 채팅<br>
 > - OAuth2 소셜 로그인 기능<br>
 
-# 📜세부 일정
+# 5. 📜세부 일정
 ![image](https://user-images.githubusercontent.com/81150979/168008787-52f3f2e3-90b4-4655-b450-a61264e7d5a3.png)
 > <strong>5월 16일 ~ 5월 29일 (2주간)</strong><br>
 >> - 페이지 목업 디자인 완료
