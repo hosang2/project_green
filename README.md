@@ -27,11 +27,12 @@
 # 4. 개발해야 하는 기능
 ## 1. 공통 기능
 > - 게시글 CRUD<br>
-> - 게시글 검색<br>
-> - 카테고리로 게시글 정렬<br>
+> ![image](https://user-images.githubusercontent.com/81150979/168015099-fec0aad2-6bf8-4955-b862-c26ce7c79b42.png)
 > - 스크롤 이벤트로 게시글 리스트 불러오기 <br>
 > ![image](https://user-images.githubusercontent.com/104888619/168012450-93a82c32-159a-4255-8906-6bb92baa046f.png)
-> ![image](https://user-images.githubusercontent.com/81150979/168015099-fec0aad2-6bf8-4955-b862-c26ce7c79b42.png)
+> - 게시글 검색<br>
+> - 카테고리로 게시글 정렬<br>
+
 
 
 ## 2. 개별 기능 (컨텐츠별 이벤트)
