@@ -20,11 +20,11 @@
 <img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white"> <img src="https://img.shields.io/badge/spring data jpa-59666C?style=for-the-badge&logo=hibernate&logoColor=white"> <img src="https://img.shields.io/badge/spring boot-6DB33F?style=for-the-badge&logo=spring Boot&logoColor=white"> <img src="https://img.shields.io/badge/mariaDB-003545?style=for-the-badge&logo=mariaDB&logoColor=white">
 
 ## 역할 분담
-> 김승철 : DBA 담당<br>
+> 최호상 : DBA 담당<br>
 > 방민혁 : CSS, 및 브라우저 이벤트 담당<br>
 > 이정국 : 요구사항에 맞는 MVC 구현 담당<br>
 > 남현재 : 로그인,회원담당<br>
-> 최호상 : 배포,프로젝트관리 담당<br>
+> 김승철 : 배포,프로젝트관리 담당<br>
 
 ## 📜세부 일정
 > 5월 16일 ~ 5월 29일 (2주간) : 홈페이지 기본 기능 구현 (CRUD)<br>
