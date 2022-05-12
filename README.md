@@ -23,11 +23,11 @@
 <img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white"> <img src="https://img.shields.io/badge/spring data jpa-59666C?style=for-the-badge&logo=hibernate&logoColor=white"> <img src="https://img.shields.io/badge/spring boot-6DB33F?style=for-the-badge&logo=spring Boot&logoColor=white"> <img src="https://img.shields.io/badge/mariaDB-003545?style=for-the-badge&logo=mariaDB&logoColor=white">
 
 # 3. 👯‍♂️역할 분담
-> 1. 최호상 : DBA 담당<br>
-> 2. 방민혁 : CSS, 및 브라우저 이벤트 담당<br>
-> 3. 이정국 : 요구사항에 맞는 MVC 구현 담당<br>
-> 4. 남현재 : 시큐리티 담당<br>
-> 5. 김승철 : 배포,프로젝트관리 담당<br>
+- 최호상 : DBA 담당<br>
+- 방민혁 : CSS, 및 브라우저 이벤트 담당<br>
+- 이정국 : 요구사항에 맞는 MVC 구현 담당<br>
+- 남현재 : 시큐리티 담당<br>
+- 김승철 : 배포,프로젝트관리(형상관리) 담당<br>
 
 # 4. 개발해야 하는 기능
 ## 1. 공통 기능
