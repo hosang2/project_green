@@ -27,6 +27,10 @@
 > - 게시글 검색<br>
 > - 카테고리로 게시글 정렬<br>
 > - 스크롤 이벤트로 게시글 리스트 불러오기 <br>
+> ![image](https://user-images.githubusercontent.com/104888619/168012450-93a82c32-159a-4255-8906-6bb92baa046f.png)
+> ![image](https://user-images.githubusercontent.com/104888619/168012475-b4e32cca-85cd-405d-903c-d99d84fe0b8f.png)
+
+
 
 ## 2. 개별 기능 (컨텐츠별 이벤트)
 > - 숙박 카테고리 게시글의 야놀자 바로가기 기능<br>
