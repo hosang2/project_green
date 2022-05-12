@@ -12,6 +12,9 @@
 > 3. <strong>역할 분담</strong>
 > 4. 기획안 만들기 (~5.13)
 
+# 1. 기획 의도
+- temp
+
 # 2. 🛠기술 스택
 ## Front-End  
 <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"> <img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white"> <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"> <img src="https://img.shields.io/badge/jquery-0769AD?style=for-the-badge&logo=jquery&logoColor=white"> <img src="https://img.shields.io/badge/bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white">
@@ -28,6 +31,10 @@
 
 # 4. 개발해야 하는 기능
 > 1. 공통 기능 (검색, 정렬, 스크롤 이벤트, 실시간 채팅 등)
+> 2. 개별 기능 (컨텐츠별 이벤트) 
+>> 예시)<br>
+>> 숙박 카테고리 게시글의 야놀자 바로가기 버튼<br>
+>> 음식 카테고리 게시글의 배민 바로가기 버튼<br>
 
 # 📜세부 일정
 > 5월 16일 ~ 5월 29일 (2주간) : 홈페이지 기본 기능 구현 (CRUD)<br>
