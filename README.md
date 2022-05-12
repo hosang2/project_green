@@ -63,3 +63,5 @@
 >> - 추가 기능(채팅, 지도, 추후 협의) 구현 및 디버깅<br>
 
 > 6월 16일 : 최종 점검 (대면)<br>
+
+![image](https://user-images.githubusercontent.com/81150979/168008787-52f3f2e3-90b4-4655-b450-a61264e7d5a3.png)
