@@ -4,6 +4,8 @@ import com.group3.project_green.BaseEntity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Builder
@@ -21,5 +23,14 @@ public class Member extends BaseEntity {
 
     @Column(unique = true)
     private String email;
+
+    // 유저 권한 (Member, Admin)
+    @ElementCollection(fetch = FetchType.LAZY)
+    @Builder.Default
+    private Set<MemberRole> roleSet = new HashSet<>();
+
+    public void addMemberRole(MemberRole memberRole){
+        roleSet.add(memberRole);
+    }
 
 }
