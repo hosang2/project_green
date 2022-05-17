@@ -43,6 +43,12 @@ public class ListController {
         return "/home/list";
     }   get 필요없을듯  01048609771 << 전화  */
 
+    @GetMapping("/read")
+    public String read() {
+
+        return "/home/read";
+    }
+
     @GetMapping("/login")
     public String login() {
 
