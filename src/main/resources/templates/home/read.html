@@ -334,7 +334,7 @@
                     <div class="box-header with-border">
                         <div class="user-block">
                             <img class="img-circle" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="User Image">
-                            <span class="username"><a href="#"> [[${result.member.email}]]</a></span>
+                            <span class="username"><a th:href="@{/home/memberPostList(id=${result.member.id})}"> [[${result.member.email}]]</a></span>
                             <span class="description">[[${#temporals.format(result.regDate,'yyyy/MM/dd')}]]</span>
                         </div>
                         <div class="box-tools">
