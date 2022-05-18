@@ -8,6 +8,8 @@ import lombok.*;
 
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
+import java.time.LocalDateTime;
+
 @Data
 @ToString
 @Builder
@@ -16,7 +18,7 @@ import javax.persistence.ManyToOne;
 @NoArgsConstructor
 public class PostDTO {
 
-
+    private Long pno;
     private String title;
     private String content;
     private Long likeNum;
@@ -24,7 +26,6 @@ public class PostDTO {
     private Food food;
     private Accom accom;
     private Sights sights;
-
-
+    private LocalDateTime regDate,modDate;
 
 }

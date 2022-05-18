@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -28,5 +29,11 @@ public class PostServiceImpl implements PostService{
 
         // DTO 리스트를 반환한다.
         return dtoList;
+    }
+
+    @Override
+    public PostDTO get(Long pno) {
+        PostDTO result = entityToDTO(repository.getById(pno));
+        return result;
     }
 }
