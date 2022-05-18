@@ -1,5 +1,6 @@
 package com.group3.project_green.controller;
 
+import com.group3.project_green.DTO.PostDTO;
 import com.group3.project_green.Service.PostService;
 import com.group3.project_green.entity.Post;
 import com.group3.project_green.repository.PostRepository;
@@ -19,7 +20,6 @@ import java.util.List;
 public class ListController {
 
     private final PostService postService;
-    private final PostRepository postRepository;
 
 //    @GetMapping("/")
 //    public String goChat(){
@@ -28,7 +28,6 @@ public class ListController {
     @GetMapping("/list")
     public String goList(Model model) {
         model.addAttribute("post",postService.getList());
-
         return "/home/list";
     }
     @PostMapping("/food")
@@ -55,7 +54,7 @@ public class ListController {
 
     @GetMapping("/read")
     public void read(Long pno, Model model) {
-        Post result = postRepository.getById(pno);
+        PostDTO result = postService.get(pno);
         model.addAttribute("result", result);
     }
     @GetMapping("/insert")

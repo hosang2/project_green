@@ -9,8 +9,11 @@ public interface PostService {
 
     List<PostDTO>getList();
 
+    PostDTO get(Long pno);
+
     default  Post dtoToEntity(PostDTO dto){
         Post post =Post.builder()
+                .pno(dto.getPno())
                 .accom(dto.getAccom())
                 .content(dto.getContent())
                 .food(dto.getFood())
@@ -24,6 +27,7 @@ public interface PostService {
 
     default PostDTO entityToDTO(Post post){
         PostDTO postDTO = PostDTO.builder()
+                .pno(post.getPno())
                 .title(post.getTitle())
                 .sights(post.getSights())
                 .member(post.getMember())
@@ -31,6 +35,8 @@ public interface PostService {
                 .food(post.getFood())
                 .content(post.getContent())
                 .accom(post.getAccom())
+                .regDate(post.getRegDate())
+                .modDate(post.getModDate())
                 .build();
         return postDTO;
 
