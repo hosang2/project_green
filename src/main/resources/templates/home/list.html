@@ -207,7 +207,7 @@
             <tr th:each="dto : ${post}">
                 <div class="col-md-6">
                     <div class="widget widget-blog">
-                        <a href="/home/read">
+                        <a th:href="@{/home/read(pno=2)}">
                             <div class="widget-blog-cover">
                                 <img src="/images/전주한옥마을.jpg" alt="">
                             </div>

@@ -19,6 +19,7 @@ import java.util.List;
 public class ListController {
 
     private final PostService postService;
+    private final PostRepository postRepository;
 
 //    @GetMapping("/")
 //    public String goChat(){
