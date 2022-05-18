@@ -14,6 +14,8 @@
     <script src="/sidebar/js/bootstrap.min.js"></script>
     <script src="/sidebar/js/main.js"></script>
 
+
+
     <!-- 합쳐지고 최소화된 최신 CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
@@ -142,16 +144,17 @@
             <div class="col-lg-4">
                 <nav class="site-navigation text-right ml-auto " role="navigation">
                     <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
-                        <li class="active"><a href="index.html" class="nav-link">Home</a></li>
+
                         <li><a href="project.html" class="nav-link">Food</a></li>
                         <li><a href="services.html" class="nav-link">Landmark</a></li>
                         <li><a href="services.html" class="nav-link">Accomodation</a></li>
+<!--                        각 태그 클릭시 <div class="col-md-6"> 에  데이터 값 변경  default all list -->
                     </ul>
                 </nav>
             </div>
             <div class="col-lg-4 text-center">
                 <div class="site-logo">
-                    <a href="index.html">Brand</a>
+                    <a href="/home/list">Brand</a>
                 </div>
 
 
@@ -160,8 +163,9 @@
             <div class="col-lg-4">
                 <nav class="site-navigation text-left mr-auto " role="navigation">
                     <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
-                        <li><a href="blog.html" class="nav-link">Logout</a></li>
-                        <li><a href="contact.html" class="nav-link">My Page</a></li>
+                        <li><a href="/home/login" class="nav-link">Logout</a></li>
+                        <li><a href="/home/userinfo" class="nav-link">My Page</a></li>
+                        <li><a href="/home/insert" class="nav-link">Add Post</a></li>
                     </ul>
                 </nav>
             </div>
@@ -175,13 +179,10 @@
 <div class="wrapper d-flex align-items-stretch">
 
 <nav id="sidebar" class="active">
-    <h1><a href="/" class="logo">H.</a></h1>
+    <h1><a href="/home/list" class="logo">Home.</a></h1>
     <ul class="list-unstyled components mb-5">
         <li class="active">
-            <a href="#"><span class="fa fa-home"></span> Home</a>
-        </li>
-        <li>
-            <a href="#"><span class="fa fa-user"></span> Food</a>
+            <a href="home/food"><span class="fa fa-user"></span> Food</a>
         </li>
         <li>
             <a href="#"><span class="fa fa-sticky-note"></span> Landmark</a>
@@ -189,8 +190,9 @@
         <li>
             <a href="#"><span class="fa fa-cogs"></span> Accomodation</a>
         </li>
+        <!--                        각 태그 클릭시 <div class="col-md-6"> 에  데이터 값 변경  default all list -->
         <li>
-            <a href="#"><span class="fa fa-paper-plane"></span> Chat</a>
+            <a href="#"><span class="fa fa-paper-plane"></span>Chat</a>
         </li>
     </ul>
 
@@ -232,6 +234,7 @@
                 <div class="widget-blog-cover">
                     <img src="/images/전주한옥마을.jpg" alt="">
                 </div>
+            </a>
             <div class="widget-blog-author">
                 <div class="widget-blog-author-image">
                     <img src="https://bootdey.com/img/Content/user_2.jpg" alt="">
@@ -255,6 +258,7 @@
             <div class="widget-blog-cover">
                 <img src="/images/꼬막비빔.jpg" alt="">
             </div>
+            </a>
             <div class="widget-blog-author">
                 <div class="widget-blog-author-image">
                     <img src="https://bootdey.com/img/Content/user_3.jpg" alt="">
@@ -278,6 +282,7 @@
             <div class="widget-blog-cover">
                 <img src="/images/방어.jpg" alt="">
             </div>
+            </a>
             <div class="widget-blog-author">
                 <div class="widget-blog-author-image">
                     <img src="https://bootdey.com/img/Content/user_6.jpg" alt="">
@@ -297,13 +302,36 @@
     </div>
 </div>
 
+
 </div>
+
 <script>
-    $(document).read(function(){
-        $
-    });
-
 </script>
-
 </body>
 </html>
+<!--
+<div class="col-md-6">
+<div class="widget widget-blog">
+  <a href="/home/read">
+      <div class="widget-blog-cover">
+          <img src="/images/전주한옥마을.jpg" alt="">
+      </div>
+  </a>
+  <div class="widget-blog-author">
+      <div class="widget-blog-author-image">
+          <img src="https://bootdey.com/img/Content/user_2.jpg" alt="">
+      </div>
+      <div class="widget-blog-author-info">
+          <h5 class="m-t-0 m-b-1">test user2</h5>
+          <p class="text-muted m-0 f-s-11">user부가 설명</p>
+      </div>
+  </div>
+  <div class="widget-blog-content">
+      <h5>post title </h5>
+      <p>
+          post detail .
+      </p>
+  </div>
+</div>
+</div> 컨트롤러에서 리스트 model에 실어서 가져와서 데이터 뿌리기 ??
+-->

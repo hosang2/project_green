@@ -3,7 +3,9 @@ package com.group3.project_green.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
 @RequestMapping("/home/*")
@@ -20,13 +22,12 @@ public class ListController {
 
         return "/home/list";
     }
-    /*@GetMapping("/food")
-    public String gofood(Model model){
+    @PostMapping("/food")
+    public String gofood(Model model ){
 
         // 모델에 음식에 관련된 리스트를 실어서 보냅니다
 
         return "/home/list";
-        
     }
 
     @GetMapping("/landmark")
@@ -39,14 +40,19 @@ public class ListController {
     @GetMapping("acom")
     public String goAcom(){
 
-        // 모델에 숙박과 관려된 리스트를 실어서 보냅니다..
+        //모델에 숙박과 관려된 리스트를 실어서 보냅니다..
         return "/home/list";
-    }   get 필요없을듯  01048609771 << 전화  */
+    }
 
     @GetMapping("/read")
     public String read() {
 
         return "/home/read";
+    }
+    @GetMapping("/insert")
+    public String insert() {
+
+        return "/home/insert";
     }
 
     @GetMapping("/login")
