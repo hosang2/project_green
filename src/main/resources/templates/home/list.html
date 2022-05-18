@@ -302,6 +302,31 @@
     </div>
 </div>
 
+    <tr th:each="dto : ${post}">
+        <div class="col-md-6">
+            <div class="widget widget-blog">
+                <a href="/home/read">
+                    <div class="widget-blog-cover">
+                        <img src="/images/전주한옥마을.jpg" alt="">
+                    </div>
+                </a>
+                <div class="widget-blog-author">
+                    <div class="widget-blog-author-image">
+                        <img src="https://bootdey.com/img/Content/user_2.jpg" alt="">
+                    </div>
+                    <div class="widget-blog-author-info">
+                        <h5 class="m-t-0 m-b-1">[[${dto.member.email}]]</h5>
+                        <p class="text-muted m-0 f-s-11">[[${dto.likeNum}]]</p>
+                    </div>
+                </div>
+                <div class="widget-blog-content">
+                    <h5>[[${dto.title}]]</h5>
+                    <p>[[${dto.content}]]</p>
+                </div>
+            </div>
+        </div> </tr>
+
+
 
 </div>
 
@@ -310,28 +335,5 @@
 </body>
 </html>
 <!--
-<div class="col-md-6">
-<div class="widget widget-blog">
-  <a href="/home/read">
-      <div class="widget-blog-cover">
-          <img src="/images/전주한옥마을.jpg" alt="">
-      </div>
-  </a>
-  <div class="widget-blog-author">
-      <div class="widget-blog-author-image">
-          <img src="https://bootdey.com/img/Content/user_2.jpg" alt="">
-      </div>
-      <div class="widget-blog-author-info">
-          <h5 class="m-t-0 m-b-1">test user2</h5>
-          <p class="text-muted m-0 f-s-11">user부가 설명</p>
-      </div>
-  </div>
-  <div class="widget-blog-content">
-      <h5>post title </h5>
-      <p>
-          post detail .
-      </p>
-  </div>
-</div>
-</div> 컨트롤러에서 리스트 model에 실어서 가져와서 데이터 뿌리기 ??
+ 컨트롤러에서 리스트 model에 실어서 가져와서 데이터 뿌리기 ??
 -->
