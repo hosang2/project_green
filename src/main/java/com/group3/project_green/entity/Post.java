@@ -32,7 +32,7 @@ public class Post extends BaseEntity {
 
     /* 게시글의 카테고리는 null이 가능합니다.
     * 음식 관련 글이라면, 숙박과 관광지 컬럼의 데이터는 null이 됩니다.
-    *  */
+    *  */;;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Food food;
