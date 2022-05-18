@@ -24,7 +24,7 @@ public class Post extends BaseEntity {
     private String content;
 
     // 게시글 좋아요 갯수
-    private String likeNum;
+    private Long likeNum;
 
     // 게시글(다) : 회원(일) 다대일 JOIN 중복댓글가능
     @ManyToOne(fetch = FetchType.LAZY)
