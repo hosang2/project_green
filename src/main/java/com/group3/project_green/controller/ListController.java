@@ -79,6 +79,9 @@ public class ListController {
         return "/home/userinfo";
     }
 
+    @GetMapping ("/memberPostList")
+    public String memberPostList(){
 
-
+        return "/home/memberPostList";
+    }
 }
