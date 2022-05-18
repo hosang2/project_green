@@ -4,6 +4,7 @@ import com.group3.project_green.BaseEntity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor

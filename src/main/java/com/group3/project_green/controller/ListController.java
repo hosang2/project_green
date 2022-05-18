@@ -58,9 +58,9 @@ public class ListController {
     }
 
     @GetMapping("/read")
-    public String read() {
-
-        return "/home/read";
+    public void read(Long pno, Model model) {
+        Post result = postRepository.getById(pno);
+        model.addAttribute("result", result);
     }
     @GetMapping("/insert")
     public String insert() {
