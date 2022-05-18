@@ -1,5 +1,6 @@
 package com.group3.project_green.controller;
 
+import com.group3.project_green.Service.PostService;
 import com.group3.project_green.entity.Post;
 import com.group3.project_green.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ListController {
 
-    private final PostRepository postRepository;
+    private final PostService postService;
 
 //    @GetMapping("/")
 //    public String goChat(){
@@ -25,13 +26,7 @@ public class ListController {
 //    }
     @GetMapping("/list")
     public String goList(Model model) {
-
-        List<Post> result = postRepository.findAll();
-
-        System.out.println("================");
-        System.out.println(result.toString());
-        System.out.println("================");
-        model.addAttribute("post", result);
+        model.addAttribute("post",postService.getList());
 
         return "/home/list";
     }
