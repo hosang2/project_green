@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -127,213 +127,112 @@
 </head>
 <body>
 
-<div class="site-mobile-menu site-navbar-target">
+    <div class="site-mobile-menu site-navbar-target">
     <div class="site-mobile-menu-header">
         <div class="site-mobile-menu-close mt-3">
             <span class="icon-close2 js-menu-toggle"></span>
         </div>
     </div>
     <div class="site-mobile-menu-body"></div>
-</div>
-
-<header class="site-navbar site-navbar-target bg-white" role="banner">
-
-    <div class="container">
-        <div class="row align-items-center position-relative">
-
-            <div class="col-lg-4">
-                <nav class="site-navigation text-right ml-auto " role="navigation">
-                    <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
-
-                        <li><a href="project.html" class="nav-link">Food</a></li>
-                        <li><a href="services.html" class="nav-link">Landmark</a></li>
-                        <li><a href="services.html" class="nav-link">Accomodation</a></li>
-<!--                        각 태그 클릭시 <div class="col-md-6"> 에  데이터 값 변경  default all list -->
-                    </ul>
-                </nav>
-            </div>
-            <div class="col-lg-4 text-center">
-                <div class="site-logo">
-                    <a href="/home/list">Brand</a>
-                </div>
-
-
-                <div class="ml-auto toggle-button d-inline-block d-lg-none"><a href="#" class="site-menu-toggle py-5 js-menu-toggle text-black"><span class="icon-menu h3 text-black"></span></a></div>
-            </div>
-            <div class="col-lg-4">
-                <nav class="site-navigation text-left mr-auto " role="navigation">
-                    <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
-                        <li><a href="/home/login" class="nav-link">Logout</a></li>
-                        <li><a href="/home/userinfo" class="nav-link">My Page</a></li>
-                        <li><a href="/home/insert" class="nav-link">Add Post</a></li>
-                    </ul>
-                </nav>
-            </div>
-
-
-        </div>
     </div>
 
-</header>
+    <header class="site-navbar site-navbar-target bg-white" role="banner">
 
-<div class="wrapper d-flex align-items-stretch">
+        <div class="container">
+            <div class="row align-items-center position-relative">
 
-<nav id="sidebar" class="active">
-    <h1><a href="/home/list" class="logo">Home.</a></h1>
-    <ul class="list-unstyled components mb-5">
-        <li class="active">
-            <a href="home/food"><span class="fa fa-user"></span> Food</a>
-        </li>
-        <li>
-            <a href="#"><span class="fa fa-sticky-note"></span> Landmark</a>
-        </li>
-        <li>
-            <a href="#"><span class="fa fa-cogs"></span> Accomodation</a>
-        </li>
-        <!--                        각 태그 클릭시 <div class="col-md-6"> 에  데이터 값 변경  default all list -->
-        <li>
-            <a href="#"><span class="fa fa-paper-plane"></span>Chat</a>
-        </li>
-    </ul>
+                <div class="col-lg-4">
+                    <nav class="site-navigation text-right ml-auto " role="navigation">
+                        <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
 
-    <div class="footer">
-        <p>
-            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib.com</a>
-        </p>
-    </div>
-</nav>
-
-<div class="container bootstrap snippets bootdey">
-    <div class="col-md-6">
-        <div class="widget widget-blog">
-            <a href="/home/read">
-                <div class="widget-blog-cover">
-                    <img src="/images/민속촌.jpg" alt="">
+                            <li><a href="project.html" class="nav-link">Food</a></li>
+                            <li><a href="services.html" class="nav-link">Landmark</a></li>
+                            <li><a href="services.html" class="nav-link">Accomodation</a></li>
+    <!--                        각 태그 클릭시 <div class="col-md-6"> 에  데이터 값 변경  default all list -->
+                        </ul>
+                    </nav>
                 </div>
-            </a>
-            <div class="widget-blog-author">
-                <div class="widget-blog-author-image">
-                    <img src="https://bootdey.com/img/Content/user_1.jpg" alt="">
-                </div>
-                <div class="widget-blog-author-info">
-                    <h5 class="m-t-0 m-b-1">Test user1</h5>
-                    <p class="text-muted m-0 f-s-11">user부가 설명</p>
-                </div>
-            </div>
-            <div class="widget-blog-content">
-                <h5>post title </h5>
-                <p>
-                    post detail .
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="widget widget-blog">
-            <a href="/home/read">
-                <div class="widget-blog-cover">
-                    <img src="/images/전주한옥마을.jpg" alt="">
-                </div>
-            </a>
-            <div class="widget-blog-author">
-                <div class="widget-blog-author-image">
-                    <img src="https://bootdey.com/img/Content/user_2.jpg" alt="">
-                </div>
-                <div class="widget-blog-author-info">
-                    <h5 class="m-t-0 m-b-1">test user2</h5>
-                    <p class="text-muted m-0 f-s-11">user부가 설명</p>
-                </div>
-            </div>
-            <div class="widget-blog-content">
-                <h5>post title </h5>
-                <p>
-                    post detail .
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="widget widget-blog">
-            <a href="/home/read">
-            <div class="widget-blog-cover">
-                <img src="/images/꼬막비빔.jpg" alt="">
-            </div>
-            </a>
-            <div class="widget-blog-author">
-                <div class="widget-blog-author-image">
-                    <img src="https://bootdey.com/img/Content/user_3.jpg" alt="">
-                </div>
-                <div class="widget-blog-author-info">
-                    <h5 class="m-t-0 m-b-1">test user3</h5>
-                    <p class="text-muted m-0 f-s-11">user부가 설명</p>
-                </div>
-            </div>
-            <div class="widget-blog-content">
-                <h5>post title </h5>
-                <p>
-                    post detail .
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="widget widget-blog">
-            <a href="/home/read">
-            <div class="widget-blog-cover">
-                <img src="/images/방어.jpg" alt="">
-            </div>
-            </a>
-            <div class="widget-blog-author">
-                <div class="widget-blog-author-image">
-                    <img src="https://bootdey.com/img/Content/user_6.jpg" alt="">
-                </div>
-                <div class="widget-blog-author-info">
-                    <h5 class="m-t-0 m-b-1">test user4</h5>
-                    <p class="text-muted m-0 f-s-11">user부가 설명</p>
-                </div>
-            </div>
-            <div class="widget-blog-content">
-                <h5>post title </h5>
-                <p>
-                    post detail .
-                </p>
-            </div>
-        </div>
-    </div>
-</div>
-
-    <tr th:each="dto : ${post}">
-        <div class="col-md-6">
-            <div class="widget widget-blog">
-                <a href="/home/read">
-                    <div class="widget-blog-cover">
-                        <img src="/images/전주한옥마을.jpg" alt="">
+                <div class="col-lg-4 text-center">
+                    <div class="site-logo">
+                        <a href="/home/list">Brand</a>
                     </div>
-                </a>
-                <div class="widget-blog-author">
-                    <div class="widget-blog-author-image">
-                        <img src="https://bootdey.com/img/Content/user_2.jpg" alt="">
-                    </div>
-                    <div class="widget-blog-author-info">
-                        <h5 class="m-t-0 m-b-1">[[${dto.member.email}]]</h5>
-                        <p class="text-muted m-0 f-s-11">[[${dto.likeNum}]]</p>
+
+
+                    <div class="ml-auto toggle-button d-inline-block d-lg-none"><a href="#" class="site-menu-toggle py-5 js-menu-toggle text-black"><span class="icon-menu h3 text-black"></span></a></div>
+                </div>
+                <div class="col-lg-4">
+                    <nav class="site-navigation text-left mr-auto " role="navigation">
+                        <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
+                            <li><a href="/home/login" class="nav-link">Logout</a></li>
+                            <li><a href="/home/userinfo" class="nav-link">My Page</a></li>
+                            <li><a href="/home/insert" class="nav-link">Add Post</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+
+            </div>
+        </div>
+
+    </header>
+
+    <div class="wrapper d-flex align-items-stretch">
+
+        <nav id="sidebar" class="active">
+            <h1><a href="/home/list" class="logo">Home.</a></h1>
+            <ul class="list-unstyled components mb-5">
+                <li class="active">
+                    <a href="home/food"><span class="fa fa-user"></span> Food</a>
+                </li>
+                <li>
+                    <a href="#"><span class="fa fa-sticky-note"></span> Landmark</a>
+                </li>
+                <li>
+                    <a href="#"><span class="fa fa-cogs"></span> Accomodation</a>
+                </li>
+                <!--                        각 태그 클릭시 <div class="col-md-6"> 에  데이터 값 변경  default all list -->
+                <li>
+                    <a href="#"><span class="fa fa-paper-plane"></span>Chat</a>
+                </li>
+            </ul>
+
+            <div class="footer">
+                <p>
+                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib.com</a>
+                </p>
+            </div>
+        </nav>
+
+        <div id="temp" class="container bootstrap snippets bootdey">
+            <tr th:each="dto : ${post}">
+                <div class="col-md-6">
+                    <div class="widget widget-blog">
+                        <a href="/home/read">
+                            <div class="widget-blog-cover">
+                                <img src="/images/전주한옥마을.jpg" alt="">
+                            </div>
+                        </a>
+                        <div class="widget-blog-author">
+                            <div class="widget-blog-author-image">
+                                <img src="https://bootdey.com/img/Content/user_2.jpg" alt="">
+                            </div>
+                            <div class="widget-blog-author-info">
+                                <h5 class="m-t-0 m-b-1">[[${dto.member.email}]]</h5>
+                                <p class="text-muted m-0 f-s-11">[[${dto.likeNum}]]</p>
+                            </div>
+                        </div>
+                        <div class="widget-blog-content">
+                            <h5>[[${dto.title}]]</h5>
+                            <p>[[${dto.content}]]</p>
+                        </div>
                     </div>
                 </div>
-                <div class="widget-blog-content">
-                    <h5>[[${dto.title}]]</h5>
-                    <p>[[${dto.content}]]</p>
-                </div>
-            </div>
-        </div> </tr>
+            </tr>
+        </div>
 
 
+    </div>
+    <button onclick="hs()">클릭</button>
 
-</div>
-
-<script>
-</script>
 </body>
 </html>
-<!--
- 컨트롤러에서 리스트 model에 실어서 가져와서 데이터 뿌리기 ??
--->
