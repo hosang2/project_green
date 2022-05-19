@@ -1,6 +1,8 @@
 package com.group3.project_green.controller;
 
+import com.group3.project_green.DTO.CommentDTO;
 import com.group3.project_green.DTO.PostDTO;
+import com.group3.project_green.Service.CommentService;
 import com.group3.project_green.Service.PostService;
 import com.group3.project_green.entity.Post;
 import com.group3.project_green.repository.PostRepository;

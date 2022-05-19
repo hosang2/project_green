@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
     <script src="/header/js/jquery-3.3.1.min.js"></script>
     <script src="/header/js/popper.min.js"></script>
     <script src="/header/js/bootstrap.min.js"></script>
@@ -334,7 +336,7 @@
                     <div class="box-header with-border">
                         <div class="user-block">
                             <img class="img-circle" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="User Image">
-                            <span class="username"><a th:href="@{/home/memberPostList(id=${result.member.id})}"> [[${result.member.email}]]</a></span>
+                            <span class="username"><a th:href="@{/home/memberPostList(pno=${result.pno})}"> [[${result.member.email}]]</a></span>
                             <span class="description">[[${#temporals.format(result.regDate,'yyyy/MM/dd')}]]</span>
                         </div>
                         <div class="box-tools">
@@ -354,11 +356,12 @@
                         <span class="pull-right text-muted">[[${result.likeNum}]] likes - 3 comments</span>
                     </div>
                     <div class="box-footer box-comments" style="display: block;">
+
                         <div class="box-comment">
                             <img class="img-circle img-sm" src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="User Image">
                             <div class="comment-text">
           <span class="username">
-          Maria Gonzales
+          블라블라
           <span class="text-muted pull-right">8:03 PM Today</span>
           </span>
                                 It is a long established fact that a reader will be distracted
@@ -366,25 +369,25 @@
                             </div>
                         </div>
 
-                        <div class="box-comment">
-                            <img class="img-circle img-sm" src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="User Image">
-                            <div class="comment-text">
-          <span class="username">
-          Luna Stark
-          <span class="text-muted pull-right">8:03 PM Today</span>
-          </span>
-                                It is a long established fact that a reader will be distracted
-                                by the readable content of a page when looking at its layout.
-                            </div>
-                        </div>
+<!--                        <div class="box-comment">-->
+<!--                            <img class="img-circle img-sm" src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="User Image">-->
+<!--                            <div class="comment-text">-->
+<!--          <span class="username">-->
+<!--          Luna Stark-->
+<!--          <span class="text-muted pull-right">8:03 PM Today</span>-->
+<!--          </span>-->
+<!--                                It is a long established fact that a reader will be distracted-->
+<!--                                by the readable content of a page when looking at its layout.-->
+<!--                            </div>-->
+<!--                        </div>-->
                     </div>
                     <div class="box-footer" style="display: block;">
-                        <form action="#" method="post">
+<!--                        <form action="" method="post">-->
                             <img class="img-responsive img-circle img-sm" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="Alt Text">
                             <div class="img-push">
-                                <input type="text" class="form-control input-sm" placeholder="Press enter to post comment">
+                                <input type="text" class="form-control input-sm" name="commentEnter" placeholder="Press enter to post comment">
                             </div>
-                        </form>
+<!--                        </form>-->
                     </div>
                 </div>
             </div>
@@ -392,6 +395,19 @@
 </div>
 
 </div>
+<script th:inline="javascript">
+    $(document).ready(function () {
+        function formatTime(str){
+            var date =new Date();
+            return date.getFullYear() + '/' + (date.getMonth()+1) +'/' +date.getDate() + ' ' + date.getHours()+ ':' +  date.getMinutes();
+        }
+        $('input[name="commentEnter"]').keydown(function(e){
+            if (e.keyCode == 13) {
+                alert("엔터가 눌러졌따!!!!!!!!!!!");
+            }
+        });
+    })
+</script>
 
 </body>
 </html>
