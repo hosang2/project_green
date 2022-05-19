@@ -30,6 +30,50 @@ public class PostServiceImpl implements PostService{
         // DTO 리스트를 반환한다.
         return dtoList;
     }
+//
+//    @Override
+//    public List<PostDTO> getListByAccom() {
+//
+//        List<Post> result = repository.findbyAccom();
+//
+//        List<PostDTO> dtoList = new ArrayList<>();
+//        for(Post post : result){
+//            dtoList.add(entityToDTO(post));
+//            System.out.println("===================");
+//            System.out.println(post);
+//            System.out.println("===================");
+//        }
+//        return  dtoList;
+//    }
+//
+//    @Override
+//    public List<PostDTO> getListByFood() {
+//        List<Post> result = repository.findbyFood();
+//        List<PostDTO> dtoList = new ArrayList<>();
+//        for(Post post : result){
+//            dtoList.add(entityToDTO(post));
+//            System.out.println("===================");
+//            System.out.println(post);
+//            System.out.println("===================");
+//        }
+//
+//        return dtoList;
+//    }
+
+//    @Override
+//    public List<PostDTO> getListBysights() {
+//        List<Post> result = repository.findbysights();
+//
+//        List<PostDTO> dtoList = new ArrayList<>();
+//        for(Post post : result){
+//            dtoList.add(entityToDTO(post));
+//            System.out.println("===================");
+//            System.out.println(post);
+//            System.out.println("===================");
+//        }
+//        return dtoList;
+//    }
+
 
     @Override
     public PostDTO get(Long pno) {

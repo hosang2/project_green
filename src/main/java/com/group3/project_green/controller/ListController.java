@@ -27,27 +27,27 @@ public class ListController {
 //    }
     @GetMapping("/list")
     public String goList(Model model) {
-        model.addAttribute("post",postService.getList());
+       // model.addAttribute("post",postService.getList());
         return "/home/list";
     }
     @PostMapping("/food")
     public String gofood(Model model ){
-
+       // model.addAttribute("food",postService.getListByFood());
         // 모델에 음식에 관련된 리스트를 실어서 보냅니다
 
         return "/home/list";
     }
 
-    @GetMapping("/landmark")
-    public String goRead(){
-
+    @PostMapping("/landmark")
+    public String goRead(Model model){
+      // model.addAttribute("sights", postService.getListBysights());
         // 모델에 관광지 관련된 리스트를 실어서 보냅니다.
         return "/home/list";
     }
 
-    @GetMapping("acom")
-    public String goAcom(){
-
+    @PostMapping("acom")
+    public String goAcom(Model model){
+    //model.addAttribute("accom", postService.getListByAccom());
         //모델에 숙박과 관려된 리스트를 실어서 보냅니다..
         return "/home/list";
     }
