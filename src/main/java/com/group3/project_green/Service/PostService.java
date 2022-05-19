@@ -9,6 +9,11 @@ public interface PostService {
 
     List<PostDTO>getList();
 
+   // List<PostDTO>getListByAccom();
+
+   // List<PostDTO>getListByFood();
+   // List<PostDTO>getListBysights();
+
     PostDTO get(Long pno);
 
     default  Post dtoToEntity(PostDTO dto){
