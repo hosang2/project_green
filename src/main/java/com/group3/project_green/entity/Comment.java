@@ -23,6 +23,9 @@ public class Comment extends BaseEntity {
 
     // 좋아요 갯수
     private Long likeNum;
+    
+    //댓글 작성자
+    private String replyer;
 
     // 댓글(다) : 게시글(일) 다대일 JOIN
     @ManyToOne(fetch = FetchType.LAZY)
