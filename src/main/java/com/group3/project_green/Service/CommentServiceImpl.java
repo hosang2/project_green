@@ -28,4 +28,15 @@ public class CommentServiceImpl implements CommentService{
         List<Comment> result = repository.getCommentsByPostOrderByCno(Post.builder().pno(pno).build());
         return result.stream().map(comment->entityToDto(comment)).collect(Collectors.toList());
     }
+
+    @Override
+    public void modify(CommentDTO commentDTO) {
+        Comment comment = dtoToEntity(commentDTO);
+        repository.save(comment);
+    }
+
+    @Override
+    public void remove(Long cno) {
+        repository.deleteById(cno);
+    }
 }

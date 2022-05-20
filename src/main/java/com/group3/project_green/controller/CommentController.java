@@ -6,12 +6,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/comments/*")
+@RequestMapping("/comments/")
 @RequiredArgsConstructor
 public class CommentController {
     private final CommentService service;
@@ -23,7 +24,7 @@ public class CommentController {
         return new ResponseEntity<>(pno, HttpStatus.OK);
     }
 
-    @GetMapping(value = "/post/{pno}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/{pno}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<CommentDTO>> getListByPost(@PathVariable("pno") Long pno) {
         System.out.println("pno : " + pno);
         return new ResponseEntity<>(service.getList(pno), HttpStatus.OK);

@@ -1,20 +1,13 @@
 package com.group3.project_green.controller;
 
-import com.group3.project_green.DTO.CommentDTO;
-import com.group3.project_green.DTO.PostDTO;
-import com.group3.project_green.Service.CommentService;
+import com.group3.project_green.DTO.PostCommentDTO;
 import com.group3.project_green.Service.PostService;
-import com.group3.project_green.entity.Post;
-import com.group3.project_green.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.view.RedirectView;
-
-import java.util.List;
 
 @Controller
 @RequestMapping("/home/*")
@@ -56,8 +49,9 @@ public class ListController {
 
     @GetMapping("/read")
     public void read(Long pno, Model model) {
-        PostDTO result = postService.get(pno);
+        PostCommentDTO result = postService.getPostWithCommentCnt(pno);
         model.addAttribute("result", result);
+        System.out.println(result);
     }
     @GetMapping("/insert")
     public String insert() {
