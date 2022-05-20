@@ -1,6 +1,7 @@
 package com.group3.project_green.controller;
 
 import com.group3.project_green.DTO.PostCommentDTO;
+import com.group3.project_green.DTO.PostDTO;
 import com.group3.project_green.Service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -22,7 +23,7 @@ public class ListController {
 //    }
     @GetMapping("/list")
     public String goList(Model model) {
-       // model.addAttribute("post",postService.getList());
+        model.addAttribute("post",postService.getList());
         return "/home/list";
     }
     @PostMapping("/food")
@@ -71,8 +72,10 @@ public class ListController {
     }
 
     @GetMapping ("/memberPostList")
-    public String memberPostList(){
+    public void memberPostList(Long pno, Model model){
+        PostDTO result = postService.get(pno);
+        model.addAttribute("result", result);
+        model.addAttribute("post",postService.getPostList(pno));
 
-        return "/home/memberPostList";
     }
 }
