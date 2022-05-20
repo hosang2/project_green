@@ -15,7 +15,7 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 @Log4j2
-public class PostServiceImpl implements PostService{
+public class MemberServiceImpl implements MemberService{
     private final PostRepository repository;
     @Override
     public List<PostDTO> getList() {
@@ -38,11 +38,7 @@ public class PostServiceImpl implements PostService{
         return result;
     }
 
-    @Override
-    public MemberDTO getList(Long id) {
-        MemberDTO result = entityToDTO(repository.getById(id));
-        return null;
-    }
+
 
 
 }

@@ -6,13 +6,11 @@ import com.group3.project_green.entity.Post;
 
 import java.util.List;
 
-public interface PostService {
+public interface MemberService {
 
     List<PostDTO>getList();
 
     PostDTO get(Long pno);
-
-    MemberDTO getList(Long id);
 
     default  Post dtoToEntity(PostDTO dto){
         Post post =Post.builder()
