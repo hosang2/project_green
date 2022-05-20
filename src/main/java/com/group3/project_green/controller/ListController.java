@@ -1,5 +1,6 @@
 package com.group3.project_green.controller;
 
+import com.group3.project_green.DTO.PostCommentDTO;
 import com.group3.project_green.DTO.PostDTO;
 import com.group3.project_green.Service.PostService;
 import lombok.RequiredArgsConstructor;
@@ -49,8 +50,9 @@ public class ListController {
 
     @GetMapping("/read")
     public void read(Long pno, Model model) {
-        PostDTO result = postService.get(pno);
+        PostCommentDTO result = postService.getPostWithCommentCnt(pno);
         model.addAttribute("result", result);
+        System.out.println(result);
     }
     @GetMapping("/insert")
     public String insert() {

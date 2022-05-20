@@ -4,20 +4,13 @@ import com.group3.project_green.entity.Accom;
 import com.group3.project_green.entity.Food;
 import com.group3.project_green.entity.Member;
 import com.group3.project_green.entity.Sights;
-import lombok.*;
+import lombok.Builder;
+import lombok.Data;
 
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
 import java.time.LocalDateTime;
-
 @Data
-@ToString
 @Builder
-@AllArgsConstructor
-@Getter
-@NoArgsConstructor
-public class PostDTO {
-
+public class PostCommentDTO {
     private Long pno;
     private String title;
     private String content;
@@ -27,4 +20,8 @@ public class PostDTO {
     private Accom accom;
     private Sights sights;
     private LocalDateTime regDate,modDate;
+
+    private String memberEmail;
+
+    private int commentCnt;
 }

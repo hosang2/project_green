@@ -1,6 +1,8 @@
 package com.group3.project_green.Service;
 
+import com.group3.project_green.DTO.PostCommentDTO;
 import com.group3.project_green.DTO.PostDTO;
+import com.group3.project_green.entity.Member;
 import com.group3.project_green.entity.Post;
 import com.group3.project_green.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
@@ -73,6 +75,13 @@ public class PostServiceImpl implements PostService{
 //        return dtoList;
 //    }
 
+
+    @Override
+    public PostCommentDTO getPostWithCommentCnt(Long pno) {
+        Object result = repository.getPostByPno(pno);
+        Object[] arr = (Object[]) result;
+        return entityToDTO((Post) arr[0],(Member)arr[1],(Long) arr[2]);
+    }
 
     @Override
     public PostDTO get(Long pno) {

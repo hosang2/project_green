@@ -9,6 +9,10 @@ import java.util.List;
 public interface CommentService {
     Long register(CommentDTO commentDTO);
     List<CommentDTO> getList(Long pno);
+
+    void modify(CommentDTO commentDTO);
+
+    void remove(Long cno);
     default Comment dtoToEntity(CommentDTO dto) {
         Post post = Post.builder()
                 .pno(dto.getPno())
