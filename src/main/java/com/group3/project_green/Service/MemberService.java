@@ -1,45 +1,30 @@
 package com.group3.project_green.Service;
 
 import com.group3.project_green.DTO.MemberDTO;
-import com.group3.project_green.DTO.PostDTO;
-import com.group3.project_green.entity.Post;
-
-import java.util.List;
+import com.group3.project_green.entity.Member;
 
 public interface MemberService {
 
-    List<PostDTO>getList();
+    MemberDTO get(Long id);
 
-    PostDTO get(Long pno);
-
-    default  Post dtoToEntity(PostDTO dto){
-        Post post =Post.builder()
-                .pno(dto.getPno())
-                .accom(dto.getAccom())
-                .content(dto.getContent())
-                .food(dto.getFood())
-                .likeNum(dto.getLikeNum())
-                .member(dto.getMember())
-                .sights(dto.getSights())
-                .title(dto.getTitle())
+    default Member dtoToEntity(MemberDTO dto){
+        Member member=Member.builder()
+                .id(dto.getId())
+                .password(dto.getPassword())
+                .email(dto.getEmail())
                 .build();
-        return post;
+        return member;
     }
 
-    default PostDTO entityToDTO(Post post){
-        PostDTO postDTO = PostDTO.builder()
-                .pno(post.getPno())
-                .title(post.getTitle())
-                .sights(post.getSights())
-                .member(post.getMember())
-                .likeNum(post.getLikeNum())
-                .food(post.getFood())
-                .content(post.getContent())
-                .accom(post.getAccom())
-                .regDate(post.getRegDate())
-                .modDate(post.getModDate())
+    default MemberDTO entityToDTO(Member member){
+        MemberDTO memberDTO = MemberDTO.builder()
+                .id(member.getId())
+                .password(member.getPassword())
+                .email(member.getEmail())
+                .regDate(member.getRegDate())
+                .modDate(member.getModDate())
                 .build();
-        return postDTO;
+        return memberDTO;
 
 
     }
