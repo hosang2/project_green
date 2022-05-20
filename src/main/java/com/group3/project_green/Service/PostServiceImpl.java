@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -80,4 +79,19 @@ public class PostServiceImpl implements PostService{
         PostDTO result = entityToDTO(repository.getById(pno));
         return result;
     }
+
+    @Override
+    public List<PostDTO> getPostList(Long pno) {
+        PostDTO memberId = entityToDTO(repository.getById(pno));
+        System.out.println("멤버 아이디 : " +memberId.getMember().getId());
+        List<Post> result = repository.getPostsByMemberId(memberId.getMember().getId());
+        List<PostDTO> postDTOList = new ArrayList<>();
+        for(Post post : result){
+            System.out.println("포스트 :" +post);
+            postDTOList.add(entityToDTO(post));
+        }
+        return postDTOList;
+    }
+
+
 }

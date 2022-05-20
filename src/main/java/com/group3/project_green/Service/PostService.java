@@ -16,6 +16,8 @@ public interface PostService {
 
     PostDTO get(Long pno);
 
+    List<PostDTO> getPostList(Long pno);
+
     default  Post dtoToEntity(PostDTO dto){
         Post post =Post.builder()
                 .pno(dto.getPno())
