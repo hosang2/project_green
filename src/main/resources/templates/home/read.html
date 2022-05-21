@@ -357,29 +357,8 @@
                     <div class="box-footer box-comments" style="display: block;">
 
                         <div class="box-comment">
-                            <img class="img-circle img-sm" src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="User Image">
-                            <div class="comment-text">
-          <span class="username">
-          블라블라
-          <span class="text-muted pull-right" id="regDate">8:03 PM Today</span>
-          </span>
-                                <div class="commentContent">
-                                    It is a long established fact that a reader will be distracted
-                                    by the readable content of a page when looking at its layout.
-                                </div>
-                            </div>
+
                         </div>
-<!--                        <div class="box-comment">-->
-<!--                            <img class="img-circle img-sm" src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="User Image">-->
-<!--                            <div class="comment-text">-->
-<!--          <span class="username">-->
-<!--          Luna Stark-->
-<!--          <span class="text-muted pull-right">8:03 PM Today</span>-->
-<!--          </span>-->
-<!--                                It is a long established fact that a reader will be distracted-->
-<!--                                by the readable content of a page when looking at its layout.-->
-<!--                            </div>-->
-<!--                        </div>-->
                     </div>
                     <div class="box-footer" style="display: block;">
                             <img class="img-responsive img-circle img-sm" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="Alt Text">
@@ -397,7 +376,13 @@
 <script th:inline="javascript">
     $(document).ready(function () {
         var pno = [[${result.pno}]]
-        var list = $(".comment-text")
+        var list = $(".box-comment")
+
+        function formatTime(str){
+            var date = new Date(str);
+            return date.getFullYear()+'/'+(date.getMonth()+1)+'/'+date.getDate()+' '+date.getHours()+':'+date.getMinutes();
+        }
+
         $('input[name="commentEnter"]').keydown(function(e){
             if (e.keyCode == 13) {
                 var comment={
@@ -421,28 +406,47 @@
             }
         });
         function loadJSONData() {
-            $.getJSON('/comments/post/' + pno, function (arr) {
+            $.getJSON('/comments/' + pno +'/all', function (arr) {
                 console.log(arr);
                 var str=""
                 $('.pull-right text-muted').html([[${result.likeNum}]] + "likes -" + arr.length + " comments");
                 $.each(arr,function (idx,comment) {
-                    console.log(comment);
-                    str += '  <span class="username" data-email="' + comment.email + '">'
-                    str += ' <span class="text-muted pull-right">' + comment.regDate +'</span>'
-                    str +=  '</span>'
-                    str += '<div className="commentContent">' + comment.context + '</div>'
+                    var cno = comment.cno;
+                    str += '<input type="hidden" name="cno">'
+                    str += '<img class="img-circle img-sm" src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="User Image">';
+                    str += '<div class="comment-text">';
+                    str += '<span class="username">';
+                    str += comment.replyer;
+                    str += '<span class="text-muted pull-right" id="regDate">'+ formatTime(comment.regDate);
+                    str += '<button type="button" class="btn btn-box-tool" name="remove"><i class="fa fa-times"></i></button>'
+                    str += '</span>';
+                    str += '</span>';
+                    str += comment.content;
+                    str += '</div>';
+                    $("input[name='cno']").val(cno);
                 })
-                console.log(str);
                 list.html(str);
             })
-            $(".pull-right text-muted").click(function (){ //댓글 숫자를 누르면 컨트롤러에서 데이터를 보내줌
-                loadJSONData();
-            })
-            $('.comment-text').change(function () {
-                var pno = $(this).data("pno");
-                $(".username").val($(this).find('.'))
-            })
         }
+        loadJSONData();
+
+        $("#remove").click(function () {
+            var cno = $("input[name='cno']").val();
+            console.log(cno);
+            alert("눌렸다");
+            // $.ajax({
+            //     url: '/comments/' + cno + '/remove',
+            //     method: 'delete',
+            //     success:function (result) {
+            //         console.log("리뷰 삭제 : ", result);
+            //         if(result==='success') {
+            //             alert("댓글이 삭제되었습니다");
+            //             loadJSONData();
+            //         }
+            //     }
+            // })
+        })
+
     })
 </script>
 
