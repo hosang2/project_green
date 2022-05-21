@@ -24,10 +24,18 @@ public class CommentController {
         return new ResponseEntity<>(pno, HttpStatus.OK);
     }
 
-    @GetMapping(value = "/{pno}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/{pno}/all", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<CommentDTO>> getListByPost(@PathVariable("pno") Long pno) {
-        System.out.println("pno : " + pno);
-        return new ResponseEntity<>(service.getList(pno), HttpStatus.OK);
+        System.out.println("pno가 controller에  " + pno);
+        List<CommentDTO> commentList = service.getList(pno);
+        return new ResponseEntity<>(commentList, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{cno}/remove")
+    public ResponseEntity<String> remove(@PathVariable("cno") Long cno) {
+        System.out.println(cno);
+        service.remove(cno);
+        return new ResponseEntity<>("success", HttpStatus.OK);
     }
 
 }
