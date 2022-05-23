@@ -42,10 +42,7 @@ public class ListController {
     @GetMapping("/sight")
     public String goSight(Model model){
         model.addAttribute("post",postService.getSightsList());
-    @PostMapping("/landmark")
-    public String goRead(Model model){
-      // model.addAttribute("sights", postService.getListBysights());
-        // 모델에 관광지 관련된 리스트를 실어서 보냅니다.
+
         return "/home/list";
     }
 
@@ -53,10 +50,7 @@ public class ListController {
     public String goAccom(Model model){
         model.addAttribute("post",postService.getAccomList());
 
-    @PostMapping("acom")
-    public String goAcom(Model model){
-    //model.addAttribute("accom", postService.getListByAccom());
-        //모델에 숙박과 관려된 리스트를 실어서 보냅니다..
+
         return "/home/list";
     }
 

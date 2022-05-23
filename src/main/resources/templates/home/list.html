@@ -206,10 +206,10 @@
 
         <div id="temp" class="container bootstrap snippets bootdey">
             <ul>
-                <div th:each="dto:${post}">
+                <tr th:each="dto : ${post}">
                     <div class="col-md-6">
                         <div class="widget widget-blog">
-                            <a th:href="@{/home/read(pno=2)}">
+                            <a th:href="@{/home/read(pno=${dto.pno})}">
                                 <div class="widget-blog-cover">
                                     <img src="/images/전주한옥마을.jpg" alt="">
                                 </div>
@@ -222,12 +222,6 @@
                                     <h5 class="m-t-0 m-b-1">[[${dto.member.email}]]</h5>
                                     <p class="text-muted m-0 f-s-11">[[${dto.likeNum}]]</p>
                                 </div>
-            <tr th:each="dto : ${post}">
-                <div class="col-md-6">
-                    <div class="widget widget-blog">
-                        <a th:href="@{/home/read(pno=${dto.pno})}">
-                            <div class="widget-blog-cover">
-                                <img src="/images/전주한옥마을.jpg" alt="">
                             </div>
                             <div class="widget-blog-content">
                                 <h5>[[${dto.title}]]</h5>
@@ -236,11 +230,8 @@
                         </div>
                     </div>
             </ul>
-
             </li>
         </div>
-
-
     </div>
     <button onclick="hs()">클릭</button>
 
