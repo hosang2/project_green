@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
     <script src="/header/js/jquery-3.3.1.min.js"></script>
     <script src="/header/js/popper.min.js"></script>
     <script src="/header/js/bootstrap.min.js"></script>
@@ -335,6 +336,7 @@
                         <div class="user-block">
                             <img class="img-circle" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="User Image">
                             <span class="username"><a href="#"> [[${result.member.email}]]</a></span>
+                            <span class="username"><a th:href="@{/home/memberPostList(pno=${result.pno})}"> [[${result.member.email}]]</a></span>
                             <span class="description">[[${#temporals.format(result.regDate,'yyyy/MM/dd')}]]</span>
                         </div>
                         <div class="box-tools">
@@ -352,39 +354,19 @@
                         <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>
                         <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>
                         <span class="pull-right text-muted">[[${result.likeNum}]] likes - 3 comments</span>
+                        <span class="pull-right text-muted">[[${result.likeNum}]] likes - [[${result.commentCnt}]] comments</span>
                     </div>
                     <div class="box-footer box-comments" style="display: block;">
-                        <div class="box-comment">
-                            <img class="img-circle img-sm" src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="User Image">
-                            <div class="comment-text">
-          <span class="username">
-          Maria Gonzales
-          <span class="text-muted pull-right">8:03 PM Today</span>
-          </span>
-                                It is a long established fact that a reader will be distracted
-                                by the readable content of a page when looking at its layout.
-                            </div>
-                        </div>
 
                         <div class="box-comment">
-                            <img class="img-circle img-sm" src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="User Image">
-                            <div class="comment-text">
-          <span class="username">
-          Luna Stark
-          <span class="text-muted pull-right">8:03 PM Today</span>
-          </span>
-                                It is a long established fact that a reader will be distracted
-                                by the readable content of a page when looking at its layout.
-                            </div>
+
                         </div>
                     </div>
                     <div class="box-footer" style="display: block;">
-                        <form action="#" method="post">
                             <img class="img-responsive img-circle img-sm" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="Alt Text">
                             <div class="img-push">
-                                <input type="text" class="form-control input-sm" placeholder="Press enter to post comment">
+                                <input type="text" class="form-control input-sm" name="commentEnter" placeholder="Press enter to post comment">
                             </div>
-                        </form>
                     </div>
                 </div>
             </div>
@@ -392,6 +374,83 @@
 </div>
 
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script th:inline="javascript">
+    $(document).ready(function () {
+        var pno = [[${result.pno}]]
+        var list = $(".box-comment")
+
+        function formatTime(str){
+            var date = new Date(str);
+            return date.getFullYear()+'/'+(date.getMonth()+1)+'/'+date.getDate()+' '+date.getHours()+':'+date.getMinutes();
+        }
+
+        $('input[name="commentEnter"]').keydown(function(e){
+            if (e.keyCode == 13) {
+                var comment={
+                    pno,
+                    content:$('input[name="commentEnter"]').val(),
+                    replyer: [[${result.member.email}]]
+                }
+                console.log(comment);
+                $.ajax({
+                    url: '/comments/',
+                    method: 'post',
+                    data: JSON.stringify(comment),
+                    contentType: 'application/json; charset-utf-8',
+                    dataType: 'json',
+                    success:function (data) {
+                        console.log(data);
+                        alert("댓글이 등록되었습니다.");
+                        loadJSONData();
+                    }
+                })
+            }
+        });
+        function loadJSONData() {
+            $.getJSON('/comments/' + pno +'/all', function (arr) {
+                console.log(arr);
+                var str=""
+                $('.pull-right text-muted').html([[${result.likeNum}]] + "likes -" + arr.length + " comments");
+                $.each(arr,function (idx,comment) {
+                    var cno = comment.cno;
+                    str += '<input type="hidden" name="cno">'
+                    str += '<img class="img-circle img-sm" src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="User Image">';
+                    str += '<div class="comment-text">';
+                    str += '<span class="username">';
+                    str += comment.replyer;
+                    str += '<span class="text-muted pull-right" id="regDate">'+ formatTime(comment.regDate);
+                    str += '<button type="button" class="btn btn-box-tool" name="remove"><i class="fa fa-times"></i></button>'
+                    str += '</span>';
+                    str += '</span>';
+                    str += comment.content;
+                    str += '</div>';
+                    $("input[name='cno']").val(cno);
+                })
+                list.html(str);
+            })
+        }
+        loadJSONData();
+
+        $("#remove").click(function () {
+            var cno = $("input[name='cno']").val();
+            console.log(cno);
+            alert("눌렸다");
+            // $.ajax({
+            //     url: '/comments/' + cno + '/remove',
+            //     method: 'delete',
+            //     success:function (result) {
+            //         console.log("리뷰 삭제 : ", result);
+            //         if(result==='success') {
+            //             alert("댓글이 삭제되었습니다");
+            //             loadJSONData();
+            //         }
+            //     }
+            // })
+        })
+
+    })
+</script>
 
 </body>
 </html>
