@@ -11,6 +11,10 @@ public interface PostService {
 
     List<PostDTO>getList();
 
+    List<PostDTO>getFoodList();
+
+    List<PostDTO>getAccomList();
+    List<PostDTO>getSightsList();
    // List<PostDTO>getListByAccom();
 
    // List<PostDTO>getListByFood();

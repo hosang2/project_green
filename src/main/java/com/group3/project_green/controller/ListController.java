@@ -9,6 +9,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/home/*")
@@ -26,20 +30,28 @@ public class ListController {
         model.addAttribute("post",postService.getList());
         return "/home/list";
     }
-    @PostMapping("/food")
+    @GetMapping("/food")
     public String gofood(Model model ){
+        model.addAttribute("post",postService.getFoodList());
        // model.addAttribute("food",postService.getListByFood());
         // 모델에 음식에 관련된 리스트를 실어서 보냅니다
 
         return "/home/list";
     }
 
+    @GetMapping("/sight")
+    public String goSight(Model model){
+        model.addAttribute("post",postService.getSightsList());
     @PostMapping("/landmark")
     public String goRead(Model model){
       // model.addAttribute("sights", postService.getListBysights());
         // 모델에 관광지 관련된 리스트를 실어서 보냅니다.
         return "/home/list";
     }
+
+    @GetMapping("accom")
+    public String goAccom(Model model){
+        model.addAttribute("post",postService.getAccomList());
 
     @PostMapping("acom")
     public String goAcom(Model model){
@@ -79,3 +91,4 @@ public class ListController {
 
     }
 }
+
