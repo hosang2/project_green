@@ -9,6 +9,11 @@ public interface PostService {
 
     List<PostDTO>getList();
 
+    List<PostDTO>getFoodList();
+
+    List<PostDTO>getAccomList();
+    List<PostDTO>getSightsList();
+
     default  Post dtoToEntity(PostDTO dto){
         Post post =Post.builder()
                 .accom(dto.getAccom())
