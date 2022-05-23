@@ -1,19 +1,13 @@
 package com.group3.project_green.controller;
 
-import com.group3.project_green.DTO.PostCommentDTO;
+import com.group3.project_green.DTO.PostDTO;
 import com.group3.project_green.Service.PostService;
-import com.group3.project_green.entity.Post;
 import com.group3.project_green.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.view.RedirectView;
-
-import java.util.List;
 
 @Controller
 @RequestMapping("/home/*")
@@ -77,8 +71,9 @@ public class ListController {
     }
 
     @GetMapping ("/memberPostList")
-    public String memberPostList(){
-
-        return "/home/memberPostList";
+    public void memberPostList(Long pno, Model model){
+        PostDTO result = postService.get(pno);
+        model.addAttribute("result", result);
+        model.addAttribute("post",postService.getPostList(pno));
     }
 }
