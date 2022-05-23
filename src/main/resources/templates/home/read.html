@@ -336,7 +336,6 @@
                     <div class="box-header with-border">
                         <div class="user-block">
                             <img class="img-circle" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="User Image">
-                            <span class="username"><a href="#"> [[${result.member.email}]]</a></span>
                             <span class="username"><a th:href="@{/home/memberPostList(pno=${result.pno})}"> [[${result.member.email}]]</a></span>
                             <span class="description">[[${#temporals.format(result.regDate,'yyyy/MM/dd')}]]</span>
                         </div>
@@ -354,7 +353,6 @@
                         <p>[[${result.content}]]</p>
                         <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>
                         <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>
-                        <span class="pull-right text-muted">[[${result.likeNum}]] likes - 3 comments</span>
                         <span class="pull-right text-muted">[[${result.likeNum}]] likes - [[${result.commentCnt}]] comments</span>
                     </div>
                     <div class="box-footer box-comments" style="display: block;">
@@ -450,6 +448,10 @@
                     }
                 }
             })
+        })
+        $(document).on('click','.modify',function () {
+            var cno = $("input[name='cno']").val();
+            alert('눌린당');
         })
     })
 </script>
