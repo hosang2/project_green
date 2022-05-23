@@ -22,7 +22,7 @@ public class PostServiceImpl implements PostService{
 
     @Override
     public List<PostDTO> getList() {
-
+      
         List<Post> result = repository.findAll(Sort.by(Sort.Direction.DESC,"modDate"));
         // 리스트를 뽑아온다
         List<PostDTO> dtoList = new ArrayList<>();
@@ -64,7 +64,6 @@ public class PostServiceImpl implements PostService{
         }
         return dtoList;
     }
-//
 //    @Override
 //    public List<PostDTO> getListByAccom() {
 //

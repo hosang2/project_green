@@ -20,6 +20,7 @@ import java.util.List;
 public class ListController {
 
     private final PostService postService;
+    private final PostRepository postRepository;
 
 //    @GetMapping("/")
 //    public String goChat(){
@@ -42,6 +43,8 @@ public class ListController {
     @GetMapping("/sight")
     public String goSight(Model model){
         model.addAttribute("post",postService.getSightsList());
+    }
+  
     @PostMapping("/landmark")
     public String goRead(Model model){
       // model.addAttribute("sights", postService.getListBysights());
@@ -52,6 +55,7 @@ public class ListController {
     @GetMapping("accom")
     public String goAccom(Model model){
         model.addAttribute("post",postService.getAccomList());
+    }
 
     @PostMapping("acom")
     public String goAcom(Model model){
@@ -62,10 +66,13 @@ public class ListController {
 
     @GetMapping("/read")
     public void read(Long pno, Model model) {
+        Post result = postRepository.getById(pno);
+        model.addAttribute("result", result);
         PostCommentDTO result = postService.getPostWithCommentCnt(pno);
         model.addAttribute("result", result);
         System.out.println(result);
     }
+  
     @GetMapping("/insert")
     public String insert() {
 
@@ -84,6 +91,11 @@ public class ListController {
     }
 
     @GetMapping ("/memberPostList")
+    public String memberPostList(){
+
+        return "/home/memberPostList";
+    }
+  
     public void memberPostList(Long pno, Model model){
         PostDTO result = postService.get(pno);
         model.addAttribute("result", result);
