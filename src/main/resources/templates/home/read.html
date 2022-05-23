@@ -36,6 +36,7 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link rel="stylesheet" href="/sidebar/css/style.css">
 
     <style>
@@ -413,42 +414,43 @@
                 var str=""
                 $('.pull-right text-muted').html([[${result.likeNum}]] + "likes -" + arr.length + " comments");
                 $.each(arr,function (idx,comment) {
-                    var cno = comment.cno;
                     str += '<input type="hidden" name="cno">'
                     str += '<img class="img-circle img-sm" src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="User Image">';
-                    str += '<div class="comment-text">';
+                    str += '<div class="comment-text" data-cno="'+ comment.cno +'">';
                     str += '<span class="username">';
                     str += comment.replyer;
                     str += '<span class="text-muted pull-right" id="regDate">'+ formatTime(comment.regDate);
-                    str += '<button type="button" class="btn btn-box-tool" name="remove"><i class="fa fa-times"></i></button>'
+                    str += '<button type="button" class="btn btn-box-tool modify"><i class="fas fa-pen-square"></i></button>';
+                    str += '<button type="button" class="btn btn-box-tool remove"><i class="fa fa-times"></i></button>';
                     str += '</span>';
                     str += '</span>';
                     str += comment.content;
                     str += '</div>';
-                    $("input[name='cno']").val(cno);
                 })
                 list.html(str);
             })
         }
         loadJSONData();
 
-        $("#remove").click(function () {
-            var cno = $("input[name='cno']").val();
+        $(".box-comment").on("click",".comment-text",function () {
+            var cno = $(this).data("cno");
+            $("input[name='cno']").val(cno);
             console.log(cno);
-            alert("눌렸다");
-            // $.ajax({
-            //     url: '/comments/' + cno + '/remove',
-            //     method: 'delete',
-            //     success:function (result) {
-            //         console.log("리뷰 삭제 : ", result);
-            //         if(result==='success') {
-            //             alert("댓글이 삭제되었습니다");
-            //             loadJSONData();
-            //         }
-            //     }
-            // })
         })
-
+        $(document).on('click','.remove',function(){
+            var cno = $("input[name='cno']").val();
+            $.ajax({
+                url: '/comments/' + cno + '/remove',
+                method: 'delete',
+                success:function (result) {
+                    console.log("리뷰 삭제 : ", result);
+                    if(result==='success') {
+                        alert("댓글이 삭제되었습니다");
+                        loadJSONData();
+                    }
+                }
+            })
+        })
     })
 </script>
 
