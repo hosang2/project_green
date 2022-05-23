@@ -3,15 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <title>Post List</title>
+    <script src="/header/js/jquery-3.3.1.min.js"></script>
+    <script src="/header/js/popper.min.js"></script>
+    <script src="/header/js/bootstrap.min.js"></script>
+    <script src="/header/js/jquery.sticky.js"></script>
+    <script src="/header/js/main.js"></script>
+
+    <script src="/sidebar/js/jquery.min.js"></script>
+    <script src="/sidebar/js/popper.js"></script>
+    <script src="/sidebar/js/bootstrap.min.js"></script>
+    <script src="/sidebar/js/main.js"></script>
+
+    <!-- 합쳐지고 최소화된 최신 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+    <!-- 부가적인 테마 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:400,600,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/header/fonts/icomoon/style.css">
+    <link rel="stylesheet" href="/header/css/owl.carousel.min.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/header/css/bootstrap.min.css">
+    <!-- Style -->
+    <link rel="stylesheet" href="/header/css/style.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/sidebar/css/style.css">
+
 </head>
-<!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
-<!-- 부가적인 테마 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-
-<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <style>
     .post-editor,
     .stream-post {
@@ -328,190 +355,208 @@
     }
 </style>
 <body>
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-<div class="container">
-    <div class="profile-wrapper">
-        <div class="profile-section-user">
-            <div class="profile-cover-img"><img src="https://bootdey.com/img/Content/flores-amarillas-wallpaper.jpeg" alt=""></div>
-            <div class="profile-info-brief p-3"><img class="img-fluid user-profile-avatar" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="">
-                <div class="text-center">
-                    <h5 class="text-uppercase mb-4">John Doe</h5>
-                    <p class="text-muted fz-base">I'm John Doe a web developer and software engineer. I studied computer science and software engineering.</p>
-
-                    <h5 class="text-uppercase mb-4">[[${result.member.email}]]</h5>
-                    <p class="text-muted fz-base">추가 text 공간 </p>
-                </div>
-            </div>
-            <!-- /.profile-info-brief -->
-            <hr class="m-0">
-            <div class="hidden-sm-down">
-                <hr class="m-0">
-                <div class="profile-info-contact p-4">
-                    <h6 class="mb-3">Contact Information</h6>
-                    <table class="table">
-                        <tbody>
-                        <tr>
-                            <td><strong>URL:</strong></td>
-                            <td>
-                                <p class="text-muted mb-0">Rathemes.com/inde.html</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><strong>EMAIL:</strong></td>
-                            <td>
-                                <p class="text-muted mb-0">rathemes@gmail.com</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><strong>PHONE:</strong></td>
-                            <td>
-                                <p class="text-muted mb-0">01145525755</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><strong>SKYPE:</strong></td>
-                            <td>
-                                <p class="text-muted mb-0">Rathemes</p>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <!-- /.profile-info-contact -->
-                <hr class="m-0">
-                <div class="profile-info-general p-4">
-                    <h6 class="mb-3">General Information</h6>
-                    <table class="table">
-                        <tbody>
-                        <tr>
-                            <td><strong>JOB:</strong></td>
-                            <td>
-                                <p class="text-muted mb-0">Web Developer</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><strong>POSITION:</strong></td>
-                            <td>
-                                <p class="text-muted mb-0">Team Manager</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><strong>STUDIED:</strong></td>
-                            <td>
-                                <p class="text-muted mb-0">Computer Science</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><strong>LAST SEEN:</strong></td>
-                            <td>
-                                <p class="text-muted mb-0">Yesterday 8:00 AM</p>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <!-- /.profile-info-general -->
-                <hr class="m-0">
-            </div>
-            <!-- /.hidden-sm-down -->
+<div class="site-mobile-menu site-navbar-target">
+    <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+            <span class="icon-close2 js-menu-toggle"></span>
         </div>
-        <!-- /.profile-section-user -->
-        <div class="profile-section-main">
-            <!-- Nav tabs -->
-            <ul class="nav nav-tabs profile-tabs" role="tablist">
-                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#profile-overview" role="tab">Timeline</a></li>
-            </ul>
-            <!-- /.nav-tabs -->
-            <!-- Tab panes -->
-            <div class="tab-content profile-tabs-content">
-                <div class="tab-pane active" id="profile-overview" role="tabpanel">
-                    <div class="post-editor">
-                        <textarea name="post-field" id="post-field" class="post-field" placeholder="Write Something Cool!"></textarea>
-                        <div class="d-flex">
-                            <button class="btn btn-success px-4 py-1">Post</button>
-                        </div>
-                    </div>
-                    <!-- /.post-editor -->
-                    <div class="stream-posts">
-                        <div class="stream-post">
-                            <div class="sp-author">
-                                <a href="#" class="sp-author-avatar"><img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt=""></a>
-                                <h6 class="sp-author-name"><a href="#">John Doe</a></h6></div>
-                            <div class="sp-content">
-                                <div class="sp-info">posted 1h ago</div>
-                                <p class="sp-paragraph mb-0">Auk Soldanella plainscraft acetonylidene wolfishness irrecognizant Candolleaceae provision Marsipobranchii arpen Paleoanthropus supersecular inidoneous autoplagiarism palmcrist occamy equestrianism periodontoclasia mucedin overchannel goelism decapsulation pourer zira</p>
-                            </div>
-                            <!-- /.sp-content -->
-                        </div>
-                        <!-- /.stream-post -->
-                        <div class="stream-post">
-                            <div class="sp-author">
-                                <a href="#" class="sp-author-avatar"><img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt=""></a>
-                                <h6 class="sp-author-name"><a href="#">Palmira Guthridge</a></h6></div>
-                            <div class="sp-content">
-                                <div class="sp-info">posted 1h ago</div>
-                                <p class="sp-paragraph mb-0">Auk Soldanella plainscraft acetonylidene wolfishness irrecognizant Candolleaceae provision Marsipobranchii arpen Paleoanthropus supersecular inidoneous autoplagiarism palmcrist occamy equestrianism periodontoclasia mucedin overchannel goelism decapsulation pourer zira</p>
-                            </div>
-                            <!-- /.sp-content -->
-                        </div>
-                        <!-- /.stream-post -->
-                        <div class="stream-post">
-                            <div class="sp-author">
-                                <a href="#" class="sp-author-avatar"><img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt=""></a>
-                                <h6 class="sp-author-name"><a href="#">Meghann Fraser</a></h6></div>
-                            <div class="sp-content">
-                                <div class="sp-info">posted 2h ago</div>
-                                <p class="sp-paragraph mb-0">Auk Soldanella plainscraft acetonylidene wolfishness irrecognizant Candolleaceae provision Marsipobranchii arpen Paleoanthropus supersecular inidoneous autoplagiarism palmcrist occamy equestrianism periodontoclasia mucedin overchannel goelism decapsulation pourer zira</p>
-                            </div>
-                            <!-- /.sp-content -->
-                        </div>
-                        <!-- /.stream-post -->
-                        <div class="stream-post">
-                            <div class="sp-author">
-                                <a href="#" class="sp-author-avatar"><img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt=""></a>
-                                <h6 class="sp-author-name"><a href="#">Kent Lemaitre</a></h6></div>
-                            <div class="sp-content">
-                                <div class="sp-info">posted 1h ago</div>
-                                <p class="sp-paragraph mb-0">Auk Soldanella plainscraft acetonylidene wolfishness irrecognizant Candolleaceae provision Marsipobranchii arpen Paleoanthropus supersecular inidoneous autoplagiarism palmcrist occamy equestrianism periodontoclasia mucedin overchannel goelism decapsulation pourer zira</p>
-                            </div>
-                            <!-- /.sp-content -->
-                        </div>
-                        <!-- /.stream-post -->
-                        <div class="stream-post mb-0">
-                            <div class="sp-author">
-                                <a href="#" class="sp-author-avatar"><img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt=""></a>
-                                <h6 class="sp-author-name"><a href="#">Loria Lambing</a></h6></div>
-                            <div class="sp-content">
-                                <div class="sp-info">posted 2 days ago</div>
-                                <p class="sp-paragraph">Auk Soldanella plainscraft acetonylidene wolfishness irrecognizant Candolleaceae provision Marsipobranchii arpen Paleoanthropus supersecular inidoneous</p>
-                                <p class="sp-paragraph">autoplagiarism palmcrist occamy equestrianism periodontoclasia mucedin overchannel goelism decapsulation pourer zira</p>
-                            </div>
-                            <!-- /.sp-content -->
-                        </div>
-                        <!-- /.stream-post -->
-                    <!-- 타임 라인 시작 -->
-                    <div class="stream-posts" th:each="dto : ${post}" >
-                        <div class="stream-post" >
-                            <div class="sp-author">
-                                <a href="#" class="sp-author-avatar"><img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt=""></a>
-                                <h6 class="sp-author-name"><a href="#">[[${dto.member.email}]]</a></h6>
-                            </div>
-                            <div class="sp-content">
-                                <div class="sp-info">[[${dto.title}]]</div>
-                                <p class="sp-paragraph mb-0">
-                                    <a th:href="@{/home/read(pno=${dto.pno})}">[[${dto.content}]]</a>
-                                </p>
-                            </div>
-                            <!-- /.sp-content -->
-                        </div>
-                    </div>
-                    <!-- /.stream-posts -->
-                </div>
-            </div>
-            <!-- /.tab-content -->
-        </div>
-        <!-- /.profile-section-main -->
     </div>
+    <div class="site-mobile-menu-body"></div>
 </div>
+
+<header class="site-navbar site-navbar-target bg-white" role="banner">
+
+    <div class="container">
+        <div class="row align-items-center position-relative">
+
+            <div class="col-lg-4">
+                <nav class="site-navigation text-right ml-auto " role="navigation">
+                    <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
+
+                        <li><a href="project.html" class="nav-link">Food</a></li>
+                        <li><a href="services.html" class="nav-link">Landmark</a></li>
+                        <li><a href="services.html" class="nav-link">Accommodation</a></li>
+                        <!--                        각 태그 클릭시 <div class="col-md-6"> 에  데이터 값 변경  default all list -->
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-lg-4 text-center">
+                <div class="site-logo">
+                    <a href="/home/list">Brand</a>
+                </div>
+
+
+                <div class="ml-auto toggle-button d-inline-block d-lg-none"><a href="#" class="site-menu-toggle py-5 js-menu-toggle text-black"><span class="icon-menu h3 text-black"></span></a></div>
+            </div>
+            <div class="col-lg-4">
+                <nav class="site-navigation text-left mr-auto " role="navigation">
+                    <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
+                        <li><a href="/home/login" class="nav-link">Logout</a></li>
+                        <li><a href="/home/userinfo" class="nav-link">My Page</a></li>
+                        <li><a href="/home/insert" class="nav-link">Add Post</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+
+        </div>
+    </div>
+
+</header>
+
+<div class="wrapper d-flex align-items-stretch">
+
+    <nav id="sidebar" class="active">
+        <h1><a href="/" class="logo">H.</a></h1>
+        <ul class="list-unstyled components mb-5">
+            <li class="active">
+                <a href="#"><span class="fa fa-home"></span> Home</a>
+            </li>
+            <li>
+                <a href="#"><span class="fa fa-user"></span> Food</a>
+            </li>
+            <li>
+                <a href="#"><span class="fa fa-sticky-note"></span> Landmark</a>
+            </li>
+            <li>
+                <a href="#"><span class="fa fa-bed"></span> Accomm.</a>
+            </li>
+            <li>
+                <a href="#"><span class="fa fa-paper-plane"></span> Chat</a>
+            </li>
+        </ul>
+
+        <div class="footer">
+            <p>
+                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib.com</a>
+            </p>
+        </div>
+    </nav>
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <div class="container">
+        <div class="profile-wrapper">
+            <div class="profile-section-user">
+                <div class="profile-cover-img"><img src="https://bootdey.com/img/Content/flores-amarillas-wallpaper.jpeg" alt=""></div>
+                <div class="profile-info-brief p-3"><img class="img-fluid user-profile-avatar" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="">
+                    <div class="text-center">
+                        <h5 class="text-uppercase mb-4">[[${result.member.email}]]</h5>
+                        <p class="text-muted fz-base">추가 text 공간 </p>
+                    </div>
+                </div>
+                <!-- /.profile-info-brief -->
+                <hr class="m-0">
+                <div class="hidden-sm-down">
+                    <hr class="m-0">
+                    <div class="profile-info-contact p-4">
+                        <h6 class="mb-3">Contact Information</h6>
+                        <table class="table">
+                            <tbody>
+                            <tr>
+                                <td><strong>URL:</strong></td>
+                                <td>
+                                    <p class="text-muted mb-0">Rathemes.com/inde.html</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>EMAIL:</strong></td>
+                                <td>
+                                    <p class="text-muted mb-0">rathemes@gmail.com</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>PHONE:</strong></td>
+                                <td>
+                                    <p class="text-muted mb-0">01145525755</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>SKYPE:</strong></td>
+                                <td>
+                                    <p class="text-muted mb-0">Rathemes</p>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.profile-info-contact -->
+                    <hr class="m-0">
+                    <div class="profile-info-general p-4">
+                        <h6 class="mb-3">General Information</h6>
+                        <table class="table">
+                            <tbody>
+                            <tr>
+                                <td><strong>JOB:</strong></td>
+                                <td>
+                                    <p class="text-muted mb-0">Web Developer</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>POSITION:</strong></td>
+                                <td>
+                                    <p class="text-muted mb-0">Team Manager</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>STUDIED:</strong></td>
+                                <td>
+                                    <p class="text-muted mb-0">Computer Science</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>LAST SEEN:</strong></td>
+                                <td>
+                                    <p class="text-muted mb-0">Yesterday 8:00 AM</p>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.profile-info-general -->
+                    <hr class="m-0">
+                </div>
+                <!-- /.hidden-sm-down -->
+            </div>
+            <!-- /.profile-section-user -->
+            <div class="profile-section-main">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs profile-tabs" role="tablist">
+                    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#profile-overview" role="tab">Timeline</a></li>
+                </ul>
+                <!-- /.nav-tabs -->
+                <!-- Tab panes -->
+                <div class="tab-content profile-tabs-content">
+                    <div class="tab-pane active" id="profile-overview" role="tabpanel">
+                        <div class="post-editor">
+                            <textarea name="post-field" id="post-field" class="post-field" placeholder="Write Something Cool!"></textarea>
+                            <div class="d-flex">
+                                <button class="btn btn-success px-4 py-1">Post</button>
+                            </div>
+                        </div>
+                        <!-- /.post-editor -->
+                        <!-- 타임 라인 시작 -->
+                        <div class="stream-posts" th:each="dto : ${post}" >
+                            <div class="stream-post" >
+                                <div class="sp-author">
+                                    <a href="#" class="sp-author-avatar"><img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt=""></a>
+                                    <h6 class="sp-author-name"><a href="#">[[${dto.member.email}]]</a></h6>
+                                </div>
+                                <div class="sp-content">
+                                    <div class="sp-info">[[${dto.title}]]</div>
+                                    <p class="sp-paragraph mb-0">
+                                        <a th:href="@{/home/read(pno=${dto.pno})}">[[${dto.content}]]</a>
+                                    </p>
+                                </div>
+                                <!-- /.sp-content -->
+                            </div>
+                        </div>
+                        <!-- /.stream-posts -->
+                    </div>
+                </div>
+                <!-- /.tab-content -->
+            </div>
+            <!-- /.profile-section-main -->
+        </div>
+    </div>
 </body>
 </html>
