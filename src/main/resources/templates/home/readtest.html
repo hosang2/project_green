@@ -265,17 +265,16 @@
             <div class="col-lg-4">
                 <nav class="site-navigation text-right ml-auto " role="navigation">
                     <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
-
+                        <li class="active"><a href="index.html" class="nav-link">Home</a></li>
                         <li><a href="project.html" class="nav-link">Food</a></li>
                         <li><a href="services.html" class="nav-link">Landmark</a></li>
-                        <li><a href="services.html" class="nav-link">Accommodation</a></li>
-                        <!--                        각 태그 클릭시 <div class="col-md-6"> 에  데이터 값 변경  default all list -->
+                        <li><a href="services.html" class="nav-link">Accomodation</a></li>
                     </ul>
                 </nav>
             </div>
             <div class="col-lg-4 text-center">
                 <div class="site-logo">
-                    <a href="/home/list">Brand</a>
+                    <a href="index.html">Brand</a>
                 </div>
 
 
@@ -284,9 +283,8 @@
             <div class="col-lg-4">
                 <nav class="site-navigation text-left mr-auto " role="navigation">
                     <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
-                        <li><a href="/home/login" class="nav-link">Logout</a></li>
-                        <li><a href="/home/userinfo" class="nav-link">My Page</a></li>
-                        <li><a href="/home/insert" class="nav-link">Add Post</a></li>
+                        <li><a href="blog.html" class="nav-link">Logout</a></li>
+                        <li><a href="contact.html" class="nav-link">My Page</a></li>
                     </ul>
                 </nav>
             </div>
@@ -312,7 +310,7 @@
             <a href="#"><span class="fa fa-sticky-note"></span> Landmark</a>
         </li>
         <li>
-            <a href="#"><span class="fa fa-bed"></span> Accomm.</a>
+            <a href="#"><span class="fa fa-cogs"></span> Accomodation</a>
         </li>
         <li>
             <a href="#"><span class="fa fa-paper-plane"></span> Chat</a>
@@ -334,8 +332,8 @@
                     <div class="box-header with-border">
                         <div class="user-block">
                             <img class="img-circle" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="User Image">
-                            <span class="username"><a href="#"> [[${result.member.email}]]</a></span>
-                            <span class="description">[[${#temporals.format(result.regDate,'yyyy/MM/dd')}]]</span>
+                            <span class="username"><a href="@{/home/memberPostList(id=${post.member.id})}">John Breakgrow jr.</a></span>
+                            <span class="description">Shared publicly - 7:30 PM Today</span>
                         </div>
                         <div class="box-tools">
                             <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="" data-original-title="Mark as read">
@@ -348,10 +346,10 @@
 
                     <div class="box-body" style="display: block;">
                         <img class="img-responsive pad" src="/images/민속촌.jpg" alt="Photo">
-                        <p>[[${result.content}]]</p>
+                        <p>I took this photo this morning. What do you guys think?</p>
                         <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>
                         <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>
-                        <span class="pull-right text-muted">[[${result.likeNum}]] likes - 3 comments</span>
+                        <span class="pull-right text-muted">127 likes - 3 comments</span>
                     </div>
                     <div class="box-footer box-comments" style="display: block;">
                         <div class="box-comment">
