@@ -1,8 +1,8 @@
 package com.group3.project_green.controller;
 
+import com.group3.project_green.DTO.PostCommentDTO;
+import com.group3.project_green.DTO.PostDTO;
 import com.group3.project_green.Service.PostService;
-import com.group3.project_green.entity.Post;
-import com.group3.project_green.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +20,6 @@ import java.util.List;
 public class ListController {
 
     private final PostService postService;
-    private final PostRepository postRepository;
 
 //    @GetMapping("/")
 //    public String goChat(){
@@ -29,12 +28,12 @@ public class ListController {
     @GetMapping("/list")
     public String goList(Model model) {
         model.addAttribute("post",postService.getList());
-
         return "/home/list";
     }
     @GetMapping("/food")
     public String gofood(Model model ){
         model.addAttribute("post",postService.getFoodList());
+       // model.addAttribute("food",postService.getListByFood());
         // 모델에 음식에 관련된 리스트를 실어서 보냅니다
 
         return "/home/list";
@@ -43,6 +42,9 @@ public class ListController {
     @GetMapping("/sight")
     public String goSight(Model model){
         model.addAttribute("post",postService.getSightsList());
+    @PostMapping("/landmark")
+    public String goRead(Model model){
+      // model.addAttribute("sights", postService.getListBysights());
         // 모델에 관광지 관련된 리스트를 실어서 보냅니다.
         return "/home/list";
     }
@@ -50,14 +52,19 @@ public class ListController {
     @GetMapping("accom")
     public String goAccom(Model model){
         model.addAttribute("post",postService.getAccomList());
+
+    @PostMapping("acom")
+    public String goAcom(Model model){
+    //model.addAttribute("accom", postService.getListByAccom());
         //모델에 숙박과 관려된 리스트를 실어서 보냅니다..
         return "/home/list";
     }
 
     @GetMapping("/read")
     public void read(Long pno, Model model) {
-        Post result = postRepository.getById(pno);
+        PostCommentDTO result = postService.getPostWithCommentCnt(pno);
         model.addAttribute("result", result);
+        System.out.println(result);
     }
     @GetMapping("/insert")
     public String insert() {
@@ -77,9 +84,11 @@ public class ListController {
     }
 
     @GetMapping ("/memberPostList")
-    public String memberPostList(){
+    public void memberPostList(Long pno, Model model){
+        PostDTO result = postService.get(pno);
+        model.addAttribute("result", result);
+        model.addAttribute("post",postService.getPostList(pno));
 
-        return "/home/memberPostList";
     }
 }
 

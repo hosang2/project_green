@@ -189,6 +189,7 @@
                 </li>
                 <li>
                     <a href="/home/accom"><span class="fa fa-cogs"></span> Accomodation</a>
+                    <a href="#"><span class="fa fa-cogs"></span> Accommodation</a>
                 </li>
                 <!--                        각 태그 클릭시 <div class="col-md-6"> 에  데이터 값 변경  default all list -->
                 <li>
@@ -221,6 +222,12 @@
                                     <h5 class="m-t-0 m-b-1">[[${dto.member.email}]]</h5>
                                     <p class="text-muted m-0 f-s-11">[[${dto.likeNum}]]</p>
                                 </div>
+            <tr th:each="dto : ${post}">
+                <div class="col-md-6">
+                    <div class="widget widget-blog">
+                        <a th:href="@{/home/read(pno=${dto.pno})}">
+                            <div class="widget-blog-cover">
+                                <img src="/images/전주한옥마을.jpg" alt="">
                             </div>
                             <div class="widget-blog-content">
                                 <h5>[[${dto.title}]]</h5>
