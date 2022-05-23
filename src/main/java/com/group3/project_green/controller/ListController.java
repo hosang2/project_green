@@ -1,5 +1,6 @@
 package com.group3.project_green.controller;
 
+import com.group3.project_green.DTO.PostCommentDTO;
 import com.group3.project_green.Service.PostService;
 import com.group3.project_green.entity.Post;
 import com.group3.project_green.repository.PostRepository;
@@ -56,8 +57,7 @@ public class ListController {
 
     @GetMapping("/read")
     public void read(Long pno, Model model) {
-        Post result = postRepository.getById(pno);
-        model.addAttribute("result", result);
+        model.addAttribute("result", postService.getPostWithCommentCnt(pno));
     }
     @GetMapping("/insert")
     public String insert() {
