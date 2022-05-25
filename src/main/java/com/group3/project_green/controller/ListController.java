@@ -76,4 +76,26 @@ public class ListController {
         model.addAttribute("result", result);
         model.addAttribute("post",postService.getPostList(pno));
     }
+
+    @GetMapping("/sightsPostList")
+    public String sightsPostList(Long pno, Model model){
+        PostDTO result = postService.get(pno);
+        model.addAttribute("result", result);
+        model.addAttribute("post",postService.getPostListBySights(pno));
+        return "/home/memberPostList";
+    }
+    @GetMapping("/foodPostList")
+    public String foodPostList(Long pno, Model model){
+        PostDTO result = postService.get(pno);
+        model.addAttribute("result", result);
+        model.addAttribute("post",postService.getPostByFoodFid(pno));
+        return "/home/memberPostList";
+    }
+    @GetMapping("/accomPostList")
+    public String accomPostList(Long pno, Model model){
+        PostDTO result = postService.get(pno);
+        model.addAttribute("result", result);
+        model.addAttribute("post",postService.getPostByAccomAid(pno));
+        return "/home/memberPostList";
+    }
 }

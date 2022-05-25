@@ -40,7 +40,9 @@
 </head>
 
 <style>
-    .post-editor,
+    .post-editor{
+
+    }
     .stream-post {
         padding: .75rem;
         background: #f7f7f9;
@@ -180,6 +182,14 @@
         box-shadow: none;
         outline: none
     }
+
+    .post-editor #btn_listgroup{
+
+        width: 45pt;
+        height: 45pt;
+        padding: 1rem;
+    }
+
 
     .stream-post {
         position: relative
@@ -529,20 +539,52 @@
                     <div class="tab-pane active" id="profile-overview" role="tabpanel">
                         <div class="post-editor">
                             <textarea name="post-field" id="post-field" class="post-field" placeholder="Write Something Cool!"></textarea>
-                            <div class="d-flex">
-                                <button class="btn btn-success px-4 py-1">Post</button>
+                            <div class="d-flex" id="btn_listgroup">
+                                <button class="btn btn-success px-4 py-1" style="margin-right:5px" >
+                                    <a th:href="@{/home/foodPostList(pno=${result.getPno()})}"
+                                       style="
+                                            color: #1b1e21;
+                                            font-size:1.5em;
+                                            font-weight: bold;
+                                            ">음식</a>
+                                </button>
+                                <button class="btn btn-success px-4 py-1" style="margin-right:5px" >
+                                    <a th:href="@{/home/accomPostList(pno=${result.getPno()})}"
+                                       style="
+                                            color: #1b1e21;
+                                            font-size:1.5em;
+                                            font-weight: bold;
+                                            ">숙박</a>
+                                </button>
+                                <button class="btn btn-success px-4 py-1" style="margin-right:5px" >
+                                    <a th:href="@{/home/sightsPostList(pno=${result.getPno()})}"
+                                       style="
+                                            color: #1b1e21;
+                                            font-size:1.5em;
+                                            font-weight: bold;
+                                            ">관광</a>
+                                </button>
+                                <button class="btn btn-success px-4 py-1" style="margin-right:5px" >
+                                    <a th:href="@{/home/memberPostList(pno=${result.getPno()})}"
+                                       style="
+                                            color: #1b1e21;
+                                            font-size:1.5em;
+                                            font-weight: bold;
+                                            ">전체</a>
+                                </button>
                             </div>
+                            <!-- 버튼 클릭시 해당 PostList 만 띄우기 -->
                         </div>
                         <!-- /.post-editor -->
                         <!-- 타임 라인 시작 -->
-                        <div class="stream-posts" th:each="dto : ${post}" >
+                        <div class="stream-posts" id="test" th:each="dto : ${post}" >
                             <div class="stream-post" >
                                 <div class="sp-author">
                                     <a href="#" class="sp-author-avatar"><img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt=""></a>
                                     <h6 class="sp-author-name"><a href="#">[[${dto.member.email}]]</a></h6>
                                 </div>
                                 <div class="sp-content">
-                                    <div class="sp-info">[[${dto.title}]]</div>
+                                    <div class="sp-info" id="post_title">[[${dto.title}]]</div>
                                     <p class="sp-paragraph mb-0">
                                         <a th:href="@{/home/read(pno=${dto.pno})}">[[${dto.content}]]</a>
                                     </p>
@@ -558,5 +600,11 @@
             <!-- /.profile-section-main -->
         </div>
     </div>
+    <script th:inline="javascript">
+        $('#b_sightslist').click(function(){
+            console.log("버튼눌림");
+        })
+    </script>
+
 </body>
 </html>
