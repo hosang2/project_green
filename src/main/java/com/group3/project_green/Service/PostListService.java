@@ -1,27 +1,17 @@
 package com.group3.project_green.Service;
 
-import com.group3.project_green.DTO.PostCommentDTO;
 import com.group3.project_green.DTO.PostDTO;
-import com.group3.project_green.entity.Member;
 import com.group3.project_green.entity.Post;
 
 import java.util.List;
 
-public interface PostService {
+public interface PostListService {
 
-    List<PostDTO>getList();
-
+    List<PostDTO> getList();
     List<PostDTO>getFoodList();
-
     List<PostDTO>getAccomList();
     List<PostDTO>getSightsList();
-
-    PostCommentDTO getPostWithCommentCnt(Long pno);
-
-    PostDTO get(Long pno);
-    List<PostDTO> getPostList(Long pno);
-
-    default  Post dtoToEntity(PostDTO dto){
+    default Post dtoToEntity(PostDTO dto){
         Post post =Post.builder()
                 .pno(dto.getPno())
                 .accom(dto.getAccom())
@@ -51,24 +41,4 @@ public interface PostService {
         return postDTO;
 
     }
-
-    default PostCommentDTO entityToDTO(Post post , Member member, Long commentCnt){
-        PostCommentDTO postCDTO = PostCommentDTO.builder()
-                .pno(post.getPno())
-                .title(post.getTitle())
-                .sights(post.getSights())
-                .member(post.getMember())
-                .likeNum(post.getLikeNum())
-                .food(post.getFood())
-                .content(post.getContent())
-                .accom(post.getAccom())
-                .regDate(post.getRegDate())
-                .modDate(post.getModDate())
-                .memberEmail(member.getEmail())
-                .commentCnt(commentCnt.intValue())
-                .build();
-        return postCDTO;
-
-    }
-
 }

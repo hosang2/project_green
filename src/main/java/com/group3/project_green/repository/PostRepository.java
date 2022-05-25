@@ -13,17 +13,16 @@ public interface PostRepository extends JpaRepository<Post, Long> {
             "left join p.member m " +
             "where m.id = :id")
     List<Post> getPostsByMemberId(Long id);
-   // List<Post> findbyAccom();
 
-  //  List<Post> findbyFood();
-
-    //  List<Post> findbysights();
     @Query(value = "select p,m, count(c) from Post p " +
             "left join p.member m " +
             "left outer join Comment c on c.post = p " +
             "where p.pno = :pno")
     Object getPostByPno(@Param("pno") Long pno);
-  //  List<Post> findbysights();
+
+
+
+
 
 
 
