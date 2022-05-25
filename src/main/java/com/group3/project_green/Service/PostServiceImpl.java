@@ -24,89 +24,26 @@ public class PostServiceImpl implements PostService{
     public List<PostDTO> getList() {
       
         List<Post> result = repository.findAll(Sort.by(Sort.Direction.DESC,"modDate"));
-        // 리스트를 뽑아온다
-        List<PostDTO> dtoList = new ArrayList<>();
-        for(Post post : result){
-            dtoList.add(entityToDTO(post));
-        }
-        // 뽑아온 리스트를 DTO 리스트로 바꾼다 (default 메서드이용)
-
-        // DTO 리스트를 반환한다.
-        return dtoList;
+        return result.stream().map(post -> entityToDTO(post)).collect(Collectors.toList());
     }
 
     @Override
     public List<PostDTO> getFoodList() {
         List<Post>result = repository.findAll(Sort.by(Sort.Direction.DESC,"modDate")).stream().filter(i->i.getFood() != null).collect(Collectors.toList());
-        List<PostDTO> dtoList = new ArrayList<>();
-        for (Post post :result){
-            dtoList.add(entityToDTO(post));
-        }
-        return dtoList;
+        return result.stream().map(post -> entityToDTO(post)).collect(Collectors.toList());
     }
 
     @Override
     public List<PostDTO> getAccomList() {
         List<Post> result = repository.findAll(Sort.by(Sort.Direction.DESC,"modDate")).stream().filter(i -> i.getAccom() != null).collect(Collectors.toList());
-        List<PostDTO> dtoList = new ArrayList<>();
-        for (Post post : result) {
-            dtoList.add(entityToDTO(post));
-        }
-        return dtoList;
+        return result.stream().map(post -> entityToDTO(post)).collect(Collectors.toList());
     }
 
     @Override
     public List<PostDTO> getSightsList() {
         List<Post> result = repository.findAll(Sort.by(Sort.Direction.DESC,"modDate")).stream().filter(i ->  i.getSights() != null).collect(Collectors.toList());
-        List<PostDTO> dtoList = new ArrayList<>();
-        for (Post post : result) {
-            dtoList.add(entityToDTO(post));
-        }
-        return dtoList;
+        return result.stream().map(post -> entityToDTO(post)).collect(Collectors.toList());
     }
-//    @Override
-//    public List<PostDTO> getListByAccom() {
-//
-//        List<Post> result = repository.findbyAccom();
-//
-//        List<PostDTO> dtoList = new ArrayList<>();
-//        for(Post post : result){
-//            dtoList.add(entityToDTO(post));
-//            System.out.println("===================");
-//            System.out.println(post);
-//            System.out.println("===================");
-//        }
-//        return  dtoList;
-//    }
-//
-//    @Override
-//    public List<PostDTO> getListByFood() {
-//        List<Post> result = repository.findbyFood();
-//        List<PostDTO> dtoList = new ArrayList<>();
-//        for(Post post : result){
-//            dtoList.add(entityToDTO(post));
-//            System.out.println("===================");
-//            System.out.println(post);
-//            System.out.println("===================");
-//        }
-//
-//        return dtoList;
-//    }
-
-//    @Override
-//    public List<PostDTO> getListBysights() {
-//        List<Post> result = repository.findbysights();
-//
-//        List<PostDTO> dtoList = new ArrayList<>();
-//        for(Post post : result){
-//            dtoList.add(entityToDTO(post));
-//            System.out.println("===================");
-//            System.out.println(post);
-//            System.out.println("===================");
-//        }
-//        return dtoList;
-//    }
-
 
     @Override
     public PostCommentDTO getPostWithCommentCnt(Long pno) {
