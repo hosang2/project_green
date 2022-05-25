@@ -68,6 +68,50 @@ public class PostTests {
 
         }
     }
+    @Test
+    void sightsInsert(){
+        Sights sights = Sights.builder()
+                    .name("관광지테스트")
+                    .category("관광지종류")
+                    .build();
+            sightRepository.save(sights);
+    }
+    @Test
+    void foodInsert(){
+        Sights sights = Sights.builder()
+                .name("관광지테스트")
+                .category("관광지종류")
+                .build();
+        sightRepository.save(sights);
+    }
+    @Test
+    void accomInsert(){
+        Accom accom = Accom.builder()
+                .name("숙박테스트")
+                .category("숙박종류")
+                .build();
+        accomRepository.save(accom);
+    }
+    @Test
+    void postInsert(){
+        Sights sights = Sights.builder()
+                .sid(1L)
+                .build();
+        Member member = Member.builder()
+                .id(1L)
+                .build();
+        Accom accom = Accom.builder()
+                .aid(1L)
+                .build();
+        Post post = Post.builder()
+                .content("accom insert 테스트내용")
+                .likeNum(5L)
+                .title("accom insert 테스트타이틀")
+                .member(member)
+                .accom(accom)
+                .build();
+        postRepository.save(post);
+    }
 
 
 }

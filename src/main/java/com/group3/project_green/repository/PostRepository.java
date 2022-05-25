@@ -13,6 +13,23 @@ public interface PostRepository extends JpaRepository<Post, Long> {
             "left join p.member m " +
             "where m.id = :id")
     List<Post> getPostsByMemberId(Long id);
+
+    @Query("select p from Post p " +
+            "left join p.member m " +
+            "where m.id = :id and p.sights.sid is not null")
+    List<Post> getPostsByMemberIdBySightSid(Long id);
+
+    @Query("select p from Post p " +
+            "left join p.member m " +
+            "where m.id = :id and p.food.fid is not null")
+    List<Post> getPostsByMemberIdByFoodFid(Long id);
+
+    @Query("select p from Post p " +
+            "left join p.member m " +
+            "where m.id = :id and p.accom.aid is not null")
+    List<Post> getPostsByMemberIdByAccomAid(Long id);
+
+
    // List<Post> findbyAccom();
 
   //  List<Post> findbyFood();

@@ -24,7 +24,12 @@ public interface PostService {
     PostCommentDTO getPostWithCommentCnt(Long pno);
 
     PostDTO get(Long pno);
+
     List<PostDTO> getPostList(Long pno);
+    List<PostDTO> getPostListBySights(Long pno);
+    List<PostDTO> getPostByFoodFid(Long pno);
+    List<PostDTO> getPostByAccomAid(Long pno);
+
 
     default  Post dtoToEntity(PostDTO dto){
         Post post =Post.builder()
