@@ -71,5 +71,38 @@ public class PostServiceImpl implements PostService{
         return postDTOList;
     }
 
+    @Override
+    public List<PostDTO> getPostListBySights(Long pno) {
+        PostDTO memberId = entityToDTO(repository.getById(pno));
+        List<Post> result = repository.getPostsByMemberIdBySightSid(memberId.getMember().getId());
+        List<PostDTO> postDTOList = new ArrayList<>();
+        for(Post post : result){
+            postDTOList.add(entityToDTO(post));
+        }
+        return postDTOList;
+    }
+
+    @Override
+    public List<PostDTO> getPostByFoodFid(Long pno) {
+        PostDTO memberId = entityToDTO(repository.getById(pno));
+        List<Post> result = repository.getPostsByMemberIdByFoodFid(memberId.getMember().getId());
+        List<PostDTO> postDTOList = new ArrayList<>();
+        for(Post post : result){
+            postDTOList.add(entityToDTO(post));
+        }
+        return postDTOList;
+    }
+
+    @Override
+    public List<PostDTO> getPostByAccomAid(Long pno) {
+        PostDTO memberId = entityToDTO(repository.getById(pno));
+        List<Post> result = repository.getPostsByMemberIdByAccomAid(memberId.getMember().getId());
+        List<PostDTO> postDTOList = new ArrayList<>();
+        for(Post post : result){
+            postDTOList.add(entityToDTO(post));
+        }
+        return postDTOList;
+    }
+
 
 }
