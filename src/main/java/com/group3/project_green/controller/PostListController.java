@@ -2,7 +2,6 @@ package com.group3.project_green.controller;
 
 import com.group3.project_green.DTO.PostDTO;
 import com.group3.project_green.Service.PostListService;
-import jdk.jpackage.internal.Log;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
