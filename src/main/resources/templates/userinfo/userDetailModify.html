@@ -91,10 +91,10 @@
                 // }
 
                 $.ajax({
-                    type:'POST',
+                    type:'DELETE',
                     dataType: 'text',
                     data: 2,
-                    url:"/userinfo/quit",
+                    url:"/userinfo/"+2,
                     success: function (data){
                         location.href="/home/login";
                     },

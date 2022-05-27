@@ -43,12 +43,4 @@ public class UserInfoController {
         model.addAttribute("userDetail", memberInfoDTO);
     }
 
-    @PostMapping("/quit")
-    String quit(long i){
-        log.info("==================(Post) quit===============");
-        memberInfoService.quit(i);
-
-        return "redirect:/home/login";
-    }
-
 }
