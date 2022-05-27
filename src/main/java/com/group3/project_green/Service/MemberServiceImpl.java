@@ -16,6 +16,6 @@ public class MemberServiceImpl implements MemberService{
     @Override
     public MemberDTO get(Long id) {
         MemberDTO result = entityToDTO(repository.getById(id));
-        return null;
+        return result;
     }
 }
