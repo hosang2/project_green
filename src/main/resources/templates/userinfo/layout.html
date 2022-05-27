@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+    <th:block th:fragment="setContent(content)">
+
+        <head>
+            <meta charset="UTF-8">
+            <title>Title</title>
+            <script src="/header/js/jquery-3.3.1.min.js"></script>
+            <script src="/header/js/popper.min.js"></script>
+            <script src="/header/js/bootstrap.min.js"></script>
+            <script src="/header/js/jquery.sticky.js"></script>
+            <script src="/header/js/main.js"></script>
+
+            <script src="/sidebar/js/jquery.min.js"></script>
+            <script src="/sidebar/js/popper.js"></script>
+            <script src="/sidebar/js/bootstrap.min.js"></script>
+            <script src="/sidebar/js/main.js"></script>
+
+
+
+            <!-- 합쳐지고 최소화된 최신 CSS -->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+            <!-- 부가적인 테마 -->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+            <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+
+            <link href="https://fonts.googleapis.com/css?family=Quicksand:400,600,700&display=swap" rel="stylesheet">
+            <link rel="stylesheet" href="/header/fonts/icomoon/style.css">
+            <link rel="stylesheet" href="/header/css/owl.carousel.min.css">
+            <!-- Bootstrap CSS -->
+            <link rel="stylesheet" href="/header/css/bootstrap.min.css">
+            <!-- Style -->
+            <link rel="stylesheet" href="/header/css/style.css">
+
+            <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="/sidebar/css/style.css">
+
+            <style>
+
+
+                body{
+                    background:#eee;
+                    margin-top:20px;
+                }
+
+                .widget {
+                    border: none;
+                    box-shadow: 0 2px 0 rgba(0,0,0,.07);
+                    -webkit-border-radius: 5px;
+                    -moz-border-radius: 5px;
+                    border-radius: 5px;
+                    margin-bottom: 20px;
+                    position: relative;
+                    background: #fff;
+                    padding: 20px;
+                    display: block;
+                }
+
+                .widget-blog-cover {
+                    overflow: hidden;
+                    padding-top: 60%;
+                }
+
+                .widget-blog-cover, .widget-stat-header {
+                    position: relative;
+                    border-radius: 5px 5px 0 0;
+                    margin: -20px -20px 20px;
+                }
+
+                .animation-grow-hover, .widget-blog .widget-blog-cover img {
+                    transition: all .1s ease-in-out;
+                }
+
+                .widget-blog-cover img:hover{
+                    max-width: 110%;
+                    min-height: 110%;
+                    margin-left: -5%;
+                    margin-top: -5%;
+                }
+
+                .widget-blog-cover img {
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    max-width: 100%;
+                    min-height: 100%;
+                }
+
+                .widget-blog-author {
+                    margin: -20px -20px 0;
+                    padding: 10px 20px;
+                }
+
+                .widget-blog-author-image {
+                    float: left;
+                    margin-top: -30px;
+                    padding: 5px;
+                    border-radius: 70px;
+                    width: 70px;
+                    height: 70px;
+                    background: #fff;
+                    position: relative;
+                }
+
+                .widget-blog-author-image img {
+                    max-width: 100%;
+                    border-radius: 70px;
+                }
+
+                .text-muted {
+                    color: #aab3ba;
+                }
+                .f-s-11 {
+                    font-size: 11px!important;
+                }
+                .m-0 {
+                    margin: 0!important;
+                }
+            </style>
+
+        </head>
+        <body>
+
+            <div class="site-mobile-menu site-navbar-target">
+                <div class="site-mobile-menu-header">
+                    <div class="site-mobile-menu-close mt-3">
+                        <span class="icon-close2 js-menu-toggle"></span>
+                    </div>
+                </div>
+                <div class="site-mobile-menu-body"></div>
+            </div>
+
+            <header class="site-navbar site-navbar-target bg-white" role="banner">
+
+                <div class="container">
+                    <div class="row align-items-center position-relative">
+
+                        <div class="col-lg-4">
+                            <nav class="site-navigation text-right ml-auto " role="navigation">
+                                <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
+
+                                    <li><a id="headerFood" href="/home/food" class="nav-link" >Food</a></li>
+                                    <li><a id="headerLand" href="/home/sight" class="nav-link">Landmark</a></li>
+                                    <li><a id="headerAccom" href="/home/accom" class="nav-link">Accomodation</a></li>
+                                    <!--                        각 태그 클릭시 <div class="col-md-6"> 에  데이터 값 변경  default all list -->
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="col-lg-4 text-center">
+                            <div class="site-logo">
+                                <a href="/home/list">Brand</a>
+                            </div>
+
+
+                            <div class="ml-auto toggle-button d-inline-block d-lg-none"><a href="#" class="site-menu-toggle py-5 js-menu-toggle text-black"><span class="icon-menu h3 text-black"></span></a></div>
+                        </div>
+                        <div class="col-lg-4">
+                            <nav class="site-navigation text-left mr-auto " role="navigation">
+                                <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
+                                    <li><a href="/home/login" class="nav-link">Logout</a></li>
+                                    <li><a href="/home/userinfo" class="nav-link">My Page</a></li>
+                                    <li><a href="/home/insert" class="nav-link">Add Post</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </header>
+
+            <div class="wrapper d-flex align-items-stretch">
+
+                <nav id="sidebar" class="active">
+                    <h1><a href="/home/list" class="logo">Home.</a></h1>
+                    <ul class="list-unstyled components mb-5">
+                        <li class="active">
+                            <a href="/home/food"><span class="fa fa-user"></span> Food</a>
+                        </li>
+                        <li>
+                            <a href="/home/sight"><span class="fa fa-sticky-note"></span> Landmark</a>
+                        </li>
+                        <li>
+                            <a href="/home/accom"><span class="fa fa-cogs"></span> Accomodation</a>
+                        </li>
+                        <!--                        각 태그 클릭시 <div class="col-md-6"> 에  데이터 값 변경  default all list -->
+                        <li>
+                            <a href="#"><span class="fa fa-paper-plane"></span>Chat</a>
+                        </li>
+                    </ul>
+
+                    <div class="footer">
+                        <p>
+                            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib.com</a>
+                        </p>
+                    </div>
+                </nav>
+
+
+
+                <th:block th:replace = "${content}"></th:block>
+
+
+
+            </div>
+
+        </body>
+
+    </th:block>
+</html>
