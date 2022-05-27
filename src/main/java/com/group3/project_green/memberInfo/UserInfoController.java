@@ -1,8 +1,7 @@
-package com.group3.project_green.controller;
+package com.group3.project_green.memberInfo;
 
 import com.group3.project_green.DTO.MemberDTO;
-import com.group3.project_green.Service.MemberInfoService;
-import com.group3.project_green.Service.MemberService;
+import com.group3.project_green.memberInfo.MemberInfoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;

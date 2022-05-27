@@ -1,4 +1,4 @@
-package com.group3.project_green.Service;
+package com.group3.project_green.memberInfo;
 
 import com.group3.project_green.DTO.MemberDTO;
 import com.group3.project_green.entity.Member;
