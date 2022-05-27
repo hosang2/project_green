@@ -5,11 +5,11 @@ import com.group3.project_green.entity.Member;
 
 public interface MemberInfoService {
 
-    MemberDTO get(Long id);
+    MemberInfoDTO get(Long id);
 
     void quit(Long id);
 
-    default Member dtoToEntity(MemberDTO dto){
+    default Member dtoToEntity(MemberInfoDTO dto){
         Member member=Member.builder()
                 .id(dto.getId())
                 .password(dto.getPassword())
@@ -18,16 +18,15 @@ public interface MemberInfoService {
         return member;
     }
 
-    default MemberDTO entityToDTO(Member member){
-        MemberDTO memberDTO = MemberDTO.builder()
+    default MemberInfoDTO entityToDTO(Member member){
+        MemberInfoDTO memberInfoDTO = MemberInfoDTO.builder()
                 .id(member.getId())
                 .password(member.getPassword())
                 .email(member.getEmail())
                 .regDate(member.getRegDate())
                 .modDate(member.getModDate())
                 .build();
-        return memberDTO;
-
+        return memberInfoDTO;
 
     }
 }

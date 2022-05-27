@@ -14,9 +14,9 @@ public class MemberInfoServiceImpl implements MemberInfoService{
     private final MemberRepository memberRepository;
 
     @Override
-    public MemberDTO get(Long id) {
-        MemberDTO result = entityToDTO(memberRepository.getById(id));
-        return result;
+    public MemberInfoDTO get(Long id) {
+        MemberInfoDTO memberInfoDTO = entityToDTO(memberRepository.getById(id));
+        return memberInfoDTO;
     }
 
     @Override

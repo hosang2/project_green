@@ -25,22 +25,22 @@ public class UserInfoController {
         /* 임시로 1번 계정에만 접근합니다.
         * 시큐리티 적용이 완료되면, 아래 코드에서 1L만 세션유저의 ID로 바꿔주면 됩니다.
         * */
-        MemberDTO memberDTO = memberInfoService.get(1L);
+        MemberInfoDTO memberInfoDTO = memberInfoService.get(1L);
 
-        log.info("=================================memberDTO : " + memberDTO.toString());
+        log.info("=================================memberDTO : " + memberInfoDTO.toString());
 
-        model.addAttribute("userDetail", memberDTO);
+        model.addAttribute("userDetail", memberInfoDTO);
     }
 
     @GetMapping("/userDetailModify")
     void goUserInfoModify(Model model){
         log.info("==================(Get) userDetailModify===============");
 
-        MemberDTO memberDTO = memberInfoService.get(1L);
+        MemberInfoDTO memberInfoDTO = memberInfoService.get(1L);
 
-        log.info("=================================memberDTO : " + memberDTO.toString());
+        log.info("=================================memberDTO : " + memberInfoDTO.toString());
 
-        model.addAttribute("userDetail", memberDTO);
+        model.addAttribute("userDetail", memberInfoDTO);
     }
 
     @PostMapping("/quit")
