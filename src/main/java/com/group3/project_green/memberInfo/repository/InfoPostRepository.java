@@ -1,2 +1,4 @@
-package com.group3.project_green.memberInfo.repository;public interface InfoPostRepository {
+package com.group3.project_green.memberInfo.repository;
+
+public interface InfoPostRepository {
 }
