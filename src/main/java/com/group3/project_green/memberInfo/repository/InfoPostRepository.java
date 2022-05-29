@@ -12,6 +12,7 @@ public interface InfoPostRepository extends JpaRepository<Post, Long> {
     @Transactional
     void deleteByMember_Id(Long id);
 
+    // 회원이 작성한 모든 게시글을 불러옴
     @Transactional
     List<Post> findByMemberId(Long id);
 

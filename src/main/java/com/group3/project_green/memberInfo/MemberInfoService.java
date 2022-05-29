@@ -5,8 +5,10 @@ import com.group3.project_green.entity.Member;
 
 public interface MemberInfoService {
 
+    // 회원조회
     MemberInfoDTO get(Long id);
 
+    // 회원탈퇴
     void quit(Long id);
 
     default Member dtoToEntity(MemberInfoDTO dto){

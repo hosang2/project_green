@@ -49,6 +49,7 @@ public class UserInfoController {
 
         memberInfoService.quit(id);
 
+        // 회원탈퇴 이후, 로그인 화면으로 리다이렉트
         return "redirect:/home/login";
 
     }
