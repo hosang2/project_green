@@ -1,6 +1,7 @@
 package com.group3.project_green.memberInfo;
 
 import com.group3.project_green.DTO.MemberDTO;
+import com.group3.project_green.entity.Member;
 import com.group3.project_green.entity.Post;
 import com.group3.project_green.memberInfo.repository.InfoCommentRepository;
 import com.group3.project_green.memberInfo.repository.InfoMemberRepository;
