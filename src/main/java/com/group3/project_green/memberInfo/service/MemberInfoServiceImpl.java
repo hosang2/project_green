@@ -1,12 +1,10 @@
-package com.group3.project_green.memberInfo;
+package com.group3.project_green.memberInfo.service;
 
-import com.group3.project_green.DTO.MemberDTO;
-import com.group3.project_green.entity.Member;
 import com.group3.project_green.entity.Post;
+import com.group3.project_green.memberInfo.MemberInfoDTO;
 import com.group3.project_green.memberInfo.repository.InfoCommentRepository;
 import com.group3.project_green.memberInfo.repository.InfoMemberRepository;
 import com.group3.project_green.memberInfo.repository.InfoPostRepository;
-import com.group3.project_green.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;

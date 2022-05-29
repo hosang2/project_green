@@ -1,7 +1,8 @@
-package com.group3.project_green.memberInfo;
+package com.group3.project_green.memberInfo.service;
 
 import com.group3.project_green.DTO.MemberDTO;
 import com.group3.project_green.entity.Member;
+import com.group3.project_green.memberInfo.MemberInfoDTO;
 
 public interface MemberInfoService {
 
