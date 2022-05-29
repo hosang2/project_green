@@ -1,6 +1,8 @@
 package com.group3.project_green.memberInfo;
 
+import com.group3.project_green.DTO.PostDTO;
 import com.group3.project_green.memberInfo.service.MemberInfoService;
+import com.group3.project_green.memberInfo.service.MyPostListService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
@@ -9,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Log4j2
 @Controller
 @RequestMapping("/userinfo/*")
@@ -16,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UserInfoController {
 
     private final MemberInfoService memberInfoService;
+
+    private final MyPostListService myPostListService;
 
     @GetMapping("/userDetail")
     void goUserInfo(Model model){
@@ -54,10 +60,16 @@ public class UserInfoController {
     }
 
     @GetMapping("/myPosts")
-    String goMyPosts(long id){
+    String goMyPosts(long id, Model model){
         log.info("===================(Get) myPosts============= id : " + id);
 
-        return "redirect:/home/list";
+        List<PostDTO> post = myPostListService.getListByMemberId(id);
+
+        System.out.println(post.toString());
+
+        model.addAttribute("post", post);
+
+        return "/home/list";
 
     }
 
