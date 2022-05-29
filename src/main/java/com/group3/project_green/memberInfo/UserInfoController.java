@@ -1,7 +1,6 @@
 package com.group3.project_green.memberInfo;
 
-import com.group3.project_green.DTO.MemberDTO;
-import com.group3.project_green.memberInfo.MemberInfoService;
+import com.group3.project_green.memberInfo.service.MemberInfoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
@@ -53,4 +52,13 @@ public class UserInfoController {
         return "redirect:/home/login";
 
     }
+
+    @GetMapping("/myPosts")
+    String goMyPosts(long id){
+        log.info("===================(Get) myPosts============= id : " + id);
+
+        return "redirect:/home/list";
+
+    }
+
 }
