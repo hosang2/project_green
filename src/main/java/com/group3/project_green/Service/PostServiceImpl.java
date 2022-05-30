@@ -104,5 +104,11 @@ public class PostServiceImpl implements PostService{
         return postDTOList;
     }
 
+    @Override //민혁
+    public void savePost(PostDTO postDTO) {
+        Post post = dtoToEntity(postDTO);
+        // dtoToEntity
+        repository.save(post);
+    }
 
 }
