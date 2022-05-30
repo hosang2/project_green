@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>[[${result.title}]]</title>
 
     <script src="/header/js/jquery-3.3.1.min.js"></script>
     <script src="/header/js/popper.min.js"></script>
@@ -346,7 +346,7 @@
                     <div class="box-header with-border">
                         <div class="user-block">
                             <img class="img-circle" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="User Image">
-                            <span class="title"> [[${result.title}]]</span>
+                            <span class="title"><h3> [[${result.title}]]</h3></span>
                             <span class="username"><a th:href="@{/home/memberPostList(pno=${result.pno})}"> [[${result.member.email}]]</a></span>
                             <span class="description">[[${#temporals.format(result.regDate,'yyyy/MM/dd')}]]</span>
                         </div>
@@ -487,6 +487,11 @@
             $('.close').click(function () {
                 modal.hide();
             })
+        })
+        $(document).mouseup(function (e) {
+            if(modal.has(e.target).length === 0){
+                modal.hide();
+            }
         })
         function shareAct(e) {
             var snsCode = $(e).attr('id');
