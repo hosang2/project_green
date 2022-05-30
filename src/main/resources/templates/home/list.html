@@ -145,16 +145,16 @@
                 <nav class="site-navigation text-right ml-auto " role="navigation">
                     <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
 
-                        <li><a id="headerFood" href="/home/food" class="nav-link" >Food</a></li>
-                        <li><a id="headerLand" href="/home/sight" class="nav-link">Landmark</a></li>
-                        <li><a id="headerAccom" href="/home/accom" class="nav-link">Accomodation</a></li>
+                        <li><a id="headerFood"  href="#" class="nav-link" >Food</a></li>
+                        <li><a id="headerLand"  href="#" class="nav-link">Landmark</a></li>
+                        <li><a id="headerAccom"  href="#" class="nav-link">Accomodation</a></li>
                         <!--                        각 태그 클릭시 <div class="col-md-6"> 에  데이터 값 변경  default all list -->
                     </ul>
                 </nav>
             </div>
             <div class="col-lg-4 text-center">
                 <div class="site-logo">
-                    <a href="/home/list">Brand</a>
+                    <a id="headerhome" href="#">Brand</a>
                 </div>
 
 
@@ -179,16 +179,16 @@
 <div class="wrapper d-flex align-items-stretch">
 
     <nav id="sidebar" class="active">
-        <h1><a href="/home/list" class="logo">Home.</a></h1>
+        <h1><a id="sidehome" href="#" class="logo">Home.</a></h1>
         <ul class="list-unstyled components mb-5">
             <li class="active">
-                <a href="/home/food"><span class="fa fa-user"></span> Food</a>
+                <a id="sidefood" href="#"><span class="fa fa-user"></span> Food</a>
             </li>
             <li>
-                <a href="/home/sight"><span class="fa fa-sticky-note"></span> Landmark</a>
+                <a id="sidesight" href="#"><span class="fa fa-sticky-note"></span> Landmark</a>
             </li>
             <li>
-                <a href="/home/accom"><span class="fa fa-cogs"></span> Accomodation</a>
+                <a id="sideaccom" href="#"><span class="fa fa-cogs"></span> Accomodation</a>
             </li>
             <!--                        각 태그 클릭시 <div class="col-md-6"> 에  데이터 값 변경  default all list -->
             <li>
@@ -204,33 +204,8 @@
     </nav>
 
     <div id="temp" class="container bootstrap snippets bootdey">
-        <ul>
-            <div th:each="dto:${post}">
-                <div class="col-md-6">
-                    <div class="widget widget-blog">
-                        <a th:href="@{/home/read(pno=${dto.pno})}">
-                            <div class="widget-blog-cover">
-                                <img src="/images/전주한옥마을.jpg" alt="">
-                            </div>
-                        </a>
-                        <div class="widget-blog-author">
-                            <div class="widget-blog-author-image">
-                                <img src="https://bootdey.com/img/Content/user_2.jpg" alt="">
-                            </div>
-                            <div class="widget-blog-author-info">
-                                <h5 class="m-t-0 m-b-1"><a th:href="@{/home/memberPostList(pno=${dto.pno})}"> [[${dto.member.email}]]</a></h5>
-                                <p class="text-muted m-0 f-s-11">[[${dto.likeNum}]]</p>
-                            </div>
-                        </div>
-                        <div class="widget-blog-content">
-                            <h5>[[${dto.title}]]</h5>
-                            <p>[[${dto.content}]]</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <ul id="postlist">
         </ul>
-
         </li>
     </div>
 
@@ -238,5 +213,171 @@
 </div>
 <button onclick="hs()">클릭</button>
 
+
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script th:inline="javascript">
+ $(document).ready(function(){
+        var postlist =$('#postlist')
+
+        function loadPost(){
+            $.getJSON("/homelist/allList" , function(arr){
+                var str="";
+                console.log(arr);
+                $.each(arr , function(idx , post){
+                    console.log(post);
+                    console.log(post.pno);
+                    str+= "<div class=" + 'col-md-6' + ">";
+                    str+= "<div class=" + 'widget widget-blog' + ">";
+                    str+= "<a href='" + '/home/read?pno=' + post.pno + "'>";
+                    str+= "<div class=" + 'widget-blog-cover' + ">";
+                    str+= "<img src=" + '/images/전주한옥마을.jpg'  + " alt=''>";
+                    str+= "</div>";
+                    str+= "</a>";
+                    str+= "<div class=" + 'widget-blog-author' +">";
+                    str+= "<div class=" + 'widget-blog-author-image' +">";
+                    str+= "<img src=" + 'https://bootdey.com/img/Content/user_2.jpg' + " alt=''>";
+                    str+= "</div>";
+                    str+= "<div class=" + 'widget-blog-author-info' +">";
+                    str+= "<h5 class=" + 'm-t-0 m-b-1' + ">" + "<a href=" + "/home/memberPostList?pno=" + post.pno + ">" + post.member.email + "</a>" +"</h5>";
+                    str+= "<p class=" + "text-muted m-0 f-s-11" + ">" + post.likeNum + "</p>";
+                    str+= "</div>";
+                    str+= "</div>";
+                    str+= "<div class=" + 'widget-blog-content' + ">";
+                    str+= "<h5>" + post.title + "</h5>";
+                    str+= "<p>" + post.content + "</p>";
+                    str+= "</div>";
+                    str+= "</div>";
+                    str+= "</div>";
+                });
+                postlist.html(str);
+
+            });
+        };
+
+
+         function loadFoodPost(){
+            $.getJSON("/homelist/foodList" , function(arr){
+                var str="";
+                console.log(arr);
+                $.each(arr , function(idx , post){
+                    console.log(post);
+                    console.log(post.pno);
+                    str+= "<div class=" + 'col-md-6' + ">";
+                    str+= "<div class=" + 'widget widget-blog' + ">";
+                    str+= "<a href='" + '/home/read?pno=' + post.pno + "'>";
+                    str+= "<div class=" + 'widget-blog-cover' + ">";
+                    str+= "<img src=" + '/images/전주한옥마을.jpg'  + " alt=''>";
+                    str+= "</div>";
+                    str+= "</a>";
+                    str+= "<div class=" + 'widget-blog-author' +">";
+                    str+= "<div class=" + 'widget-blog-author-image' +">";
+                    str+= "<img src=" + 'https://bootdey.com/img/Content/user_2.jpg' + " alt=''>";
+                    str+= "</div>";
+                    str+= "<div class=" + 'widget-blog-author-info' +">";
+                    str+= "<h5 class=" + 'm-t-0 m-b-1' + ">" + "<a href=" + "/home/memberPostList?pno=" + post.pno + ">" + post.member.email + "</a>" +"</h5>";
+                    str+= "<p class=" + "text-muted m-0 f-s-11" + ">" + post.likeNum + "</p>";
+                    str+= "</div>";
+                    str+= "</div>";
+                    str+= "<div class=" + 'widget-blog-content' + ">";
+                    str+= "<h5>" + post.title + "</h5>";
+                    str+= "<p>" + post.content + "</p>";
+                    str+= "</div>";
+                    str+= "</div>";
+                    str+= "</div>";
+                });
+                postlist.html(str);
+
+            });
+        };
+
+         function loadSightPost(){
+            $.getJSON("/homelist/sightList" , function(arr){
+                var str="";
+                console.log(arr);
+                $.each(arr , function(idx , post){
+                    console.log(post);
+                    console.log(post.pno);
+                    str+= "<div class=" + 'col-md-6' + ">";
+                    str+= "<div class=" + 'widget widget-blog' + ">";
+                    str+= "<a href='" + '/home/read?pno=' + post.pno + "'>";
+                    str+= "<div class=" + 'widget-blog-cover' + ">";
+                    str+= "<img src=" + '/images/전주한옥마을.jpg'  + " alt=''>";
+                    str+= "</div>";
+                    str+= "</a>";
+                    str+= "<div class=" + 'widget-blog-author' +">";
+                    str+= "<div class=" + 'widget-blog-author-image' +">";
+                    str+= "<img src=" + 'https://bootdey.com/img/Content/user_2.jpg' + " alt=''>";
+                    str+= "</div>";
+                    str+= "<div class=" + 'widget-blog-author-info' +">";
+                    str+= "<h5 class=" + 'm-t-0 m-b-1' + ">" + "<a href=" + "/home/memberPostList?pno=" + post.pno + ">" + post.member.email + "</a>" +"</h5>";
+                    str+= "<p class=" + "text-muted m-0 f-s-11" + ">" + post.likeNum + "</p>";
+                    str+= "</div>";
+                    str+= "</div>";
+                    str+= "<div class=" + 'widget-blog-content' + ">";
+                    str+= "<h5>" + post.title + "</h5>";
+                    str+= "<p>" + post.content + "</p>";
+                    str+= "</div>";
+                    str+= "</div>";
+                    str+= "</div>";
+                });
+                postlist.html(str);
+
+            });
+        };
+
+
+         function loadAccomPost(){
+            $.getJSON("/homelist/accomList" , function(arr){
+                var str="";
+                console.log(arr);
+                $.each(arr , function(idx , post){
+                    console.log(post);
+                    console.log(post.pno);
+                    str+= "<div class=" + 'col-md-6' + ">";
+                    str+= "<div class=" + 'widget widget-blog' + ">";
+                    str+= "<a href='" + '/home/read?pno=' + post.pno + "'>";
+                    str+= "<div class=" + 'widget-blog-cover' + ">";
+                    str+= "<img src=" + '/images/전주한옥마을.jpg'  + " alt=''>";
+                    str+= "</div>";
+                    str+= "</a>";
+                    str+= "<div class=" + 'widget-blog-author' +">";
+                    str+= "<div class=" + 'widget-blog-author-image' +">";
+                    str+= "<img src=" + 'https://bootdey.com/img/Content/user_2.jpg' + " alt=''>";
+                    str+= "</div>";
+                    str+= "<div class=" + 'widget-blog-author-info' +">";
+                    str+= "<h5 class=" + 'm-t-0 m-b-1' + ">" + "<a href=" + "/home/memberPostList?pno=" + post.pno + ">" + post.member.email + "</a>" +"</h5>";
+                    str+= "<p class=" + "text-muted m-0 f-s-11" + ">" + post.likeNum + "</p>";
+                    str+= "</div>";
+                    str+= "</div>";
+                    str+= "<div class=" + 'widget-blog-content' + ">";
+                    str+= "<h5>" + post.title + "</h5>";
+                    str+= "<p>" + post.content + "</p>";
+                    str+= "</div>";
+                    str+= "</div>";
+                    str+= "</div>";
+                });
+                postlist.html(str);
+
+            });
+        };
+
+
+        postlist.one(loadPost());
+
+        $('#headerhome,#sidehome').click(function(){
+            loadPost();
+        });
+        $('#headerFood,#sidefood').click(function(){
+            loadFoodPost();
+        });
+        $('#headerLand,#sidesight').click(function(){
+           loadSightPost();
+        });
+        $('#headerAccom,#sideaccom').click(function(){
+            loadAccomPost();
+        });
+    });
+</script>
 </body>
+
 </html>

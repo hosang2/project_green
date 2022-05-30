@@ -26,7 +26,7 @@ public class PostListController {
         return new ResponseEntity<>(postDTOList, HttpStatus.OK);
     }
 
-    @GetMapping(value = "/accomlist", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/accomList", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<PostDTO>> getAccomList(){
         System.out.println("Rest controller 에서 호출 숙소리스트 1 ");
         List<PostDTO> postDTOList =service.getAccomList();
