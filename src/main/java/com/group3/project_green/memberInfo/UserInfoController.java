@@ -69,7 +69,7 @@ public class UserInfoController {
 
         model.addAttribute("post", post);
 
-        return "/home/list";
+        return "/home/memberPostList";
 
     }
 
