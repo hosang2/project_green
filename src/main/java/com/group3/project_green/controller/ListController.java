@@ -106,6 +106,8 @@ public class ListController {
     }
     @PostMapping("/insert")
     public String goinsert(PostDTO postDTO){
+        long dummyMno = 1L; //2번회원으로 지정 차후 시큐리티로 변경하면 자동으로 로그인정보 저장되서 생략가능
+        postDTO.setMember(Member.builder().id(dummyMno).build());//2번회원으로 지정 차후 시큐리티로 변경하면 자동으로 로그인정보 저장되서 생략가능
         postService.savePost(postDTO);
         return "redirect:list";
     }
@@ -134,7 +136,7 @@ public class ListController {
 
         System.out.println("여기 post 들어오나 ? " +member);
         memberService.saveMember(member);
-        return "redirect:list";
+        return "/home/login";
     }
     @GetMapping("/signup") //민혁
     public String signup() {

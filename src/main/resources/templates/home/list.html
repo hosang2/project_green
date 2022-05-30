@@ -164,7 +164,7 @@
                 <nav class="site-navigation text-left mr-auto " role="navigation">
                     <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
                         <li><a href="/home/login" class="nav-link">Logout</a></li>
-                        <li><a href="/home/userinfo" class="nav-link">My Page</a></li>
+                        <li><a href="/userinfo/userDetail" class="nav-link">My Page</a></li>
                         <li><a href="/home/insert" class="nav-link">Add Post</a></li>
                     </ul>
                 </nav>
@@ -218,7 +218,7 @@
                                 <img src="https://bootdey.com/img/Content/user_2.jpg" alt="">
                             </div>
                             <div class="widget-blog-author-info">
-                                <h5 class="m-t-0 m-b-1">[[${dto.member.email}]]</h5>
+                                <h5 class="m-t-0 m-b-1"><a th:href="@{/home/memberPostList(pno=${dto.pno})}"> [[${dto.member.email}]]</a></h5>
                                 <p class="text-muted m-0 f-s-11">[[${dto.likeNum}]]</p>
                             </div>
                         </div>
