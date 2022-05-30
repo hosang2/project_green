@@ -25,6 +25,7 @@ public interface PostService {
     List<PostDTO> getPostByFoodFid(Long pno);
     List<PostDTO> getPostByAccomAid(Long pno);
 
+    void savePost(PostDTO postDTO);
 
     default  Post dtoToEntity(PostDTO dto){
         Post post =Post.builder()

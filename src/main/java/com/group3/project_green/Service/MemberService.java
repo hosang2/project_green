@@ -6,6 +6,8 @@ import com.group3.project_green.entity.Member;
 public interface MemberService {
 
     MemberDTO get(Long id);
+    int saveMember(Member member);
+    public Member login(Member member);
 
     default Member dtoToEntity(MemberDTO dto){
         Member member=Member.builder()

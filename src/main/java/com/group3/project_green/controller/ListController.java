@@ -1,13 +1,18 @@
 package com.group3.project_green.controller;
 
 import com.group3.project_green.DTO.PostDTO;
+import com.group3.project_green.Service.MemberService;
 import com.group3.project_green.Service.PostService;
+import com.group3.project_green.entity.Member;
 import com.group3.project_green.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/home/*")
@@ -16,6 +21,7 @@ public class ListController {
 
     private final PostService postService;
     private final PostRepository postRepository;
+    private final MemberService memberService; //민혁
 
     //    @GetMapping("/")
 //    public String goChat(){
@@ -52,11 +58,6 @@ public class ListController {
     @GetMapping("/read")
     public void read(Long pno, Model model) {
         model.addAttribute("result", postService.getPostWithCommentCnt(pno));
-    }
-    @GetMapping("/insert")
-    public String insert() {
-
-        return "/home/insert";
     }
 
     @GetMapping("/login")
@@ -97,5 +98,46 @@ public class ListController {
         model.addAttribute("result", result);
         model.addAttribute("post",postService.getPostByAccomAid(pno));
         return "/home/memberPostList";
+    }
+
+    @GetMapping("/insert")
+    public String insert() {
+        return "/home/insert";
+    }
+    @PostMapping("/insert")
+    public String goinsert(PostDTO postDTO){
+        postService.savePost(postDTO);
+        return "redirect:list";
+    }
+    @PostMapping("/login") //민혁
+    public String loginPost(String email, String password , RedirectAttributes rttr ){
+        System.out.println("email : "+email);
+        System.out.println("password : "+password);
+
+        Member login = memberService.login(Member.builder().email(email).password(password).build());
+
+        if(login!=null){
+            System.out.println("login: " +login);
+            rttr.addFlashAttribute("login",login);
+            return  "redirect:list";
+        } else{
+            return  "error";
+        }
+    }
+
+    @PostMapping("/signup") //민혁
+    public String signup(String email, String password){
+        Member member = Member.builder()
+                        .email(email)
+                        .password(password)
+                        .build();
+
+        System.out.println("여기 post 들어오나 ? " +member);
+        memberService.saveMember(member);
+        return "redirect:list";
+    }
+    @GetMapping("/signup") //민혁
+    public String signup() {
+        return "/home/signup";
     }
 }
