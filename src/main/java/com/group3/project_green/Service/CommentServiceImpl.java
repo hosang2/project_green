@@ -2,6 +2,7 @@ package com.group3.project_green.Service;
 
 import com.group3.project_green.DTO.CommentDTO;
 import com.group3.project_green.entity.Comment;
+import com.group3.project_green.entity.Member;
 import com.group3.project_green.entity.Post;
 import com.group3.project_green.repository.CommentRepository;
 import lombok.RequiredArgsConstructor;

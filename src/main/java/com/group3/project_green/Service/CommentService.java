@@ -2,6 +2,7 @@ package com.group3.project_green.Service;
 
 import com.group3.project_green.DTO.CommentDTO;
 import com.group3.project_green.entity.Comment;
+import com.group3.project_green.entity.Member;
 import com.group3.project_green.entity.Post;
 
 import java.util.List;
@@ -22,6 +23,7 @@ public interface CommentService {
                 .content(dto.getContent())
                 .likeNum(dto.getLikeNum())
                 .replyer(dto.getReplyer())
+                .member(Member.builder().id(dto.getId()).build())
                 .post(post)
                 .build();
         return comment;

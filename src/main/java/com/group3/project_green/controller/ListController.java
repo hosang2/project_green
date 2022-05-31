@@ -1,8 +1,11 @@
 package com.group3.project_green.controller;
 
+import com.group3.project_green.DTO.CommentDTO;
 import com.group3.project_green.DTO.PostDTO;
 import com.group3.project_green.Service.MemberService;
 import com.group3.project_green.Service.PostService;
+import com.group3.project_green.Session.LoginUser;
+import com.group3.project_green.Session.SessionUser;
 import com.group3.project_green.entity.Member;
 import com.group3.project_green.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +16,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/home/*")
@@ -56,8 +61,14 @@ public class ListController {
     }
 
     @GetMapping("/read")
-    public void read(Long pno, Model model) {
+    public void read(Long pno, Model model, @LoginUser SessionUser user) {
         model.addAttribute("result", postService.getPostWithCommentCnt(pno));
+        model.addAttribute("user",Member.builder().id(1L).email("test4@naver.com").build());
+        System.out.println("================================================="+user);
+        if(user != null) {
+            model.addAttribute("memberId", user.getId());
+            model.addAttribute("memberEmail", user.getEmail());
+        }
     }
 
     @GetMapping("/login")

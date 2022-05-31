@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.lang.reflect.Member;
 import java.time.LocalDateTime;
 
 @Data
@@ -18,6 +19,7 @@ public class CommentDTO {
     private String replyer;
 
     private Long pno;
+    private Long id;
     private LocalDateTime regDate,modDate;
 
 }
