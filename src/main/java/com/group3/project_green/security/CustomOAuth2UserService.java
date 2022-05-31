@@ -34,8 +34,9 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         OAuth2User oAuth2User = delegate.loadUser(userRequest);
 
         String email = oAuth2User.getAttribute("email");
-        String password = passwordEncoder.encode("1111");
+        String password = passwordEncoder.encode("1111");   // 비밀번호는 1111로 FIX합니다.
 
+        // 기존에 있는 유저인지 확인합니다.
         Member user = saveOrUpdate(email, password);
 
         SessionUser sessionUser = new SessionUser(user,
@@ -51,13 +52,15 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
     public Member saveOrUpdate(String email, String password){
 
+        // 로그인한 이메일로 DB를 탐색합니다.
         Optional<Member> user = memberRepository.findByEmail(email);
 
+        // 이미 있는 회원이라면 그 정보를 리턴합니다.
         if(user.isPresent()){
 
             return user.get();
 
-        } else {
+        } else {    // 없는 회원이라면, 1111의 비밀번호로 신규 가입시킵니다.
 
             Member member = Member.builder()
                     .email(email)
