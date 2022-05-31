@@ -29,7 +29,6 @@ public class Member extends BaseEntity {
     private MemberInfo memberInfo;
 
 
-
     // 유저 권한 (Member, Admin)
     @ElementCollection(fetch = FetchType.LAZY)
     @Builder.Default
@@ -37,6 +36,13 @@ public class Member extends BaseEntity {
 
     public void addMemberRole(MemberRole memberRole){
         roleSet.add(memberRole);
+    }
+
+    // 회원가입 위한 생성자
+    public Member(String email, String password, MemberRole memberRole){
+        this.email = email;
+        this.password = password;
+        this.addMemberRole(memberRole);
     }
 
 }
