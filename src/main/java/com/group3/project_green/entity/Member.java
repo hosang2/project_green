@@ -28,6 +28,8 @@ public class Member extends BaseEntity {
     @ManyToOne
     private MemberInfo memberInfo;
 
+
+
     // 유저 권한 (Member, Admin)
     @ElementCollection(fetch = FetchType.LAZY)
     @Builder.Default

@@ -419,7 +419,8 @@
                 var comment={
                     pno,
                     content:$('input[name="commentEnter"]').val(),
-                    replyer: [[${result.member.email}]]
+                    replyer: [[${user.email}]],
+                    id:[[${user.id}]]
                 }
                 console.log(comment);
                 $.ajax({
