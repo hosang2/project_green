@@ -15,11 +15,10 @@ public class SecurityTestController {
     @GetMapping("/test")
     public void justMemberPrintTest(@AuthenticationPrincipal SessionUser sessionUser){
 
-        System.out.println("==================sessionUser : " + sessionUser.toString());
         System.out.println("==================PK : " + sessionUser.getId());
         System.out.println("==================email : " + sessionUser.getEmail());
         System.out.println("==================password : " + sessionUser.getPassword());
-        System.out.println("==================attr : " + sessionUser.getAttr().toString());
+        System.out.println("==================toString : " + sessionUser.toString());
 
     }
 

@@ -39,6 +39,8 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         // 기존에 있는 유저인지 확인합니다.
         Member user = saveOrUpdate(email, password);
 
+        System.out.println("==================user : " + user.toString());
+
         SessionUser sessionUser = new SessionUser(user,
                 user.getRoleSet().stream().map(
                         role -> new SimpleGrantedAuthority("ROLE_"+role.name()))
@@ -57,7 +59,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
         // 이미 있는 회원이라면 그 정보를 리턴합니다.
         if(user.isPresent()){
-
+            System.out.println("==============in saveOrUpdate : " + user.get().toString());
             return user.get();
 
         } else {    // 없는 회원이라면, 1111의 비밀번호로 신규 가입시킵니다.

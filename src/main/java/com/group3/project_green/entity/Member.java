@@ -30,7 +30,7 @@ public class Member extends BaseEntity {
 
 
     // 유저 권한 (Member, Admin)
-    @ElementCollection(fetch = FetchType.LAZY)
+    @ElementCollection(fetch = FetchType.EAGER)
     @Builder.Default
     private Set<MemberRole> roleSet = new HashSet<>();
 

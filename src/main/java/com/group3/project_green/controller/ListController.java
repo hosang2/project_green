@@ -9,6 +9,7 @@ import com.group3.project_green.Session.SessionUser;
 import com.group3.project_green.entity.Member;
 import com.group3.project_green.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,9 +34,12 @@ public class ListController {
 //        return "/list";
 //    }
     @GetMapping("/list")
-    public String goList(Model model) {
+    public String goList(Model model, @AuthenticationPrincipal SessionUser sessionUser) {
         model.addAttribute("post",postService.getList());
-
+        System.out.println("==================PK : " + sessionUser.getId());
+        System.out.println("==================email : " + sessionUser.getEmail());
+        System.out.println("==================password : " + sessionUser.getPassword());
+        System.out.println("==================attr : " + sessionUser.getAttr().toString());
         return "/home/list";
     }
     @GetMapping("/food")
