@@ -2,6 +2,7 @@ package com.group3.project_green.memberInfo.service;
 
 import com.group3.project_green.DTO.MemberDTO;
 import com.group3.project_green.entity.Member;
+import com.group3.project_green.memberInfo.MemberDetailDTO;
 import com.group3.project_green.memberInfo.MemberInfoDTO;
 
 public interface MemberInfoService {
@@ -11,6 +12,11 @@ public interface MemberInfoService {
 
     // 회원탈퇴
     void quit(Long id);
+
+    // 회원정보 수정
+    void modifyInfo(Long id, MemberDetailDTO memberInfoDTO);
+
+    MemberDetailDTO getDetail(Long id);
 
     default Member dtoToEntity(MemberInfoDTO dto){
         Member member=Member.builder()
