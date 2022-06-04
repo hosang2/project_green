@@ -63,3 +63,17 @@
 >> - 배포 및 디버깅 <br>
 
 > <strong>6월 16일 : 최종 점검 (대면)</strong><br>
+
+  
+  # 핵심 트러블 슈팅
+<details>
+<summary> <strong>1. !!를 ??하면 발생할 수 있는 문제</strong> </summary>
+  - ~!!하면 @!$때문에 차후에 문제가 발생할 수 있습니다.<br><br>
+  - !@$하여 해결할 수 
+</details>
+
+# 그 외 이슈
+<details>
+<summary> <strong>1. ???문제</strong> </summary>
+  - ~~~해서 해결<br>
+</details>
