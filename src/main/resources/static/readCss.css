@@ -2,10 +2,10 @@ html,body { width: 100%; height: 100%; margin: 0; padding: 0; }
 p { margin: 0; }
 h1 { margin: 0; }
 
-#jkContainer { width: 90%; height: 90%; margin: 0 auto; max-width:1200px; }
+#jkContainer { width: 90%; height: auto; margin: 0 auto; max-width:1200px; min-width: 500px;}
 
 #contentTitle { margin: 60px 0 20px; }
-#contentTitle h1 { font-size: 40px; margin: 0;}
+#contentTitle h1 { font-size: 40px; margin: 0; font-family: "Open Sans", sans-serif;}
 #contentTitle a { font-size: 20px; color: #000; text-decoration: none; cursor: pointer;}
 #contentTitle a:hover { color: blue; }
 #contentTitle p#date { font-size: 14px; margin: 5px 0; color: #aaa;}
