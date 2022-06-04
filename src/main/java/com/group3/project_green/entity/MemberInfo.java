@@ -18,6 +18,9 @@ public class MemberInfo extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long ino;
 
+    @ManyToOne
+    private Member member;
+
     private String name;
 
     private String phone;

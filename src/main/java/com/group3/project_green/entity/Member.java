@@ -25,10 +25,6 @@ public class Member extends BaseEntity {
     @Column(unique = true)
     private String email;
 
-    @ManyToOne
-    private MemberInfo memberInfo;
-
-
     // 유저 권한 (Member, Admin)
     @ElementCollection(fetch = FetchType.EAGER)
     @Builder.Default
