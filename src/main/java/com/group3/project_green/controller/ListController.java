@@ -65,14 +65,9 @@ public class ListController {
     }
 
     @GetMapping("/read")
-    public void read(Long pno, Model model, @LoginUser SessionUser user) {
+    public void read(Long pno, Model model, @AuthenticationPrincipal SessionUser user) {
         model.addAttribute("result", postService.getPostWithCommentCnt(pno));
-        model.addAttribute("user",Member.builder().id(1L).email("test4@naver.com").build());
-        System.out.println("================================================="+user);
-        if(user != null) {
-            model.addAttribute("memberId", user.getId());
-            model.addAttribute("memberEmail", user.getEmail());
-        }
+        model.addAttribute("user",user);
     }
 
     @GetMapping("/login")
