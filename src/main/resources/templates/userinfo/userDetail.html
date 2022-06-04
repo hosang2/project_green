@@ -29,47 +29,43 @@
                     <div class="row mt-2">
                         <div class="col-md-6">
                             <label class="labels">이름</label>
-                            <input type="text" class="form-control" value="" readonly>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="labels">영문 이름</label>
-                            <input type="text" class="form-control" value="" readonly>
+                            <input type="text" class="form-control" th:placeholder="${userInfoDetail.name}" readonly>
                         </div>
                     </div>
                     <div class="row mt-3">
                         <div class="col-md-12">
                             <label class="labels">이메일</label>
-                            <input type="text" class="form-control" th:placeholder="${userDetail.email}" value="" readonly>
+                            <input type="text" class="form-control" th:value="${userDetail.email}" readonly>
                         </div>
                         <div class="col-md-12">
                             <label class="labels">휴대폰 번호</label>
-                            <input type="text" class="form-control" value="" readonly>
+                            <input type="text" class="form-control" th:placeholder="${userInfoDetail.phone}" readonly>
                         </div>
                         <div class="col-md-12">
                             <label class="labels">주소</label>
-                            <input type="text" class="form-control" value="" readonly>
+                            <input type="text" class="form-control" th:placeholder="${userInfoDetail.address}" readonly>
                         </div>
                         <div class="col-md-12">
                             <label class="labels">상세 주소</label>
-                            <input type="text" class="form-control" value="" readonly>
+                            <input type="text" class="form-control" th:placeholder="${userInfoDetail.detailAddress}" readonly>
                         </div>
                         <div class="col-md-12">
                             <label class="labels">지역</label>
-                            <input type="text" class="form-control" value="" readonly>
+                            <input type="text" class="form-control" th:placeholder="${userInfoDetail.location}" readonly>
                         </div>
                     </div>
                     <div class="row mt-3">
                         <div class="col-md-6">
                             <label class="labels">선호 지역</label>
-                            <input type="text" class="form-control" value="" readonly>
+                            <input type="text" class="form-control" th:placeholder="${userInfoDetail.favoriteLocation}" readonly>
                         </div>
                         <div class="col-md-6">
                             <label class="labels">선호 음식</label>
-                            <input type="text" class="form-control" value="" readonly>
+                            <input type="text" class="form-control" th:placeholder="${userInfoDetail.favoriteFood}" readonly>
                         </div>
                         <div class="col-md-6">
                             <label class="labels">선호 숙소 유형</label>
-                            <input type="text" class="form-control" value="" readonly>
+                            <input type="text" class="form-control" th:placeholder="${userInfoDetail.favoriteAccom}" readonly>
                         </div>
                     </div>
                     <div class="mt-5 text-center">
