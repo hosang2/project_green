@@ -3,10 +3,7 @@ package com.group3.project_green.entity;
 import com.group3.project_green.BaseEntity;
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 
 @Entity
 @Builder
@@ -18,6 +15,7 @@ import javax.persistence.ManyToMany;
 public class MemberInfo extends BaseEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long ino;
 
     private String name;
