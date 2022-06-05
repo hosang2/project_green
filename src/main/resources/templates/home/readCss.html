@@ -32,7 +32,16 @@
     <link href="/reservation/css/style.css" rel="stylesheet"/>
     <!-- responsive style -->
     <link href="/reservation/css/responsive.css" rel="stylesheet"/>
-    <link rel="stylesheet" type="text/css" href="/readCss.css"/>
+    <!--  readStyle  -->
+    <link rel="stylesheet" type="text/css" href="/read/readCss.css"/>
+    <!--  jquery.js  -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <!-- 모달 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+    <!-- 카카오 공유 -->
+    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 
 </head>
 <body class="sub_page">
@@ -120,35 +129,53 @@
 
 <div id="jkContainer">
     <div id="contentTitle">
-        <h1>블로그블로그블로그</h1>
-        <a href="#">test@naver.com</a>
-        <p id="date">2022/06/04</p>
+        <h1>[[${result.title}]]</h1>
+        <a th:href="@{/home/memberPostList(pno=${result.pno})}"> [[${result.member.email}]] </a>
+        <p id="date">[[${#temporals.format(result.regDate,'yyyy/MM/dd')}]]</p>
     </div><!-- #contentTitle -->
 
     <div id="contentmain">
         <img src="https://www.science.org/do/10.1126/science.abi5787/abs/main_puppies_1280p.jpg"/>
-        <p>content sample<br/>content sample<br/>samplecontent sample</p>
+        <p>[[${result.content}]]</p>
     </div><!-- #contentmain -->
+
+    <!-- modal  -->
+    <div class="modal" id="ex">
+        <button type="button" class="close">
+            <span>&times;</span>
+        </button>
+        <div class="modal-body" >
+            <a id="btnTwitter" class="link-icon twitter" href=""><img src="/images/icon-twitter.png"></a>
+
+            <a id="btnFacebook" class="link-icon facebook" href="#"><img src="/images/icon-facebook.png"></a>
+
+            <a id="btnKakao" class="link-icon kakao" href="#"><img src="/images/icon-kakao.png"></a>
+
+            <a id="btnNaver" class="link-icon naver" href="#"><img src="/images/icon-naver.png"></a>
+
+        </div>
+    </div>
+    <!-- modal  -->
 
     <div id="contentBottom">
         <div id="contentBtns">
-            <a class="contentBtn">
-                <img src="#">
-                Share
+            <a class="contentBtn share">
+                <img id ="share_img" src="/images/share_img.png">
                 <!-- <button>share</button> -->
             </a><!-- .contentBtn -->
 
             <a class="contentBtn">
-                <img class="like_img" src="/images/heart_empty.png">
-                #Likes
+                <img id="like_img" src="/images/heart_empty.png">
+                [[${result.likeNum}]]
                 <!-- <button>like</button> -->
             </a><!-- .contentBtn -->
+
         </div><!-- #contentBtns -->
         <div id="contentComment">
             <div id="commentsList">
 
             </div><!-- #commentsList -->
-            <input type="text" name="comment" placeholder="댓글 입력 후 Enter를 눌러주세요">
+            <input type="text" name="commentEnter" placeholder="댓글 입력 후 Enter를 눌러주세요">
         </div><!-- #contentComment -->
     </div><!-- #contentBottom -->
 </div><!-- #jkContainer -->
@@ -237,6 +264,27 @@
 </footer>
 <!-- footer section -->
 
+<!-- modal  -->
+<!--<div class="modal" id="ex">-->
+<!--    <button type="button" class="close">-->
+<!--        <span>&times;</span>-->
+<!--    </button>-->
+<!--    <div class="modal-body" >-->
+<!--        <a id="btnTwitter" class="link-icon twitter" href=""><img src="/images/icon-twitter.png"></a>-->
+
+<!--        <a id="btnFacebook" class="link-icon facebook" href="#"><img src="/images/icon-facebook.png"></a>-->
+
+<!--        <a id="btnKakao" class="link-icon kakao" href="#"><img src="/images/icon-kakao.png"></a>-->
+
+<!--        <a id="btnNaver" class="link-icon naver" href="#"><img src="/images/icon-naver.png"></a>-->
+
+<!--    </div>-->
+<!--    &lt;!&ndash;                        <div class="modal-footer">&ndash;&gt;-->
+<!--    &lt;!&ndash;                            <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>&ndash;&gt;-->
+<!--    &lt;!&ndash;                        </div>&ndash;&gt;-->
+<!--</div>-->
+<!-- modal  -->
+
 
 <!-- jQery -->
 <script src="/reservation/js/jquery-3.4.1.min.js"></script>
@@ -259,6 +307,137 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
 </script>
 <!-- End Google Map -->
+<script th:inline="javascript">
+    $(document).ready(function () {
+        var pno = [[${result.pno}]];
+        var list = $("#commentsList");
 
+        function formatTime(str){
+            var date = new Date(str);
+            return date.getFullYear()+'/'+(date.getMonth()+1)+'/'+date.getDate()+' '+date.getHours()+':'+date.getMinutes();
+        }
+
+        $('input[name="commentEnter"]').keydown(function(e){
+            if (e.keyCode == 13) {
+                var comment={
+                    pno,
+                    content:$('input[name="commentEnter"]').val(),
+                    replyer: [[${user.email}]],
+                    id:[[${user.id}]]
+                }
+                console.log(comment);
+                $.ajax({
+                    url: '/comments/',
+                    method: 'post',
+                    data: JSON.stringify(comment),
+                    contentType: 'application/json; charset-utf-8',
+                    dataType: 'json',
+                    success:function (data) {
+                        console.log(data);
+                        alert("댓글이 등록되었습니다.");
+                        loadJSONData();
+                        $("input[name='commentEnter']").val("");
+                    }
+                })
+            }
+        });
+        function loadJSONData() {
+            $.getJSON('/comments/' + pno +'/all', function (arr) {
+                console.log(arr);
+                var str=""
+                // $('.pull-right text-muted').html([[${result.likeNum}]] + "likes -" + arr.length + " comments");
+                $.each(arr,function (idx,comment) {
+                    str += '<input type="hidden" name="cno">'
+                    // str += '<img class="img-circle img-sm" src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="User Image">';
+                    str += '<div class="comment-text" data-cno="'+ comment.cno +'">';
+                    str += '<span class="username">';
+                    str += comment.replyer;
+                    str += '<span class="text-muted pull-right" id="regDate">'+ formatTime(comment.regDate);
+                    str += '<button type="button" class="btn btn-box-tool remove"><i class="fa fa-times"></i></button>';
+                    str += '</span>';
+                    str += '</span>';
+                    str += '<div id="content">';
+                    str += comment.content;
+                    str += '</div>';
+                    str += '</div>';
+                })
+                list.html(str);
+            })
+        }
+        loadJSONData();
+
+        $("#commentsList").on("click",".comment-text",function () {
+            var cno = $(this).data("cno");
+            $("input[name='cno']").val(cno);
+            console.log(cno);
+        })
+        $(document).on('click','.remove',function(){
+            var cno = $("input[name='cno']").val();
+            $.ajax({
+                url: '/comments/' + cno + '/remove',
+                method: 'delete',
+                success:function (result) {
+                    console.log("리뷰 삭제 : ", result);
+                    if(result==='success') {
+                        alert("댓글이 삭제되었습니다");
+                        loadJSONData();
+                    }
+                }
+            })
+        })
+        var modal = $(".modal");
+        $(document).on('click','.share',function () {
+            modal.show();
+            $(".modal-body a").click(function () {
+                shareAct(this);
+            })
+            $('.close').click(function () {
+                modal.hide();
+            })
+        })
+        $(document).mouseup(function (e) {
+            if(modal.has(e.target).length === 0){
+                modal.hide();
+            }
+        })
+        function shareAct(e) {
+            var snsCode = $(e).attr('id');
+            var url = "http://localhost:8080/home/read?pno=" + [[${result.pno}]];
+            switch (snsCode) {
+                case "btnTwitter":
+                    url = 'https://twitter.com/intent/tweet?text=' + [[${result.title}]] + ':&url=' + url;
+                    break;
+                case "btnFacebook":
+                    url = 'http://www.facebook.com/sharer/sharer.php?u=' + url;
+                    break;
+                case "btnKakao":
+                    shareKakao();
+                    break;
+                case "btnNaver":
+                    url = 'http://share.naver.com/web/shareView.nhn?url='
+                        +encodeURIComponent(url) + '&title=' + encodeURIComponent([[${result.title}]]);
+                    break;
+            }
+            window.open(url, '공유하기', 'width=auto,height=auto,top=auto,left=auto,scrollbars=yes');
+            modal.hide();
+        }
+        function shareKakao() {
+            Kakao.init('9a96f95c1d776dbdc5547ee043bf5890');
+
+            Kakao.Link.createDefaultButton({
+                container: '#btnKakao',
+                objectType: 'feed',
+                content: {
+                    title: [[${result.title}]],
+                    description: [[${result.content}]],
+                    imageUrl: "http://localhost8080",
+                    link: {
+                        webUrl: "http://localhost:8080/home/read?pno=" + [[${result.pno}]]
+                    }
+                }
+            });
+        }
+    })
+</script>
 </body>
 </html>

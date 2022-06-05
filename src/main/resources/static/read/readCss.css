@@ -16,7 +16,7 @@ h1 { margin: 0; }
 
 #contentBottom { width: 100%; }
 #contentBottom #contentBtns { display: flex; align-items: center; margin: 40px 0 20px;}
-#contentBottom #contentBtns a.contentBtn { align-content: center; justify-content: center; display: flex; width: 80px; padding: 8px; border:1px solid #ccc; border-radius: 8px; margin-right: 4px; cursor: pointer; }
+#contentBottom #contentBtns a.contentBtn { align-content: center; justify-content: center; padding: 8px; margin-right: 4px; cursor: pointer; }
 #contentBottom #contentBtns a.contentBtn:hover { background: #efefef; }
 #contentBottom #contentBtns a.contentBtn img { margin-right: 4px; }
 /*#contentBottom #contentBtns .contentBtn button { background: none; border: none; cursor: pointer; }*/
@@ -24,4 +24,7 @@ h1 { margin: 0; }
 #contentComment #commentsList { padding: 0 10px;}
 #contentComment #commentsList p { margin: 20px 0; }
 #contentComment input { width: 99%; height: 40px; border-radius: 8px; border: 1px solid #ddd; padding: 0 10px; margin: 20px 0;}
+
+#ex{ width: 265px; height: 90px; }
+.modal-body{ text-align: center; }
 
