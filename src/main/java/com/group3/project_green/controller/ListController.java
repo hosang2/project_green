@@ -69,6 +69,11 @@ public class ListController {
         model.addAttribute("result", postService.getPostWithCommentCnt(pno));
         model.addAttribute("user",user);
     }
+    @GetMapping("/readCss")
+    public void readCss(Long pno, Model model, @AuthenticationPrincipal SessionUser user) {
+        model.addAttribute("result", postService.getPostWithCommentCnt(pno));
+        model.addAttribute("user",user);
+    }
 
     @GetMapping("/login")
     public String login() {
