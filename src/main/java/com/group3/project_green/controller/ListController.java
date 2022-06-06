@@ -7,8 +7,12 @@ import com.group3.project_green.Service.PostService;
 import com.group3.project_green.Session.LoginUser;
 import com.group3.project_green.Session.SessionUser;
 import com.group3.project_green.entity.Member;
+import com.group3.project_green.entity.Post;
 import com.group3.project_green.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +23,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Controller
 @RequestMapping("/home/*")
@@ -34,12 +41,20 @@ public class ListController {
 //        return "/list";
 //    }
     @GetMapping("/list")
-    public String goList(Model model, @AuthenticationPrincipal SessionUser sessionUser) {
-        model.addAttribute("post",postService.getList());
-        System.out.println("==================PK : " + sessionUser.getId());
-        System.out.println("==================email : " + sessionUser.getEmail());
-        System.out.println("==================password : " + sessionUser.getPassword());
-        System.out.println("==================attr : " + sessionUser.getAttr().toString());
+    public String goList(Model model, @AuthenticationPrincipal SessionUser sessionUser ,
+                         @RequestParam(required = false, defaultValue = "") String searchText ,
+                         @PageableDefault(size  = 5 ) Pageable pageable) {
+        System.out.println("11)  컨트롤러 jpa 전 ");
+        Page<Post> list =postService.findByTitleContainingOrContentContaining(searchText,searchText,pageable);
+        Stream<Post> temp = list.get();
+        List<Post> temp2 = temp.collect(Collectors.toList());
+        temp2.forEach(i-> System.out.println(i));
+        System.out.println("2) controller -------------------------------start select--------------------------------------------");
+       // System.out.println(postService.findByTitleContaining(searchText,pageable));
+        //System.out.println("-------------------------------end select---------------------------------------------");
+       // model.addAttribute("post",postService.getList());
+      //  model.addAttribute("searchText" , list);
+
         return "/home/list";
     }
     @GetMapping("/food")

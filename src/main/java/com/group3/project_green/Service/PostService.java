@@ -4,6 +4,8 @@ import com.group3.project_green.DTO.PostCommentDTO;
 import com.group3.project_green.DTO.PostDTO;
 import com.group3.project_green.entity.Member;
 import com.group3.project_green.entity.Post;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -15,7 +17,7 @@ public interface PostService {
 
     List<PostDTO>getAccomList();
     List<PostDTO>getSightsList();
-
+    Page<Post> findByTitleContainingOrContentContaining(String title ,String content, Pageable pageable);
     PostCommentDTO getPostWithCommentCnt(Long pno);
 
     PostDTO get(Long pno);

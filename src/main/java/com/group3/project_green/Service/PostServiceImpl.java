@@ -7,6 +7,8 @@ import com.group3.project_green.entity.Post;
 import com.group3.project_green.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -43,6 +45,16 @@ public class PostServiceImpl implements PostService{
     public List<PostDTO> getSightsList() {
         List<Post> result = repository.findAll(Sort.by(Sort.Direction.DESC,"modDate")).stream().filter(i ->  i.getSights() != null).collect(Collectors.toList());
         return result.stream().map(post -> entityToDTO(post)).collect(Collectors.toList());
+    }
+
+    @Override
+    public Page<Post> findByTitleContainingOrContentContaining(String title ,String content, Pageable pageable) {
+        Page<Post> result= repository.findByTitleContainingOrContentContaining(title,content, pageable);
+        System.out.println("service1) =======================impl================");
+        //Page<Post> temp = result;
+        System.out.println("resut:  "+result);
+        System.out.println("=======================impl================");
+        return result;
     }
 
     @Override

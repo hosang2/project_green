@@ -2,6 +2,8 @@ package com.group3.project_green.repository;
 
 
 import com.group3.project_green.entity.Post;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -39,6 +41,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     Object getPostByPno(@Param("pno") Long pno);
 
 
+    Page<Post> findByTitleContainingOrContentContaining(String title, String content, Pageable pageable);
 
 
 
