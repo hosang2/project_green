@@ -1,6 +1,7 @@
 package com.group3.project_green.memberInfo;
 
 import com.group3.project_green.DTO.PostDTO;
+import com.group3.project_green.Service.PostService;
 import com.group3.project_green.Session.SessionUser;
 import com.group3.project_green.memberInfo.service.MemberInfoService;
 import com.group3.project_green.memberInfo.service.MyPostListService;
@@ -20,6 +21,8 @@ import java.util.List;
 @RequestMapping("/userinfo/*")
 @RequiredArgsConstructor
 public class UserInfoController {
+
+    private final PostService postService;
 
     private final MemberInfoService memberInfoService;
 
@@ -75,6 +78,9 @@ public class UserInfoController {
 
         System.out.println(post.toString());
 
+        PostDTO result = postService.get(1L);
+
+        model.addAttribute("result", result);
         model.addAttribute("post", post);
 
         return "/home/memberPostList";

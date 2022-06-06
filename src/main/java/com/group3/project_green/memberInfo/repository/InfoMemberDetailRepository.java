@@ -13,4 +13,7 @@ public interface InfoMemberDetailRepository extends JpaRepository<MemberInfo, Lo
     @Transactional
     Optional<MemberInfo> findByMemberId(Long id);
 
+    @Transactional
+    void deleteByMember_Id(Long id);
+
 }
