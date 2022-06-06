@@ -23,9 +23,10 @@ public interface PostService {
     PostDTO get(Long pno);
 
     List<PostDTO> getPostList(Long pno);
-    List<PostDTO> getPostListBySights(Long pno);
-    List<PostDTO> getPostByFoodFid(Long pno);
-    List<PostDTO> getPostByAccomAid(Long pno);
+    Page<Post> getPostListPage(Long pno, String title, String content , Pageable pageable);
+    Page<Post> getPostByFoodFid(Long pno, String title,String content ,Pageable pageable);
+    Page<Post> getPostBySights(Long pno, String title,String content ,Pageable pageable);
+    Page<Post> getPostByAccomAid(Long pno, String title,String content ,Pageable pageable);
 
     void savePost(PostDTO postDTO);
 

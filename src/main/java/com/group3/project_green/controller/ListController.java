@@ -8,6 +8,9 @@ import com.group3.project_green.Session.LoginUser;
 import com.group3.project_green.Session.SessionUser;
 import com.group3.project_green.entity.Member;
 import com.group3.project_green.entity.Post;
+import com.group3.project_green.memberInfo.MemberDetailDTO;
+import com.group3.project_green.memberInfo.MemberInfoDTO;
+import com.group3.project_green.memberInfo.service.MemberInfoService;
 import com.group3.project_green.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -35,6 +38,7 @@ public class ListController {
     private final PostService postService;
     private final PostRepository postRepository;
     private final MemberService memberService; //민혁
+    private final MemberInfoService memberInfoService;
 
     //    @GetMapping("/")
 //    public String goChat(){
@@ -102,32 +106,76 @@ public class ListController {
     }
 
     @GetMapping ("/memberPostList")
-    public void memberPostList(Long pno, Model model){
+    public String memberPostList(Model model,
+                                 @AuthenticationPrincipal SessionUser sessionUser,
+                                 @RequestParam(required = false, defaultValue = "") Long pno,
+                                 @RequestParam(required = false, defaultValue = "") String searchText,
+                                 @PageableDefault(size =4) Pageable pageable){
         PostDTO result = postService.get(pno);
+        Page<Post> post = postService.getPostListPage(pno,searchText,searchText,pageable);
+        MemberDetailDTO memberDetailDTO = memberInfoService.getDetail(sessionUser.getId());
+        int startPage = Math.max(1,post.getPageable().getPageNumber() -4);
+        int endPage = Math.min(post.getTotalPages(), post.getPageable().getPageNumber() +4);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
         model.addAttribute("result", result);
-        model.addAttribute("post",postService.getPostList(pno));
-    }
-
-    @GetMapping("/sightsPostList")
-    public String sightsPostList(Long pno, Model model){
-        PostDTO result = postService.get(pno);
-        model.addAttribute("result", result);
-        model.addAttribute("post",postService.getPostListBySights(pno));
+        model.addAttribute("post",post);
+        model.addAttribute("userInfoDetail", memberDetailDTO);
         return "/home/memberPostList";
     }
     @GetMapping("/foodPostList")
-    public String foodPostList(Long pno, Model model){
+    public String foodPostList(Model model,
+                               @AuthenticationPrincipal SessionUser sessionUser,
+                               @RequestParam(required = false, defaultValue = "") Long pno,
+                               @RequestParam(required = false, defaultValue = "") String searchText,
+                               @PageableDefault(size =4) Pageable pageable){
         PostDTO result = postService.get(pno);
+        Page<Post> post = postService.getPostByFoodFid(pno,searchText,searchText,pageable);
+        MemberDetailDTO memberDetailDTO = memberInfoService.getDetail(sessionUser.getId());
+        int startPage = Math.max(1,post.getPageable().getPageNumber() -4);
+        int endPage = Math.min(post.getTotalPages(), post.getPageable().getPageNumber() +4);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
         model.addAttribute("result", result);
-        model.addAttribute("post",postService.getPostByFoodFid(pno));
-        return "/home/memberPostList";
+        model.addAttribute("post",post);
+        model.addAttribute("userInfoDetail", memberDetailDTO);
+        return "/home/foodPostList";
+    }
+    @GetMapping("/sightsPostList")
+    public String sightsPostList(Model model,
+                                 @AuthenticationPrincipal SessionUser sessionUser,
+                                 @RequestParam(required = false, defaultValue = "") Long pno,
+                                 @RequestParam(required = false, defaultValue = "") String searchText,
+                                 @PageableDefault(size =4) Pageable pageable){
+        PostDTO result = postService.get(pno);
+        Page<Post> post = postService.getPostBySights(pno,searchText,searchText,pageable);
+        MemberDetailDTO memberDetailDTO = memberInfoService.getDetail(sessionUser.getId());
+        int startPage = Math.max(1,post.getPageable().getPageNumber() -4);
+        int endPage = Math.min(post.getTotalPages(), post.getPageable().getPageNumber() +4);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
+        model.addAttribute("result", result);
+        model.addAttribute("post",post);
+        model.addAttribute("userInfoDetail", memberDetailDTO);
+        return "/home/sightsPostList";
     }
     @GetMapping("/accomPostList")
-    public String accomPostList(Long pno, Model model){
+    public String accomPostList(Model model,
+                                @AuthenticationPrincipal SessionUser sessionUser,
+                                @RequestParam(required = false, defaultValue = "") Long pno,
+                                @RequestParam(required = false, defaultValue = "") String searchText,
+                                @PageableDefault(size =4) Pageable pageable){
         PostDTO result = postService.get(pno);
+        Page<Post> post = postService.getPostByAccomAid(pno,searchText,searchText,pageable);
+        MemberDetailDTO memberDetailDTO = memberInfoService.getDetail(sessionUser.getId());
+        int startPage = Math.max(1,post.getPageable().getPageNumber() -4);
+        int endPage = Math.min(post.getTotalPages(), post.getPageable().getPageNumber() +4);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
         model.addAttribute("result", result);
-        model.addAttribute("post",postService.getPostByAccomAid(pno));
-        return "/home/memberPostList";
+        model.addAttribute("post",post);
+        model.addAttribute("userInfoDetail", memberDetailDTO);
+        return "/home/accomPostList";
     }
 
     @GetMapping("/insert")

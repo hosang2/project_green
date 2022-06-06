@@ -16,20 +16,36 @@ public interface PostRepository extends JpaRepository<Post, Long> {
             "where m.id = :id")
     List<Post> getPostsByMemberId(Long id);
 
-    @Query("select p from Post p " +
+    @Query("select p  from Post p " +
             "left join p.member m " +
-            "where m.id = :id and p.sights.sid is not null")
-    List<Post> getPostsByMemberIdBySightSid(Long id);
+            "where m.id = :id "+
+            "and p.title like %:title% " +
+            "or m.id = :id and p.content like %:content% order by p.modDate DESC ")
+    Page<Post> getPostsByMemberIdPage(Long id , String title, String content, Pageable pageable);
 
-    @Query("select p from Post p " +
+    @Query("select p  from Post p " +
             "left join p.member m " +
-            "where m.id = :id and p.food.fid is not null")
-    List<Post> getPostsByMemberIdByFoodFid(Long id);
+            "where m.id = :id "+
+            "and p.food is not null and p.title like %:title% " +
+            "or m.id = :id " +
+            "and p.food is not null and p.content like %:content% order by p.modDate DESC ")
+    Page<Post> getPostsByMemberIdByFoodFid(Long id ,String title, String content, Pageable pageable);
 
-    @Query("select p from Post p " +
+    @Query("select p  from Post p " +
             "left join p.member m " +
-            "where m.id = :id and p.accom.aid is not null")
-    List<Post> getPostsByMemberIdByAccomAid(Long id);
+            "where m.id = :id "+
+            "and p.sights is not null and p.title like %:title% " +
+            "or m.id = :id " +
+            "and p.sights is not null and p.content like %:content% order by p.modDate DESC ")
+    Page<Post> getPostsByMemberIdBySightSid(Long id ,String title, String content, Pageable pageable);
+
+    @Query("select p  from Post p " +
+            "left join p.member m " +
+            "where m.id = :id "+
+            "and p.accom is not null and p.title like %:title% " +
+            "or m.id = :id " +
+            "and p.accom is not null and p.content like %:content% order by p.modDate DESC ")
+    Page<Post> getPostsByMemberIdByAccomAid(Long id ,String title, String content, Pageable pageable);
 
 
    // List<Post> findbyAccom();
