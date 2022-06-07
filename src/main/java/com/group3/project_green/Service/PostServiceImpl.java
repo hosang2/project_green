@@ -58,6 +58,27 @@ public class PostServiceImpl implements PostService{
     }
 
     @Override
+    public List<Post> accomfindByTitleContainingOrContentContaining(String title, String content, Pageable pageable) {
+        Page<Post> result= repository.findByTitleContainingOrContentContaining(title,content, pageable);
+        List<Post> res= result.stream().filter(i-> i.getAccom() !=null).collect(Collectors.toList());
+        return res;
+    }
+
+    @Override
+    public List<Post> foodfindByTitleContainingOrContentContaining(String title, String content, Pageable pageable) {
+        Page<Post> result= repository.findByTitleContainingOrContentContaining(title,content, pageable);
+        List<Post> res= result.stream().filter(i-> i.getAccom() !=null).collect(Collectors.toList());
+        return res;
+    }
+
+    @Override
+    public List<Post> sightfindByTitleContainingOrContentContaining(String title, String content, Pageable pageable) {
+        Page<Post> result= repository.findByTitleContainingOrContentContaining(title,content, pageable);
+        List<Post> res= result.stream().filter(i-> i.getAccom() !=null).collect(Collectors.toList());
+        return res;
+    }
+
+    @Override
     public PostCommentDTO getPostWithCommentCnt(Long pno) {
         Object result = repository.getPostByPno(pno);
         Object[] arr = (Object[]) result;

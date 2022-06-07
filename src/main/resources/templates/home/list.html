@@ -84,7 +84,7 @@
                                  xml:space="preserve">
                 </svg>
                         </a>
-                        <form class="form-inline d-flex justify-content-end" method="GET" th:action="@{/home/list}" >
+                        <form class="form-inline d-flex justify-content-end" method="GET" th:action="@{/home/search}" >
                             <div class="form-group mx-sm-3 mb-2">
                                 <label for="searchText" class="sr-only">검색</label>
                                 <input type="text" class="form-control" id="searchText" name="searchText" th:value="${param.searchText}">
@@ -227,7 +227,7 @@
 <!-- End Google Map -->
 <script th:inline="javascript">
     $(document).ready(function(){
-
+            loadPost();
            var postlist =$('#postlist')
 
            function loadPost(){
