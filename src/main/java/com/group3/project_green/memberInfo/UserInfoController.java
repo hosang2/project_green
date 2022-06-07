@@ -3,11 +3,15 @@ package com.group3.project_green.memberInfo;
 import com.group3.project_green.DTO.PostDTO;
 import com.group3.project_green.Service.PostService;
 import com.group3.project_green.Session.SessionUser;
+import com.group3.project_green.entity.Member;
+import com.group3.project_green.entity.Post;
 import com.group3.project_green.memberInfo.service.MemberInfoService;
 import com.group3.project_green.memberInfo.service.MyPostListService;
+import com.group3.project_green.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
+import java.util.Optional;
 
 @Log4j2
 @Controller
@@ -40,6 +45,11 @@ public class UserInfoController {
 
         log.info("=================================memberDTO : " + memberInfoDTO.toString());
 
+        List<PostDTO> post = myPostListService.getListByMemberId(sessionUser.getId());
+
+        Long pno = post.get(0).getPno();
+
+        model.addAttribute("pno", pno);
         model.addAttribute("userDetail", memberInfoDTO);
         model.addAttribute("userInfoDetail", memberDetailDTO);
 
@@ -66,24 +76,6 @@ public class UserInfoController {
 
         // 회원탈퇴 이후, 로그인 화면으로 리다이렉트
         return "redirect:/home/login";
-
-    }
-
-    @GetMapping("/myPosts")
-    String goMyPosts(@AuthenticationPrincipal SessionUser sessionUser
-            , Model model){
-        log.info("===================(Get) myPosts============= id : " + sessionUser.getId());
-
-        List<PostDTO> post = myPostListService.getListByMemberId(sessionUser.getId());
-
-        System.out.println(post.toString());
-
-        PostDTO result = postService.get(1L);
-
-        model.addAttribute("result", result);
-        model.addAttribute("post", post);
-
-        return "/home/memberPostList";
 
     }
 
