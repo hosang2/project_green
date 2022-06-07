@@ -112,7 +112,7 @@ public class PostTests {
                     .likeNum(5L)
                     .title("food insert 테스트타이틀"+i)
                     .member(member)
-                    .food(food)
+                    .sights(sights)
                     .build();
             postRepository.save(post);
         }
