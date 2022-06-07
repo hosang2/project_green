@@ -398,7 +398,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav  mx-auto ">
                         <li class="nav-item active">
-                            <a class="nav-link" href="/home/list">글 목록</a>
+                            <a class="nav-link" href="/home/list">글 목록<span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/home/insert">글 쓰기</a>
@@ -562,7 +562,7 @@
                             </div>
                             <!-- 버튼 클릭시 해당 PostList 만 띄우기 -->
                         </div>
-                        <form class="form-inline d-flex justify-content-end" method="GET" th:action="@{/home/memberPostList}" >
+                        <form class="form-inline d-flex justify-content-end" method="GET" th:action="@{/home/sightsPostList}" >
                             <div class="form-group mx-sm-3 mb-2">
                                 <label for="searchText" class="sr-only">검색</label>
                                 <input type="hidden" class="form-control" id="pno" name="pno" th:value="${param.pno}">
@@ -592,19 +592,20 @@
                             <ul class="pagination justify-content-center">
                                 <li class="page-item" id="abc" th:classappend="${ 1 == post.pageable.pageNumber+1} ? 'disabled'">
                                     <a class="page-link"
-                                       th:href="@{/home/memberPostList(pno=${result.getPno()},page=${post.pageable.pageNumber -1},
+                                       th:href="@{/home/sightsPostList(pno=${result.getPno()},page=${post.pageable.pageNumber -1},
                                        searchText=${param.searchText})}"  tabindex="-1" aria-disabled="true">Previous
                                     </a>
                                 </li>
                                 <li class="page-item" th:classappend="${ i == post.pageable.pageNumber+1} ? 'disabled'" th:each="i : ${#numbers.sequence(startPage, endPage)}">
                                     <a class="page-link"
-                                       th:href="@{/home/memberPostList(pno=${result.getPno()},page=${i -1},
+                                       th:href="@{/home/sightsPostList(pno=${result.getPno()},page=${i -1},
                                        searchText=${param.searchText})}"  th:text="${i}">1
                                     </a>
                                 </li>
                                 <li class="page-item" th:classappend="${ post.totalPages == post.pageable.pageNumber+1} ? 'disabled'">
-                                    <a class="page-link" th:href="@{/home/memberPostList(pno=${result.getPno()},page=${post.pageable.pageNumber +1},
-                                    searchText=${param.searchText})}" >Next
+                                    <a class="page-link"
+                                       th:href="@{/home/sightsPostList(pno=${result.getPno()},page=${post.pageable.pageNumber +1},
+                                       searchText=${param.searchText})}" >Next
                                     </a>
                                 </li>
                             </ul>

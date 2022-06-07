@@ -84,36 +84,28 @@ public class PostServiceImpl implements PostService{
     }
 
     @Override
-    public List<PostDTO> getPostListBySights(Long pno) {
+    public Page<Post> getPostListPage(Long pno, String title, String content, Pageable pageable) {
         PostDTO memberId = entityToDTO(repository.getById(pno));
-        List<Post> result = repository.getPostsByMemberIdBySightSid(memberId.getMember().getId());
-        List<PostDTO> postDTOList = new ArrayList<>();
-        for(Post post : result){
-            postDTOList.add(entityToDTO(post));
-        }
-        return postDTOList;
+        Page<Post> result = repository.getPostsByMemberIdPage(memberId.getMember().getId(),title,content,pageable);
+        return result;
     }
-
     @Override
-    public List<PostDTO> getPostByFoodFid(Long pno) {
+    public Page<Post> getPostByFoodFid(Long pno, String title, String content, Pageable pageable) {
         PostDTO memberId = entityToDTO(repository.getById(pno));
-        List<Post> result = repository.getPostsByMemberIdByFoodFid(memberId.getMember().getId());
-        List<PostDTO> postDTOList = new ArrayList<>();
-        for(Post post : result){
-            postDTOList.add(entityToDTO(post));
-        }
-        return postDTOList;
+        Page<Post> result = repository.getPostsByMemberIdByFoodFid(memberId.getMember().getId(),title,content,pageable);
+        return result;
     }
-
     @Override
-    public List<PostDTO> getPostByAccomAid(Long pno) {
+    public Page<Post> getPostBySights(Long pno, String title, String content, Pageable pageable) {
         PostDTO memberId = entityToDTO(repository.getById(pno));
-        List<Post> result = repository.getPostsByMemberIdByAccomAid(memberId.getMember().getId());
-        List<PostDTO> postDTOList = new ArrayList<>();
-        for(Post post : result){
-            postDTOList.add(entityToDTO(post));
-        }
-        return postDTOList;
+        Page<Post> result = repository.getPostsByMemberIdBySightSid(memberId.getMember().getId(),title,content,pageable);
+        return result;
+    }
+    @Override
+    public Page<Post> getPostByAccomAid(Long pno, String title, String content, Pageable pageable) {
+        PostDTO memberId = entityToDTO(repository.getById(pno));
+        Page<Post> result = repository.getPostsByMemberIdByAccomAid(memberId.getMember().getId(),title,content,pageable);
+        return result;
     }
 
     @Override //민혁
