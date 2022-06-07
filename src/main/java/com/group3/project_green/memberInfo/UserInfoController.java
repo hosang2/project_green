@@ -98,5 +98,5 @@ public class UserInfoController {
 
         return "redirect:/userinfo/userDetail";
     }
-
+;;
 }
