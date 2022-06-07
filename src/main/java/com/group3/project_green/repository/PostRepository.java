@@ -48,7 +48,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     Page<Post> getPostsByMemberIdByAccomAid(Long id ,String title, String content, Pageable pageable);
 
 
-   // List<Post> findbyAccom();
+    // List<Post> findbyAccom();
 
     @Query(value = "select p,m, count(c) from Post p " +
             "left join p.member m " +

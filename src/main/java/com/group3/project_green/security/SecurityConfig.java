@@ -31,5 +31,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
-    
+
+    @Bean
+    public LoginSuccessHandler loginSuccessHandler(){
+        return new LoginSuccessHandler();
+    }
+
+
 }
