@@ -13,6 +13,7 @@ import javax.persistence.Id;
 @Builder
 @Getter
 @ToString
+@Setter
 public class Sights {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

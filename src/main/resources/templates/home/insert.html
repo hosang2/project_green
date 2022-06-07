@@ -1,29 +1,443 @@
 <!DOCTYPE html>
-<html lang="en">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-      integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
-      crossorigin="anonymous">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
-    <meta charset="UTF-8" />
-    <title>게시판 - 글쓰기</title>
+    <!-- Basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Mobile Metas -->
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <!-- Site Metas -->
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link
+            rel="shortcut icon"
+            href="/reservation/images/favicon.png"
+            type=""
+    />
 
+    <title>Insert</title>
+
+    <!-- bootstrap core css -->
+    <link
+            rel="stylesheet"
+            type="text/css"
+            href="/reservation/css/bootstrap.css"
+    />
+
+    <!--owl slider stylesheet -->
+    <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+    />
+    <!-- nice select  -->
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css"
+            integrity="sha512-CruCP+TD3yXzlvvijET8wV5WxxEh5H8P4cmz0RFbKK6FlZ2sYl3AEsKlLPHbniXKSrDdFewhbmBK5skbdsASbQ=="
+            crossorigin="anonymous"
+    />
+    <!-- font awesome style -->
+    <link
+            href="/reservation/css/font-awesome.min.css"
+            rel="stylesheet"
+    />
+
+    <!-- Custom styles for this template -->
+    <link href="/reservation/css/style.css" rel="stylesheet" />
+    <!-- responsive style -->
+    <link href="/reservation/css/responsive.css" rel="stylesheet" />
 </head>
-<body>
-
-<form action="/home/insert" method="post">
-    <h1>게시글 작성</h1>
-    <div class="mb-3">
-        <label for="title">제목</label>
-        <input type="text" class="form-control" name="title" id="title" placeholder="제목을 입력해 주세요">
+<body class="sub_page">
+<div class="hero_area">
+    <div class="bg-box">
+        <img src="/reservation/images/hero-bg.jpg" alt="" />
     </div>
-    <div class="mb-3">
-        <label for="content">내용</label>
-        <textarea class="form-control" rows="5" name="content" id="content" placeholder="내용을 입력해 주세요" ></textarea>
+    <!-- header section strats -->
+    <header class="header_section">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg custom_nav-container">
+                <a class="navbar-brand" href="home.html">
+                    <span> Insert </span>
+                </a>
+
+                <button
+                        class="navbar-toggler"
+                        type="button"
+                        data-toggle="collapse"
+                        data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                >
+                    <span class=""> </span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="home.html"
+                            >글 목록<span class="sr-only">(current)</span></a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="list.html">글 쓰기</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about.html">내 정보</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="book.html">로그아웃</a>
+                        </li>
+                    </ul>
+                    <div class="user_option">
+                        <a href="" class="user_link">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                        </a>
+                        <a class="cart_link" href="#">
+                            <svg
+                                    version="1.1"
+                                    id="Capa_1"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    x="0px"
+                                    y="0px"
+                                    viewBox="0 0 456.029 456.029"
+                                    style="enable-background: new 0 0 456.029 456.029"
+                                    xml:space="preserve"
+                            >
+                    <g>
+                      <g>
+                        <path
+                                d="M345.6,338.862c-29.184,0-53.248,23.552-53.248,53.248c0,29.184,23.552,53.248,53.248,53.248
+                     c29.184,0,53.248-23.552,53.248-53.248C398.336,362.926,374.784,338.862,345.6,338.862z"
+                        />
+                      </g>
+                    </g>
+                                <g>
+                      <g>
+                        <path
+                                d="M439.296,84.91c-1.024,0-2.56-0.512-4.096-0.512H112.64l-5.12-34.304C104.448,27.566,84.992,10.67,61.952,10.67H20.48
+                     C9.216,10.67,0,19.886,0,31.15c0,11.264,9.216,20.48,20.48,20.48h41.472c2.56,0,4.608,2.048,5.12,4.608l31.744,216.064
+                     c4.096,27.136,27.648,47.616,55.296,47.616h212.992c26.624,0,49.664-18.944,55.296-45.056l33.28-166.4
+                     C457.728,97.71,450.56,86.958,439.296,84.91z"
+                        />
+                      </g>
+                    </g>
+                                <g>
+                      <g>
+                        <path
+                                d="M215.04,389.55c-1.024-28.16-24.576-50.688-52.736-50.688c-29.696,1.536-52.224,26.112-51.2,55.296
+                     c1.024,28.16,24.064,50.688,52.224,50.688h1.024C193.536,443.31,216.576,418.734,215.04,389.55z"
+                        />
+                      </g>
+                    </g>
+                  </svg>
+                        </a>
+                        <form class="form-inline">
+                            <button class="btn my-2 my-sm-0 nav_search-btn" type="submit">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                            </button>
+                        </form>
+                        <a href="" class="order_online"> Order Online </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!-- end header section -->
+</div>
+
+<!-- book section -->
+<section class="book_section layout_padding">
+    <div class="container">
+        <div class="heading_container">
+            <h2>Writing</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form_container">
+                    <form action="/home/insert" method="post">
+                        <div>
+                            <label>제목</label>
+                            <input
+                                    type="text"
+                                    name="title"
+                                    class="form-control"
+                                    placeholder="제목"
+                            />
+                        </div>
+                        <div>
+                            <label for="content">내용</label>
+                            <textarea
+                                    class="form-control"
+                                    rows="5"
+                                    name="content"
+                                    id="content"
+                                    placeholder="내용을 입력해 주세요"
+                            ></textarea>
+                        </div>
+                        <div>
+                            <div class="form-group fileForm">
+                                <label for="">이미지</label>
+                                <div class="custom-file">
+                                    <input
+                                            type="file"
+                                            class="custom-file-input files"
+                                            id="fileInput"
+                                            multiple
+                                    />
+                                    <label
+                                            for=""
+                                            class="custom-file-label"
+                                            data-browse="첨부파일"
+                                    ></label>
+                                </div>
+                                <div>
+                                    <select name="selectItem">
+                                        <option value="food">음식</option>
+                                        <option value="accom">숙소</option>
+                                        <option value="sights">관광지</option>
+                                    </select></br>
+                                    <input type="text" name="selectInput" size="70px">
+                                </div>
+                            </div>
+                            <div class="box"></div>
+                            <div class="uploadResult">
+                                <ul></ul>
+                            </div>
+                            <button type="submit" class="btn btn-primary">등록</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
+</section>
+<!-- end book section -->
 
+<!-- footer section -->
+<footer class="footer_section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 footer-col">
+                <div class="footer_contact">
+                    <h4>Contact Us</h4>
+                    <div class="contact_link_box">
+                        <a href="">
+                            <i class="fa fa-map-marker" aria-hidden="true"></i>
+                            <span> Location </span>
+                        </a>
+                        <a href="">
+                            <i class="fa fa-phone" aria-hidden="true"></i>
+                            <span> Call +01 1234567890 </span>
+                        </a>
+                        <a href="">
+                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                            <span> demo@gmail.com </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 footer-col">
+                <div class="footer_detail">
+                    <a href="" class="footer-logo"> Feane </a>
+                    <p>
+                        Necessary, making this the first true generator on the Internet.
+                        It uses a dictionary of over 200 Latin words, combined with
+                    </p>
+                    <div class="footer_social">
+                        <a href="">
+                            <i class="fa fa-facebook" aria-hidden="true"></i>
+                        </a>
+                        <a href="">
+                            <i class="fa fa-twitter" aria-hidden="true"></i>
+                        </a>
+                        <a href="">
+                            <i class="fa fa-linkedin" aria-hidden="true"></i>
+                        </a>
+                        <a href="">
+                            <i class="fa fa-instagram" aria-hidden="true"></i>
+                        </a>
+                        <a href="">
+                            <i class="fa fa-pinterest" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 footer-col">
+                <h4>Opening Hours</h4>
+                <p>Everyday</p>
+                <p>10.00 Am -10.00 Pm</p>
+            </div>
+        </div>
+        <div class="footer-info">
+            <p>
+                &copy; <span id="displayYear"></span> All Rights Reserved By
+                <a href="https://html.design/">Free Html Templates</a><br /><br />
+                &copy; <span id="displayYear"></span> Distributed By
+                <a href="https://themewagon.com/" target="_blank">ThemeWagon</a>
+            </p>
+        </div>
+    </div>
+</footer>
+<!-- footer section -->
 
+<script
+        src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+        crossorigin="anonymous"
+></script>
+<script>
+      $(document).ready(function (e) {
+        var regex = new RegExp("(.*?)\.(exe|sh|zip|alz|tiff)$");
+        var maxSize = 10485760; // 10MB
+        const checkExtension = (fileName, fileSize) => {
+          if (fileSize >= maxSize) {
+            alert("파일 사이즈 초과");
+            return false;
+          }
+          if (regex.test(fileName)) {
+            alert("해당 종류의 파일은 업로드 할 수 없습니다");
+            return false;
+          }
+          return true;
+        };
+        $(".custom-file-input").change(function (e) {
+          console.log("체인지 하이");
+          var fileName = $(this).val().split("\\").pop();
+          $(this)
+            .siblings(".custom-file-label")
+            .addClass("selected")
+            .html(fileName);
+          var formData = new FormData();
+          var inputFile = $(this);
+          var files = inputFile[0].files;
+          var appended = false;
+          for (var i = 0; i < files.length; i++) {
+            if (!checkExtension(files[i].name, files[i].size)) {
+              return false;
+            }
+            console.log(files[i]);
+            formData.append("uploadFiles", files[i]);
+            appended = true;
+          }
+          //upload를 하지 않는다.
+          if (!appended) {
+            return;
+          }
+          for (var value of formData.values()) {
+            console.log(value);
+          }
+          //실제 업로드 부분
+          $.ajax({
+            url: "/uploadAjax",
+            processData: false,
+            contentType: false,
+            data: formData,
+            type: "POST",
+            dataType: "json",
+            success: function (result) {
+              console.log(result);
+              showResult(result); //호출
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+              console.log(textStatus);
+            },
+          });
+        }); //event change
+        function showResult(uploadResultArr) {
+          console.log(uploadResultArr);
+          var uploadUL = $(".uploadResult ul");
+          var str = "";
+          $(uploadResultArr).each(function (i, obj) {
+            str +=
+              "<li data-name='" +
+              obj.fileName +
+              "' data-path='" +
+              obj.folderPath +
+              "' data-uuid='" +
+              obj.uuid +
+              "'>";
+            str += " <div>";
+            str += "<button type='button' data-file='" + obj.imageURL + "' ";
+            str += "class='btn-warning btn-sm'>X</button><br>";
+            str += "<img src='/display?fileName=" + obj.thumbnailURL + "'>";
+            str += "</div>";
+            str += "</li>";
+          });
+          uploadUL.append(str);
+        }
+        $(".uploadResult").on("click", "li button", function (e) {
+          console.log("delete file");
+          var targetFile = $(this).data("file");
+          var targetLi = $(this).closest("li");
+          $.ajax({
+            url: "/removeFile",
+            data: { fileName: targetFile },
+            dataType: "text",
+            type: "POST",
+            success: function (result) {
+              alert(result);
+              targetLi.remove();
+            },
+          });
+        });
+        $(".btn-primary").click(function (e) {
+          e.preventDefault();
+          var str = "";
+          $(".uploadResult li").each(function (i, obj) {
+            var target = $(obj);
+            str +=
+              "<input type='hidden' name='imageDTOList[" +
+              i +
+              "].imgName' value='" +
+              target.data("name") +
+              "'>";
+            str +=
+              "<input type='hidden' name='imageDTOList[" +
+              i +
+              "].path' value='" +
+              target.data("path") +
+              "'>";
+            str +=
+              "<input type='hidden' name='imageDTOList[" +
+              i +
+              "].uuid' value='" +
+              target.data("uuid") +
+              "'>";
+            //태그들이 추가된 것을 확인한 후에 comment 제거
+            $(".box").html(str);
+            $("form").submit();
+          });
+        });
+      });
+    </script>
 
-    <input type="submit" value="게시글 등록">
-</form>
+<!-- jQery -->
+<script src="/reservation/js/jquery-3.4.1.min.js"></script>
+<!-- popper js -->
+<script
+        src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"
+></script>
+<!-- bootstrap js -->
+<script src="/reservation/js/bootstrap.js"></script>
+<!-- owl slider -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<!-- isotope js -->
+<script src="https://unpkg.com/isotope-layout@3.0.4/dist/isotope.pkgd.min.js"></script>
+<!-- nice select -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js"></script>
+<!-- custom js -->
+<script src="/reservation/js/custom.js"></script>
+<!-- Google Map -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap"></script>
+<!-- End Google Map -->
 </body>
 </html>
