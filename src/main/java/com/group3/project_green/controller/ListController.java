@@ -226,16 +226,17 @@ public class ListController {
             Accom accom =new Accom();
             accom.setName(postDTO.getSelectInput());
             postDTO.setAccom(accom);
+            postService.saveAccom(accom);
         } else if(postDTO.getSelectItem().equals("food")){
             Food food =new Food();
             food.setName(postDTO.getSelectInput());
-
             postDTO.setFood(food);
             postService.saveFood(food);
         } else {
             Sights sights = new Sights();
             sights.setName(postDTO.getSelectInput());
             postDTO.setSights(sights);
+            postService.saveSights(sights);
         }
         long dummyMno = sessionUser.getId();
         postDTO.setMember(Member.builder().id(dummyMno).build());
