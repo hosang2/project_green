@@ -69,29 +69,21 @@ public class PostTests {
         }
     }
     @Test
-    void sightsInsert(){
+    void insert(){
         Sights sights = Sights.builder()
-                    .name("관광지테스트")
-                    .category("관광지종류")
-                    .build();
+                .name("관광지테스트")
+                .build();
         sightRepository.save(sights);
-    }
-    @Test
-    void foodInsert(){
         Food food = Food.builder()
                 .name("음식테스트")
-                .category("음식종류")
                 .build();
         foodRepository.save(food);
-    }
-    @Test
-    void accomInsert(){
         Accom accom = Accom.builder()
                 .name("숙박테스트")
-                .category("숙박종류")
                 .build();
         accomRepository.save(accom);
     }
+
     @Test
     void postInsert() {
         for (int i = 0; i < 10; i++) {
@@ -108,13 +100,29 @@ public class PostTests {
                     .fid(1L)
                     .build();
             Post post = Post.builder()
-                    .content("food insert 테스트내용"+i)
+                    .content("sights insert 테스트내용"+i)
                     .likeNum(5L)
-                    .title("food insert 테스트타이틀"+i)
+                    .title("sights insert 테스트타이틀"+i)
                     .member(member)
                     .sights(sights)
                     .build();
             postRepository.save(post);
+            Post accompost = Post.builder()
+                    .content("accom insert 테스트내용"+i)
+                    .likeNum(5L)
+                    .title("accom insert 테스트타이틀"+i)
+                    .member(member)
+                    .accom(accom)
+                    .build();
+            postRepository.save(accompost);
+            Post foodpost = Post.builder()
+                    .content("food insert 테스트내용"+i)
+                    .likeNum(5L)
+                    .title("food insert 테스트타이틀"+i)
+                    .member(member)
+                    .food(food)
+                    .build();
+            postRepository.save(foodpost);
         }
     }
 }

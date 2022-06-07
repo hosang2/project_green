@@ -13,6 +13,7 @@ import javax.persistence.Id;
 @Builder
 @Getter
 @ToString
+@Setter
 public class Food {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

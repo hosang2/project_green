@@ -6,8 +6,7 @@ import com.group3.project_green.Service.MemberService;
 import com.group3.project_green.Service.PostService;
 import com.group3.project_green.Session.LoginUser;
 import com.group3.project_green.Session.SessionUser;
-import com.group3.project_green.entity.Member;
-import com.group3.project_green.entity.Post;
+import com.group3.project_green.entity.*;
 import com.group3.project_green.memberInfo.MemberDetailDTO;
 import com.group3.project_green.memberInfo.MemberInfoDTO;
 import com.group3.project_green.memberInfo.service.MemberInfoService;
@@ -221,9 +220,27 @@ public class ListController {
         return "/home/insert";
     }
     @PostMapping("/insert")
-    public String goinsert(PostDTO postDTO){
-        long dummyMno = 1L; //2번회원으로 지정 차후 시큐리티로 변경하면 자동으로 로그인정보 저장되서 생략가능
-        postDTO.setMember(Member.builder().id(dummyMno).build());//2번회원으로 지정 차후 시큐리티로 변경하면 자동으로 로그인정보 저장되서 생략가능
+    public String goinsert(PostDTO postDTO, @AuthenticationPrincipal SessionUser sessionUser,RedirectAttributes redirectAttributes){
+        System.out.println(postDTO);
+        if(postDTO.getSelectItem().equals("accom")) {
+            Accom accom =new Accom();
+            accom.setName(postDTO.getSelectInput());
+            postDTO.setAccom(accom);
+        } else if(postDTO.getSelectItem().equals("food")){
+            Food food =new Food();
+            food.setName(postDTO.getSelectInput());
+
+            postDTO.setFood(food);
+            postService.saveFood(food);
+        } else {
+            Sights sights = new Sights();
+            sights.setName(postDTO.getSelectInput());
+            postDTO.setSights(sights);
+        }
+        long dummyMno = sessionUser.getId();
+        postDTO.setMember(Member.builder().id(dummyMno).build());
+        Long pno = postService.insert(postDTO);
+        redirectAttributes.addFlashAttribute("psg",pno);
         postService.savePost(postDTO);
         return "redirect:list";
     }

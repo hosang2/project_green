@@ -9,6 +9,8 @@ import lombok.*;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @ToString
@@ -26,5 +28,9 @@ public class PostDTO {
     private Food food;
     private Accom accom;
     private Sights sights;
+    private String selectItem;
+    private String selectInput;
     private LocalDateTime regDate,modDate;
+    @Builder.Default
+    private List<FileImageDTO> imageDTOList = new ArrayList<>();
 }

@@ -2,9 +2,8 @@ package com.group3.project_green.Service;
 
 import com.group3.project_green.DTO.PostCommentDTO;
 import com.group3.project_green.DTO.PostDTO;
-import com.group3.project_green.entity.Member;
-import com.group3.project_green.entity.Post;
-import com.group3.project_green.repository.PostRepository;
+import com.group3.project_green.entity.*;
+import com.group3.project_green.repository.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
@@ -12,8 +11,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -21,10 +22,32 @@ import java.util.stream.Collectors;
 @Log4j2
 public class PostServiceImpl implements PostService{
     private final PostRepository repository;
+    private final FileImageRepository imageRepository;
+
+    private final FoodRepository foodRepository;
+
+    private final SightRepository sightRepository;
+
+    private final AccomRepository accomRepository;
+
+    @Override
+    public Food saveFood(Food food) {
+        System.out.println("음식추가 : " +food);
+        return foodRepository.save(food);
+    }
+
+    @Override
+    public Sights saveSights(Sights sights) {
+        return sightRepository.save(sights);
+    }
+
+    @Override
+    public Accom saveAccom(Accom accom) {
+        return accomRepository.save(accom);
+    }
 
     @Override
     public List<PostDTO> getList() {
-      
         List<Post> result = repository.findAll(Sort.by(Sort.Direction.DESC,"modDate"));
         return result.stream().map(post -> entityToDTO(post)).collect(Collectors.toList());
     }
@@ -133,9 +156,19 @@ public class PostServiceImpl implements PostService{
 
     @Override //민혁
     public void savePost(PostDTO postDTO) {
-        Post post = dtoToEntity(postDTO);
-        // dtoToEntity
+
+    }
+    @Transactional
+    @Override
+    public Long insert(PostDTO postDTO) {
+        Map<String ,Object> entityMap = dtoToEntity(postDTO);
+        Post post = (Post) entityMap.get("post");
+        List<FileImage> fileImageList =(List<FileImage>) entityMap.get("imgList");
         repository.save(post);
+        fileImageList.forEach(i->{
+            imageRepository.save(i);
+        });
+        return postDTO.getPno();
     }
 
 }
