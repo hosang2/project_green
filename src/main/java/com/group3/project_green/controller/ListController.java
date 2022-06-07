@@ -13,6 +13,7 @@ import com.group3.project_green.memberInfo.MemberInfoDTO;
 import com.group3.project_green.memberInfo.service.MemberInfoService;
 import com.group3.project_green.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -30,6 +31,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+@Log4j2
 @Controller
 @RequestMapping("/home/*")
 @RequiredArgsConstructor
@@ -68,7 +70,7 @@ public class ListController {
 
         return"home/search";
     }
-    @GetMapping("/searchAcomm")
+    @GetMapping("/searchAccom")
     public String goSearchAccom(Model model, @AuthenticationPrincipal SessionUser sessionUser ,
                            @RequestParam(required = false, defaultValue = "") String searchText ,
                            Pageable pageable) {
@@ -88,8 +90,11 @@ public class ListController {
     public String goSearchFood(Model model, @AuthenticationPrincipal SessionUser sessionUser ,
                            @RequestParam(required = false, defaultValue = "") String searchText ,
                            Pageable pageable) {
+        log.info("=================in search=================");
         List<Post> list =postService.foodfindByTitleContainingOrContentContaining(searchText,searchText,pageable);
         model.addAttribute("searchText" , list);
+
+        log.info("==================== list : " + list.toString());
 
         return"home/search";
     }

@@ -67,14 +67,16 @@ public class PostServiceImpl implements PostService{
     @Override
     public List<Post> foodfindByTitleContainingOrContentContaining(String title, String content, Pageable pageable) {
         Page<Post> result= repository.findByTitleContainingOrContentContaining(title,content, pageable);
-        List<Post> res= result.stream().filter(i-> i.getAccom() !=null).collect(Collectors.toList());
+
+        List<Post> res= result.stream().filter(i-> i.getFood() !=null).collect(Collectors.toList());
+        log.info("=====================res : " + res);
         return res;
     }
 
     @Override
     public List<Post> sightfindByTitleContainingOrContentContaining(String title, String content, Pageable pageable) {
         Page<Post> result= repository.findByTitleContainingOrContentContaining(title,content, pageable);
-        List<Post> res= result.stream().filter(i-> i.getAccom() !=null).collect(Collectors.toList());
+        List<Post> res= result.stream().filter(i-> i.getSights() !=null).collect(Collectors.toList());
         return res;
     }
 

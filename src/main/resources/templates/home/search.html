@@ -115,8 +115,8 @@
         <ul class="filters_menu">
             <li id="hhome" class="active" data-filter="*">All</li>
             <li id="hfood" data-filter=".burger"><a th:href="@{/home/searchFood(searchText=${param.searchText})}">Food</a></li>
-            <li id="hsight" data-filter=".pizza"><a th:href="@{/home/searchFood(searchText=${param.searchText})}">Sight</a></li>
-            <li id="haccom" data-filter=".pasta"><a th:href="@{/home/searchFood(searchText=${param.searchText})}">Accomodation</a></li>
+            <li id="hsight" data-filter=".pizza"><a th:href="@{/home/searchSight(searchText=${param.searchText})}">Sight</a></li>
+            <li id="haccom" data-filter=".pasta"><a th:href="@{/home/searchAccom(searchText=${param.searchText})}">Accomodation</a></li>
         </ul>
 
         <div class="filters-content">
