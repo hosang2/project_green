@@ -23,7 +23,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.formLogin().loginPage("/home/login");  // 로그인 페이지는 /home/login 입니다.
         // home/ 와 newCSS/ 는 일단 로그인 권한 없이 접근 가능합니다.
         http.authorizeRequests().antMatchers("/home/**", "/newCSS/**").permitAll();
-        http.oauth2Login();
+        http.oauth2Login().successHandler(loginSuccessHandler());
     }
 
     // PasswordEncoder로 BCryptPasswordEncoder를 사용
