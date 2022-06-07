@@ -67,23 +67,23 @@ public class MemberInfoServiceImpl implements MemberInfoService{
             MemberInfo memberInfo = origin.get();
 
             // null값이라면 수정하지 않습니다.
-            memberInfo.setName(memberDetailDTO.getName()!=null || !memberDetailDTO.getName().equals("") ?
+            memberInfo.setName(memberDetailDTO.getName()!=null && !memberDetailDTO.getName().equals("") ?
                     memberDetailDTO.getName() : memberInfo.getName());
-            memberInfo.setPhone(memberDetailDTO.getPhone()!=null || !memberDetailDTO.getPhone().equals("") ?
+            memberInfo.setPhone(memberDetailDTO.getPhone()!=null && !memberDetailDTO.getPhone().equals("") ?
                     memberDetailDTO.getPhone() : memberInfo.getPhone());
             memberInfo.setBirthDate(memberDetailDTO.getBirthDate()!=null ?
                     memberDetailDTO.getBirthDate() : memberInfo.getBirthDate());
-            memberInfo.setAddress(memberDetailDTO.getAddress()!=null || !memberDetailDTO.getAddress().equals("") ?
+            memberInfo.setAddress(memberDetailDTO.getAddress()!=null && !memberDetailDTO.getAddress().equals("") ?
                     memberDetailDTO.getAddress() : memberInfo.getAddress());
-            memberInfo.setDetailAddress(memberDetailDTO.getDetailAddress()!=null || !memberDetailDTO.getDetailAddress().equals("") ?
+            memberInfo.setDetailAddress(memberDetailDTO.getDetailAddress()!=null && !memberDetailDTO.getDetailAddress().equals("") ?
                     memberDetailDTO.getDetailAddress() : memberInfo.getDetailAddress());
-            memberInfo.setLocation(memberDetailDTO.getLocation()!=null || !memberDetailDTO.getLocation().equals("") ?
+            memberInfo.setLocation(memberDetailDTO.getLocation()!=null && !memberDetailDTO.getLocation().equals("") ?
                     memberDetailDTO.getLocation() : memberInfo.getLocation());
-            memberInfo.setFavoriteFood(memberDetailDTO.getFavoriteFood()!=null || !memberDetailDTO.getFavoriteFood().equals("") ?
+            memberInfo.setFavoriteFood(memberDetailDTO.getFavoriteFood()!=null && !memberDetailDTO.getFavoriteFood().equals("") ?
                     memberDetailDTO.getFavoriteFood() : memberInfo.getFavoriteFood());
-            memberInfo.setFavoriteAccom(memberDetailDTO.getFavoriteAccom()!=null || !memberDetailDTO.getFavoriteAccom().equals("") ?
+            memberInfo.setFavoriteAccom(memberDetailDTO.getFavoriteAccom()!=null && !memberDetailDTO.getFavoriteAccom().equals("") ?
                     memberDetailDTO.getFavoriteAccom() : memberInfo.getFavoriteAccom());
-            memberInfo.setFavoriteLocation(memberDetailDTO.getFavoriteLocation()!=null || !memberDetailDTO.getFavoriteLocation().equals("") ?
+            memberInfo.setFavoriteLocation(memberDetailDTO.getFavoriteLocation()!=null && !memberDetailDTO.getFavoriteLocation().equals("") ?
                     memberDetailDTO.getFavoriteLocation() : memberInfo.getFavoriteLocation());
 
             infoMemberDetailRepository.save(memberInfo);
