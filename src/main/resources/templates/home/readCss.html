@@ -53,7 +53,7 @@
     <header class="header_section">
         <div class="container">
             <nav class="navbar navbar-expand-lg custom_nav-container ">
-                <a class="navbar-brand" href="home.html">
+                <a class="navbar-brand" href="/home/list">
             <span>
               Feane
             </span>
@@ -161,18 +161,17 @@
         <div id="contentBtns">
             <a class="contentBtn share">
                 <img id ="share_img" src="/images/share_img.png">
-                <!-- <button>share</button> -->
             </a><!-- .contentBtn -->
 
             <a class="contentBtn">
                 <img id="like_img" src="/images/heart_empty.png">
-                [[${result.likeNum}]]
-                <!-- <button>like</button> -->
+                <span id="like_cnt">[[${heartCnt}]]</span>
             </a><!-- .contentBtn -->
 
         </div><!-- #contentBtns -->
         <div id="contentComment">
             <div id="commentsList">
+
 
             </div><!-- #commentsList -->
             <input type="text" name="commentEnter" placeholder="댓글 입력 후 Enter를 눌러주세요">
@@ -264,27 +263,6 @@
 </footer>
 <!-- footer section -->
 
-<!-- modal  -->
-<!--<div class="modal" id="ex">-->
-<!--    <button type="button" class="close">-->
-<!--        <span>&times;</span>-->
-<!--    </button>-->
-<!--    <div class="modal-body" >-->
-<!--        <a id="btnTwitter" class="link-icon twitter" href=""><img src="/images/icon-twitter.png"></a>-->
-
-<!--        <a id="btnFacebook" class="link-icon facebook" href="#"><img src="/images/icon-facebook.png"></a>-->
-
-<!--        <a id="btnKakao" class="link-icon kakao" href="#"><img src="/images/icon-kakao.png"></a>-->
-
-<!--        <a id="btnNaver" class="link-icon naver" href="#"><img src="/images/icon-naver.png"></a>-->
-
-<!--    </div>-->
-<!--    &lt;!&ndash;                        <div class="modal-footer">&ndash;&gt;-->
-<!--    &lt;!&ndash;                            <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>&ndash;&gt;-->
-<!--    &lt;!&ndash;                        </div>&ndash;&gt;-->
-<!--</div>-->
-<!-- modal  -->
-
 
 <!-- jQery -->
 <script src="/reservation/js/jquery-3.4.1.min.js"></script>
@@ -311,6 +289,8 @@
     $(document).ready(function () {
         var pno = [[${result.pno}]];
         var list = $("#commentsList");
+        var likeCnt = $("#like_cnt");
+        if([[${heartCnt}]]==null) likeCnt.html(0);
 
         function formatTime(str){
             var date = new Date(str);
@@ -437,6 +417,39 @@
                 }
             });
         }
+
+        $(document).on("click","#like_img",function () {
+            var userId = [[${user.id}]];
+            var heartImg = $("#like_img");
+            var heart={
+                pno,
+                id: userId
+            }
+            // if(userId == null){
+                console.log("아이디가 없다")
+                $.ajax({
+                    url: "/heart",
+                    method: 'post',
+                    data: JSON.stringify(heart),
+                    contentType: 'application/json; charset-utf-8',
+                    dataType: 'json',
+                    success: function (data) {
+                        alert("좋아요 추가");
+                        heartImg.attr("src", "/images/heart_full.png");
+                    }
+                })
+            // } else{
+            //     console.log("아이디가 있다")
+            //     $.ajax({
+            //         url: "/heart/" + [[${user.id}]] + "/remove",
+            //         type: "DELETE",
+            //         success:function (data) {
+            //             console.log("삭제 성공")
+            //             heartImg.attr("src", "/images/heart_empty.png")
+            //         }
+            //     })
+            // }
+        })
     })
 </script>
 </body>
