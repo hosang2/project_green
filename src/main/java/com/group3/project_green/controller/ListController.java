@@ -1,12 +1,15 @@
 package com.group3.project_green.controller;
 
 import com.group3.project_green.DTO.CommentDTO;
+import com.group3.project_green.DTO.PostCommentDTO;
 import com.group3.project_green.DTO.PostDTO;
 import com.group3.project_green.Service.MemberService;
 import com.group3.project_green.Service.PostService;
 import com.group3.project_green.Session.LoginUser;
 import com.group3.project_green.Session.SessionUser;
 import com.group3.project_green.entity.*;
+import com.group3.project_green.heart.Heart;
+import com.group3.project_green.heart.HeartService;
 import com.group3.project_green.memberInfo.MemberDetailDTO;
 import com.group3.project_green.memberInfo.MemberInfoDTO;
 import com.group3.project_green.memberInfo.service.MemberInfoService;
@@ -40,6 +43,8 @@ public class ListController {
     private final PostRepository postRepository;
     private final MemberService memberService; //민혁
     private final MemberInfoService memberInfoService;
+
+    private final HeartService heartService;
 
     @GetMapping("/list")
     public String goList(Model model, @AuthenticationPrincipal SessionUser sessionUser ,
@@ -129,6 +134,16 @@ public class ListController {
     public void readCss(Long pno, Model model, @AuthenticationPrincipal SessionUser user) {
         model.addAttribute("result", postService.getPostWithCommentCnt(pno));
         model.addAttribute("user",user);
+        Long memberId = user.getId();
+        log.info("===========================" + heartService.getHeart(memberId,pno) + "============================");
+        Heart heart = heartService.getHeart(memberId,pno);
+        Long cnt = heartService.countHeart(pno);
+        log.info("===========================" + cnt + "============================");
+        if(heart != null){
+            log.info("===================================GetHeart가 들어온다=====================================");
+            model.addAttribute("heart", heartService.getHeart(memberId,pno));
+            model.addAttribute("heartCnt", cnt);
+        }
     }
 
     @GetMapping("/login")
