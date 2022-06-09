@@ -57,7 +57,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     Object getPostByPno(@Param("pno") Long pno);
 
 
-    Page<Post> findByTitleContainingOrContentContaining(String title, String content, Pageable pageable);
+    List<Post> findByTitleContainingOrContentContaining(String title, String content, Pageable pageable);
 
 
 

@@ -239,7 +239,7 @@
                        str+="<div class='"+"box"+"'>";
                        str+="<div>";
                        str+="<div class='" + "img-box"+ "'>";
-                       str+= "<a href='" + '/home/readCss?pno=' + post.pno + "'>" +"<img src='" + "/images/방어.jpg" + "' + />'";
+                       str+= "<a href='" + "/home/readCss?pno=" + post.pno + "'>" +"<img src='" + "/images/방어.jpg" + "'/>";
                        str+= "</a>";
                        str+="</div>";
                        str+="<div class='" + "detail-box" +"'>";
@@ -279,9 +279,22 @@
                        str+="</div>";
                        str+="</div>";
                    });
-                   console.log(str);
                    postlist.html(str);
+                   $img=$("img"); //img 태그만  배열로 저장함
+                   $.each(arr,function(idx , post) {
+                       if (post.imageDTOList.length == 0){ //이미지가 없을 경우
+                           //console.log('if this:', this,'arr[idx]:',arr[idx]);
+                       } else{ //이미지가 있을경우
+                           let imageFile =  arr[idx].imageDTOList[0].thumbnailURL
+                           console.log('else this:', imageFile);
+                           imageFile = imageFile.replaceAll("%5C","/").replaceAll("%2F","/");
+                           imageFile = "/display?fileName=" +imageFile
+                           console.log(imageFile);
+                           console.log( $(arr[idx]))
+                           $($img[idx]).attr("src",imageFile ) //이미지가 있을때   uploadcontroller의 display로 감
+                       }
 
+                   });
                });
            };
 
@@ -335,7 +348,23 @@
                        str+="</div>";
                        str+="</div>";
                    });
-                   postlist.html(str);
+                    postlist.html(str);
+                   $img=$("img"); //img 태그만  배열로 저장함
+                   $.each(arr,function(idx , post) {
+                       if (post.imageDTOList.length == 0){ //이미지가 없을 경우
+                           //console.log('if this:', this,'arr[idx]:',arr[idx]);
+                       } else{ //이미지가 있을경우
+                           let imageFile =  arr[idx].imageDTOList[0].thumbnailURL
+                           console.log('else this:', imageFile);
+                           imageFile = imageFile.replaceAll("%5C","/").replaceAll("%2F","/");
+                           imageFile = "/display?fileName=" +imageFile
+                           console.log(imageFile);
+                           console.log( $(arr[idx]))
+                           $($img[idx]).attr("src",imageFile ) //이미지가 있을때   uploadcontroller의 display로 감
+                       }
+
+                   });
+
 
                });
            }
@@ -391,7 +420,22 @@
                        str+="</div>";
                        str+="</div>";
                    });
-                   postlist.html(str);
+                    postlist.html(str);
+                   $img=$("img"); //img 태그만  배열로 저장함
+                   $.each(arr,function(idx , post) {
+                       if (post.imageDTOList.length == 0){ //이미지가 없을 경우
+                           //console.log('if this:', this,'arr[idx]:',arr[idx]);
+                       } else{ //이미지가 있을경우
+                           let imageFile =  arr[idx].imageDTOList[0].thumbnailURL
+                           console.log('else this:', imageFile);
+                           imageFile = imageFile.replaceAll("%5C","/").replaceAll("%2F","/");
+                           imageFile = "/display?fileName=" +imageFile
+                           console.log(imageFile);
+                           console.log( $(arr[idx]))
+                           $($img[idx]).attr("src",imageFile ) //이미지가 있을때   uploadcontroller의 display로 감
+                       }
+
+                   });
 
                });
            }
@@ -448,7 +492,22 @@
                        str+="</div>";
                        str+="</div>";
                    });
-                   postlist.html(str);
+                    postlist.html(str);
+                   $img=$("img"); //img 태그만  배열로 저장함
+                   $.each(arr,function(idx , post) {
+                       if (post.imageDTOList.length == 0){ //이미지가 없을 경우
+                           //console.log('if this:', this,'arr[idx]:',arr[idx]);
+                       } else{ //이미지가 있을경우
+                           let imageFile =  arr[idx].imageDTOList[0].thumbnailURL
+                           console.log('else this:', imageFile);
+                           imageFile = imageFile.replaceAll("%5C","/").replaceAll("%2F","/");
+                           imageFile = "/display?fileName=" +imageFile
+                           console.log(imageFile);
+                           console.log( $(arr[idx]))
+                           $($img[idx]).attr("src",imageFile ) //이미지가 있을때   uploadcontroller의 display로 감
+                       }
+
+                   });
 
                });
            }
@@ -474,7 +533,14 @@
        });
 
 </script>
-
+<div class="footer-info">
+    <p>
+        &copy; <span id="displayYear"></span> All Rights Reserved By
+        <a href="https://html.design/">Free Html Templates</a><br><br>
+        &copy; <span id="displayYear1"></span> Distributed By
+        <a href="https://themewagon.com/" target="_blank">ThemeWagon</a>
+    </p>
+</div>
 </body>
 
 </html>
