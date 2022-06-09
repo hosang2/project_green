@@ -32,7 +32,7 @@ public class PostServiceImpl implements PostService{
 
     @Override
     public Food saveFood(Food food) {
-        System.out.println("음식추가 : " +food);
+        ///System.out.println("음식추가 : " +food);
         return foodRepository.save(food);
     }
 
@@ -71,36 +71,27 @@ public class PostServiceImpl implements PostService{
     }
 
     @Override
-    public Page<Post> findByTitleContainingOrContentContaining(String title ,String content, Pageable pageable) {
-        Page<Post> result= repository.findByTitleContainingOrContentContaining(title,content, pageable);
-        System.out.println("service1) =======================impl================");
-        //Page<Post> temp = result;
-        System.out.println("resut:  "+result);
-        System.out.println("=======================impl================");
+    public List<Post> findByTitleContainingOrContentContaining(String title ,String content, Pageable pageable) {
+        List<Post> result= repository.findByTitleContainingOrContentContaining(title,content, pageable);
         return result;
     }
 
     @Override
     public List<Post> accomfindByTitleContainingOrContentContaining(String title, String content, Pageable pageable) {
-        Page<Post> result= repository.findByTitleContainingOrContentContaining(title,content, pageable);
-        List<Post> res= result.stream().filter(i-> i.getAccom() !=null).collect(Collectors.toList());
-        return res;
+        List<Post> result= repository.findByTitleContainingOrContentContaining(title,content, pageable).stream().filter(i-> i.getAccom() !=null).collect(Collectors.toList());
+        return result;
     }
 
     @Override
     public List<Post> foodfindByTitleContainingOrContentContaining(String title, String content, Pageable pageable) {
-        Page<Post> result= repository.findByTitleContainingOrContentContaining(title,content, pageable);
-
-        List<Post> res= result.stream().filter(i-> i.getFood() !=null).collect(Collectors.toList());
-        log.info("=====================res : " + res);
-        return res;
+        List<Post> result= repository.findByTitleContainingOrContentContaining(title,content, pageable).stream().filter(i-> i.getFood() !=null).collect(Collectors.toList());
+        return result;
     }
 
     @Override
     public List<Post> sightfindByTitleContainingOrContentContaining(String title, String content, Pageable pageable) {
-        Page<Post> result= repository.findByTitleContainingOrContentContaining(title,content, pageable);
-        List<Post> res= result.stream().filter(i-> i.getSights() !=null).collect(Collectors.toList());
-        return res;
+        List<Post> result= repository.findByTitleContainingOrContentContaining(title,content, pageable).stream().filter(i-> i.getSights() !=null).collect(Collectors.toList());
+        return result;
     }
 
     @Override
@@ -119,11 +110,11 @@ public class PostServiceImpl implements PostService{
     @Override
     public List<PostDTO> getPostList(Long pno) {
         PostDTO memberId = entityToDTO(repository.getById(pno));
-        System.out.println("멤버 아이디 : " +memberId.getMember().getId());
+       // System.out.println("멤버 아이디 : " +memberId.getMember().getId());
         List<Post> result = repository.getPostsByMemberId(memberId.getMember().getId());
         List<PostDTO> postDTOList = new ArrayList<>();
         for(Post post : result){
-            System.out.println("포스트 :" +post);
+           // System.out.println("포스트 :" +post);
             postDTOList.add(entityToDTO(post));
         }
         return postDTOList;
@@ -169,6 +160,11 @@ public class PostServiceImpl implements PostService{
             imageRepository.save(i);
         });
         return postDTO.getPno();
+    }
+    @Override
+    public List<FileImage> getImageList(Long pno) {
+        //System.out.println("이미지 가져오기 : " + pno );
+        return imageRepository.findbyPno(pno);
     }
 
 }

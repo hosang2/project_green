@@ -127,7 +127,7 @@
                             <div>
                                 <div class="img-box">
                                     <<a th:href="@{/home/readCss(pno=${searchText.pno})}" >
-                                    <img src="/images/꼬막비빔.jpg" alt="">
+                                    <img id="postimg" th:attr="src=@{'/display?fileName='+${searchText.imageDTOList[0].path}+'/s_'+${searchText.imageDTOList[0].uuid}+'_'+${searchText.imageDTOList[0].imgName}}">
                                     </a>
                                 </div>
                                 <div class="detail-box">
@@ -283,8 +283,16 @@
 </script>
 <!-- End Google Map -->
 
-
-
 </body>
+<script>
+ $(document).ready(function(){
+     var $this= $('#postimg')
+     var img =$('#postimg').attr("src")
+
+     img = img.replaceAll("\\","/");
+
+     $('#postimg').attr("src",img )
+     });
+</script>
 
 </html>

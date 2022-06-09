@@ -1,7 +1,7 @@
 package com.group3.project_green.controller;
 
 import com.group3.project_green.DTO.CommentDTO;
-import com.group3.project_green.DTO.PostCommentDTO;
+import com.group3.project_green.DTO.FileImageDTO;
 import com.group3.project_green.DTO.PostDTO;
 import com.group3.project_green.Service.MemberService;
 import com.group3.project_green.Service.PostService;
@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -51,11 +52,7 @@ public class ListController {
                          @RequestParam(required = false, defaultValue = "") String searchText ,
                           Pageable pageable) {
         System.out.println("11)  컨트롤러 jpa 전 ");
-        Page<Post> list =postService.findByTitleContainingOrContentContaining(searchText,searchText,pageable);
-        Stream<Post> temp = list.get();
-        List<Post> temp2 = temp.collect(Collectors.toList());
-        temp2.forEach(i-> System.out.println(i));
-        System.out.println("2) controller -------------------------------start select--------------------------------------------");
+        List<Post> list =postService.findByTitleContainingOrContentContaining(searchText,searchText,pageable);
         model.addAttribute("post",postService.getList());
         model.addAttribute("searchText" , list);
 
@@ -66,12 +63,24 @@ public class ListController {
                            @RequestParam(required = false, defaultValue = "") String searchText ,
                            Pageable pageable) {
 
-        Page<Post> list =postService.findByTitleContainingOrContentContaining(searchText,searchText,pageable);
-        Stream<Post> temp = list.get();
-        List<Post> temp2 = temp.collect(Collectors.toList());
-        temp2.forEach(i-> System.out.println(i));
-        model.addAttribute("searchText" , list);
+        List<Post> list =postService.findByTitleContainingOrContentContaining(searchText,searchText,pageable);
 
+        for(Post i : list){
+            List<FileImage>images =postService.getImageList(i.getPno());
+            FileImage fileImage = images.get(0);
+            FileImageDTO imageDTO = new FileImageDTO();
+            imageDTO.setImgName(fileImage.getImgName());
+            imageDTO.setPath(fileImage.getPath());
+            imageDTO.setUuid(fileImage.getUuid());
+            List<FileImageDTO> fileImageDTOS =new ArrayList<>();
+            fileImageDTOS.add(imageDTO);
+            i.getImageDTOList().add(fileImageDTOS.get(0));
+
+
+            System.out.println("<search : "+ list);
+        }
+
+        model.addAttribute("searchText" , list);
         return"home/search";
     }
     @GetMapping("/searchAccom")
@@ -79,6 +88,18 @@ public class ListController {
                            @RequestParam(required = false, defaultValue = "") String searchText ,
                            Pageable pageable) {
         List<Post> list =postService.accomfindByTitleContainingOrContentContaining(searchText,searchText,pageable);
+        for(Post i : list){
+            List<FileImage>images =postService.getImageList(i.getPno());
+            FileImage fileImage = images.get(0);
+            FileImageDTO imageDTO = new FileImageDTO();
+            imageDTO.setImgName(fileImage.getImgName());
+            imageDTO.setPath(fileImage.getPath());
+            imageDTO.setUuid(fileImage.getUuid());
+            List<FileImageDTO> fileImageDTOS =new ArrayList<>();
+            fileImageDTOS.add(imageDTO);
+            i.getImageDTOList().add(fileImageDTOS.get(0));
+
+        }
         model.addAttribute("searchText" , list);
         return"home/search";
     }
@@ -87,8 +108,21 @@ public class ListController {
                            @RequestParam(required = false, defaultValue = "") String searchText ,
                            Pageable pageable) {
         List<Post> list =postService.sightfindByTitleContainingOrContentContaining(searchText,searchText,pageable);
+        for(Post i : list){
+            List<FileImage>images =postService.getImageList(i.getPno());
+            FileImage fileImage = images.get(0);
+            FileImageDTO imageDTO = new FileImageDTO();
+            imageDTO.setImgName(fileImage.getImgName());
+            imageDTO.setPath(fileImage.getPath());
+            imageDTO.setUuid(fileImage.getUuid());
+            List<FileImageDTO> fileImageDTOS =new ArrayList<>();
+            fileImageDTOS.add(imageDTO);
+            i.getImageDTOList().add(fileImageDTOS.get(0));
+
+        }
         model.addAttribute("searchText" , list);
         return"home/search";
+
     }
     @GetMapping("/searchFood")
     public String goSearchFood(Model model, @AuthenticationPrincipal SessionUser sessionUser ,
@@ -96,10 +130,19 @@ public class ListController {
                            Pageable pageable) {
         log.info("=================in search=================");
         List<Post> list =postService.foodfindByTitleContainingOrContentContaining(searchText,searchText,pageable);
+        for(Post i : list){
+            List<FileImage>images =postService.getImageList(i.getPno());
+            FileImage fileImage = images.get(0);
+            FileImageDTO imageDTO = new FileImageDTO();
+            imageDTO.setImgName(fileImage.getImgName());
+            imageDTO.setPath(fileImage.getPath());
+            imageDTO.setUuid(fileImage.getUuid());
+            List<FileImageDTO> fileImageDTOS =new ArrayList<>();
+            fileImageDTOS.add(imageDTO);
+            i.getImageDTOList().add(fileImageDTOS.get(0));
+
+        }
         model.addAttribute("searchText" , list);
-
-        log.info("==================== list : " + list.toString());
-
         return"home/search";
     }
 

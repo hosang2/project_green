@@ -23,7 +23,8 @@ public interface PostService {
 
     List<PostDTO>getAccomList();
     List<PostDTO>getSightsList();
-    Page<Post> findByTitleContainingOrContentContaining(String title ,String content, Pageable pageable);
+    List<FileImage> getImageList(Long pno); //추가
+    List<Post> findByTitleContainingOrContentContaining(String title ,String content, Pageable pageable);
     List<Post> accomfindByTitleContainingOrContentContaining(String title ,String content, Pageable pageable);
     List<Post> foodfindByTitleContainingOrContentContaining(String title ,String content, Pageable pageable);
     List<Post> sightfindByTitleContainingOrContentContaining(String title ,String content, Pageable pageable);

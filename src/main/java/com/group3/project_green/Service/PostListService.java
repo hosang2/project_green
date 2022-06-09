@@ -1,8 +1,11 @@
 package com.group3.project_green.Service;
 
+import com.group3.project_green.DTO.FileImageDTO;
 import com.group3.project_green.DTO.PostDTO;
+import com.group3.project_green.entity.FileImage;
 import com.group3.project_green.entity.Post;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface PostListService {
@@ -21,6 +24,7 @@ public interface PostListService {
                 .member(dto.getMember())
                 .sights(dto.getSights())
                 .title(dto.getTitle())
+                .imageDTOList(dto.getImageDTOList())
                 .build();
         return post;
     }
@@ -40,5 +44,23 @@ public interface PostListService {
                 .build();
         return postDTO;
 
+    }
+
+    default FileImage dtoToEntityImage(FileImageDTO dto){
+        FileImage fileImage = FileImage.builder()
+                .imgName(dto.getImgName())
+                .path(dto.getPath())
+                .uuid(dto.getUuid())
+                .build();
+        return fileImage;
+    }
+
+    default FileImageDTO entityToDTOImage(FileImage fileImage) {
+        FileImageDTO fileImageDTO = FileImageDTO.builder()
+                .imgName(fileImage.getImgName())
+                .path(fileImage.getPath())
+                .uuid(fileImage.getUuid())
+                .build();
+        return fileImageDTO;
     }
 }

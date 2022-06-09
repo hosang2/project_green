@@ -1,9 +1,11 @@
 package com.group3.project_green.entity;
 
 import com.group3.project_green.BaseEntity;
+import com.group3.project_green.DTO.FileImageDTO;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -12,6 +14,7 @@ import java.util.List;
 @Builder
 @Getter
 @ToString
+
 public class Post extends BaseEntity {
 
     @Id
@@ -43,5 +46,9 @@ public class Post extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Sights sights;
+
+    @Transient
+    private List<FileImageDTO> imageDTOList = new ArrayList<>();
+
 
 }
