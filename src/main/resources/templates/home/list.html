@@ -42,7 +42,7 @@
 
 <div class="hero_area">
     <div class="bg-box">
-        <img src="/reservation/images/hero-bg.jpg" alt="">
+        <img src="/reservation/images/hero-bg.jpg"  alt="">
     </div>
     <!-- header section strats -->
     <header class="header_section">
@@ -246,8 +246,9 @@
                        str+="<p>" + post.likeNum + "</p>";
                        str+="<h5>" + post.title + "</h5>";
                        str+="<p>" + post.content + "</p>";
-                       str+="<div class='" + "options" + "'>";
                        str+="<h6>" +"<a href='" + "/home/memberPostList?pno=" + post.pno + "'>" + post.member.email + "</a>" +"</h6>"
+                       str+="<div class='" + "options" + "'>";
+
                        str+="<a href='"+"'>"
                        str+="<svg version='"+"1.1"+"'id="+"'Capa_1'"+ "xmlns='"+"http://www.w3.org/2000/svg'" + "xmlns:xlink='"+ "http://www.w3.org/1999/xlink'"+"x='"+"0px'"+"y='"+"0px'" +
                         "viewBox='"+"0 0 456.029 456.029'" + "style='"+"enable-background:new 0 0 456.029 456.029;'"+"xml:space='"+"preserve"+"'>";
@@ -285,13 +286,13 @@
                        if (post.imageDTOList.length == 0){ //이미지가 없을 경우
                            //console.log('if this:', this,'arr[idx]:',arr[idx]);
                        } else{ //이미지가 있을경우
-                           let imageFile =  arr[idx].imageDTOList[0].thumbnailURL
+                           let imageFile =  arr[idx+1].imageDTOList[0].thumbnailURL
                            console.log('else this:', imageFile);
                            imageFile = imageFile.replaceAll("%5C","/").replaceAll("%2F","/");
                            imageFile = "/display?fileName=" +imageFile
                            console.log(imageFile);
-                           console.log( $(arr[idx]))
-                           $($img[idx]).attr("src",imageFile ) //이미지가 있을때   uploadcontroller의 display로 감
+                           console.log( $(arr[idx+1]))
+                           $($img[idx+1]).attr("src",imageFile ) //이미지가 있을때   uploadcontroller의 display로 감
                        }
 
                    });
@@ -315,8 +316,9 @@
                        str+="<p>" + post.likeNum + "</p>";
                        str+="<h5>" + post.title + "</h5>";
                        str+="<p>" + post.content + "</p>";
-                       str+="<div class='" + "options" + "'>";
                        str+="<h6>" +"<a href='" + "/home/memberPostList?pno=" + post.pno + "'>" + post.member.email + "</a>" +"</h6>"
+                       str+="<div class='" + "options" + "'>";
+
                        str+="<a href='"+"'>"
                        str+="<svg version='"+"1.1"+"'id="+"'Capa_1'"+ "xmlns='"+"http://www.w3.org/2000/svg'" + "xmlns:xlink='"+ "http://www.w3.org/1999/xlink'"+"x='"+"0px'"+"y='"+"0px'" +
                         "viewBox='"+"0 0 456.029 456.029'" + "style='"+"enable-background:new 0 0 456.029 456.029;'"+"xml:space='"+"preserve"+"'>";
@@ -354,13 +356,13 @@
                        if (post.imageDTOList.length == 0){ //이미지가 없을 경우
                            //console.log('if this:', this,'arr[idx]:',arr[idx]);
                        } else{ //이미지가 있을경우
-                           let imageFile =  arr[idx].imageDTOList[0].thumbnailURL
+                           let imageFile =  arr[idx+1].imageDTOList[0].thumbnailURL
                            console.log('else this:', imageFile);
                            imageFile = imageFile.replaceAll("%5C","/").replaceAll("%2F","/");
                            imageFile = "/display?fileName=" +imageFile
                            console.log(imageFile);
                            console.log( $(arr[idx]))
-                           $($img[idx]).attr("src",imageFile ) //이미지가 있을때   uploadcontroller의 display로 감
+                           $($img[idx+1]).attr("src",imageFile ) //이미지가 있을때   uploadcontroller의 display로 감
                        }
 
                    });
@@ -387,8 +389,9 @@
                        str+="<p>" + post.likeNum + "</p>";
                        str+="<h5>" + post.title + "</h5>";
                        str+="<p>" + post.content + "</p>";
-                       str+="<div class='" + "options" + "'>";
                        str+="<h6>" +"<a href='" + "/home/memberPostList?pno=" + post.pno + "'>" + post.member.email + "</a>" +"</h6>"
+                       str+="<div class='" + "options" + "'>";
+
                        str+="<a href='"+"'>"
                        str+="<svg version='"+"1.1"+"'id="+"'Capa_1'"+ "xmlns='"+"http://www.w3.org/2000/svg'" + "xmlns:xlink='"+ "http://www.w3.org/1999/xlink'"+"x='"+"0px'"+"y='"+"0px'" +
                         "viewBox='"+"0 0 456.029 456.029'" + "style='"+"enable-background:new 0 0 456.029 456.029;'"+"xml:space='"+"preserve"+"'>";
@@ -426,13 +429,13 @@
                        if (post.imageDTOList.length == 0){ //이미지가 없을 경우
                            //console.log('if this:', this,'arr[idx]:',arr[idx]);
                        } else{ //이미지가 있을경우
-                           let imageFile =  arr[idx].imageDTOList[0].thumbnailURL
+                           let imageFile =  arr[idx+1].imageDTOList[0].thumbnailURL
                            console.log('else this:', imageFile);
                            imageFile = imageFile.replaceAll("%5C","/").replaceAll("%2F","/");
                            imageFile = "/display?fileName=" +imageFile
                            console.log(imageFile);
                            console.log( $(arr[idx]))
-                           $($img[idx]).attr("src",imageFile ) //이미지가 있을때   uploadcontroller의 display로 감
+                           $($img[idx+1]).attr("src",imageFile ) //이미지가 있을때   uploadcontroller의 display로 감
                        }
 
                    });
@@ -459,8 +462,9 @@
                        str+="<p>" + post.likeNum + "</p>";
                        str+="<h5>" + post.title + "</h5>";
                        str+="<p>" + post.content + "</p>";
-                       str+="<div class='" + "options" + "'>";
                        str+="<h6>" +"<a href='" + "/home/memberPostList?pno=" + post.pno + "'>" + post.member.email + "</a>" +"</h6>"
+                       str+="<div class='" + "options" + "'>";
+
                        str+="<a href='"+"'>"
                        str+="<svg version='"+"1.1"+"'id="+"'Capa_1'"+ "xmlns='"+"http://www.w3.org/2000/svg'" + "xmlns:xlink='"+ "http://www.w3.org/1999/xlink'"+"x='"+"0px'"+"y='"+"0px'" +
                         "viewBox='"+"0 0 456.029 456.029'" + "style='"+"enable-background:new 0 0 456.029 456.029;'"+"xml:space='"+"preserve"+"'>";
@@ -498,13 +502,13 @@
                        if (post.imageDTOList.length == 0){ //이미지가 없을 경우
                            //console.log('if this:', this,'arr[idx]:',arr[idx]);
                        } else{ //이미지가 있을경우
-                           let imageFile =  arr[idx].imageDTOList[0].thumbnailURL
+                           let imageFile =  arr[idx+1].imageDTOList[0].thumbnailURL
                            console.log('else this:', imageFile);
                            imageFile = imageFile.replaceAll("%5C","/").replaceAll("%2F","/");
                            imageFile = "/display?fileName=" +imageFile
                            console.log(imageFile);
                            console.log( $(arr[idx]))
-                           $($img[idx]).attr("src",imageFile ) //이미지가 있을때   uploadcontroller의 display로 감
+                           $($img[idx+1]).attr("src",imageFile ) //이미지가 있을때   uploadcontroller의 display로 감
                        }
 
                    });

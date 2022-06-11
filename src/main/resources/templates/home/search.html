@@ -1,6 +1,8 @@
 
 <!DOCTYPE html>
+
 <html xmlns:th="http://www.thymeleaf.org">
+
 
 <head>
     <!-- Basic -->
@@ -122,7 +124,7 @@
         <div class="filters-content">
 
             <div th:each=" searchText:${searchText}" id="postlist" class="row grid">
-                    <div class="col-sm-6 col-lg-4 all food">
+                <div class="col-sm-6 col-lg-4 all food">
                         <div class="box">
                             <div>
                                 <div class="img-box">
@@ -137,11 +139,12 @@
                                     <p>
                                         [[${searchText.content}]]
                                     </p>
+                                    <h6><a th:href="@{/home/memberPostList(pno=${searchText.pno})}" >
+                                        [[${searchText.member.email}]]
+                                    </a>
+                                    </h6>
                                     <div class="options">
-                                        <h6><a th:href="@{/home/memberPostList(pno=${searchText.pno})}" >
-                                            [[${searchText.member.email}]]
-                                        </a>
-                                        </h6>
+
                                         <a href="">
                                             <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                                                  xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -284,15 +287,20 @@
 <!-- End Google Map -->
 
 </body>
-<script>
- $(document).ready(function(){
-     var $this= $('#postimg')
-     var img =$('#postimg').attr("src")
+<script th:inline="javascript">
+    $(document).ready(function(){
 
+    var img =$('#postimg').attr("src")
+     console.log(img);
      img = img.replaceAll("\\","/");
 
-     $('#postimg').attr("src",img )
-     });
+     $('#postimg').attr("src",img );
+     console.log(img);
+
+
+
+ });
+
 </script>
 
 </html>
