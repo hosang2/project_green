@@ -36,6 +36,7 @@ public class HeartServiceImpl implements HeartService{
         System.out.println("pno: " + pno);
         Heart heart = repository.findByMember_IdAndAndPostPno(id,pno);
         System.out.println("service heart : "+ heart );
-        return heart;
+        if(heart != null) return heart;
+        else return null;
     }
 }

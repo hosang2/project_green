@@ -427,9 +427,13 @@
                 $('#like_cnt').html(count);
             })
         }
-        loadHeartCount();
         ///////////////////////////////
-
+        function getHeartInfo() {
+            $.getJSON('/heart/' + pno + "/info",function (info) {
+                console.log(info.hno);
+            })
+        }
+        getHeartInfo();
         $(document).on("click","#like_img",function () {
             var userId = [[${user.id}]];
             var heartImg = $("#like_img");
@@ -437,7 +441,7 @@
                 pno,
                 id: userId
             }
-            if(userId == null){
+            if([[${heart}]] == null){
                 console.log("아이디가 없다")
                 $.ajax({
                     url: "/heart",
@@ -448,19 +452,28 @@
                     success: function (data) {
                         alert("좋아요 추가");
                         heartImg.attr("src", "/images/heart_full.png");
-                    }
-                })
-            } else{
-                console.log("아이디가 있다")
-                $.ajax({
-                    url: "/heart/" + [[${user.id}]] + "/remove",
-                    type: "DELETE",
-                    success:function (data) {
-                        console.log("삭제 성공")
-                        heartImg.attr("src", "/images/heart_empty.png")
+                        loadHeartCount();
                     }
                 })
             }
+
+            $.getJSON('/heart/' + pno + "/info",function (info) {
+                console.log(info);
+                if(info != null){
+                    console.log("아이디가 있다")
+                    $.ajax({
+                        url: "/heart/"  + info.hno +"/" + pno + "/remove",
+                        type: "DELETE",
+                        success:function (data) {
+                            if(data === true){
+                                console.log("삭제 성공")
+                                heartImg.attr("src", "/images/heart_empty.png")
+                                loadHeartCount();
+                            }
+                        }
+                    })
+                }
+            })
         })
     })
 </script>

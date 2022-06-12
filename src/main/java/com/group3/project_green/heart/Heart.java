@@ -1,5 +1,6 @@
 package com.group3.project_green.heart;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.group3.project_green.BaseEntity;
 import com.group3.project_green.entity.Member;
 import com.group3.project_green.entity.Post;
@@ -18,6 +19,7 @@ public class Heart extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long hno;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     private Post post;
 

@@ -182,13 +182,10 @@ public class ListController {
         Long memberId = user.getId();
         log.info("===========================" + heartService.getHeart(memberId,pno) + "============================");
         Heart heart = heartService.getHeart(memberId,pno);
-        Long cnt = heartService.countHeart(pno);
-        log.info("===========================" + cnt + "============================");
         if(heart != null){
             log.info("===================================GetHeart가 들어온다=====================================");
             model.addAttribute("heart", heartService.getHeart(memberId,pno));
-            model.addAttribute("heartCnt", cnt);
-        }
+        } else model.addAttribute("heart", null);
     }
 
     @GetMapping("/login")
