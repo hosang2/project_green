@@ -334,4 +334,9 @@ public class ListController {
     public String signup() {
         return "/home/signup";
     }
+
+    @GetMapping("/main")
+    public String mainpage(){
+        return "/home/main";
+    }
 }
