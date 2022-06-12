@@ -2,10 +2,12 @@ package com.group3.project_green.controller;
 
 import com.group3.project_green.DTO.CommentDTO;
 import com.group3.project_green.Service.CommentService;
+import com.group3.project_green.Session.SessionUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,11 +34,19 @@ public class CommentController {
         return new ResponseEntity<>(commentList, HttpStatus.OK);
     }
 
-    @DeleteMapping("/{cno}/remove")
-    public ResponseEntity<String> remove(@PathVariable("cno") Long cno) {
+    @DeleteMapping("/{cno}/{pno}/remove")
+    public ResponseEntity<Boolean> remove(@PathVariable("cno") Long cno, @PathVariable("pno") Long pno, @AuthenticationPrincipal SessionUser user) {
         System.out.println(cno);
-        service.remove(cno);
-        return new ResponseEntity<>("success", HttpStatus.OK);
+        System.out.println(pno);
+        List<CommentDTO> commentList = service.getList(pno);
+        boolean result = false;
+        for (int i = 0; i < commentList.size(); i++) {
+            if(commentList.get(i).getId().equals(user.getId()) && commentList.get(i).getCno().equals(cno)) {
+                service.remove(cno);
+                result = true;
+            }
+        }
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
 }

@@ -8,6 +8,9 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 @Builder
 public class PostCommentDTO {
@@ -24,4 +27,7 @@ public class PostCommentDTO {
     private String memberEmail;
 
     private int commentCnt;
+
+    @Builder.Default
+    private List<FileImageDTO> imageDTOList = new ArrayList<>();
 }

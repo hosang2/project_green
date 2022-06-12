@@ -35,6 +35,8 @@ public interface CommentService {
                 .content(comment.getContent())
                 .likeNum(comment.getLikeNum())
                 .replyer(comment.getReplyer())
+                .pno(comment.getPost().getPno())
+                .id(comment.getMember().getId())
                 .regDate(comment.getRegDate())
                 .modDate(comment.getModDate())
                 .build();
