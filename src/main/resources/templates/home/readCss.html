@@ -291,6 +291,8 @@
         var list = $("#commentsList");
         var likeCnt = $("#like_cnt");
         if([[${heartCnt}]]==null) likeCnt.html(0);
+        var userId = [[${user.id}]];
+        var heartImg = $("#like_img");
 
         function formatTime(str){
             var date = new Date(str);
@@ -427,16 +429,19 @@
                 $('#like_cnt').html(count);
             })
         }
+
+        loadHeartCount();
         ///////////////////////////////
         function getHeartInfo() {
             $.getJSON('/heart/' + pno + "/info",function (info) {
-                console.log(info.hno);
+                var heartImg = $("#like_img");
+                console.log(info.member.id);
+                if(info.member.id == userId) heartImg.attr("src", "/images/heart_full.png");
+                else heartImg.attr("src", "/images/heart_empty.png")
             })
         }
         getHeartInfo();
         $(document).on("click","#like_img",function () {
-            var userId = [[${user.id}]];
-            var heartImg = $("#like_img");
             var heart={
                 pno,
                 id: userId
