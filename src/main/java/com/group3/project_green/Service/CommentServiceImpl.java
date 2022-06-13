@@ -30,10 +30,6 @@ public class CommentServiceImpl implements CommentService{
         return result.stream().map(comment->entityToDto(comment)).collect(Collectors.toList());
     }
 
-    @Override
-    public void modify(CommentDTO commentDTO) {
-
-    }
 
     @Override
     public void remove(Long cno) {
