@@ -18,11 +18,11 @@
 <img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white">  <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">  <img src="https://img.shields.io/badge/amazon aws-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white">  <img src="https://img.shields.io/badge/linux-FCC624?style=for-the-badge&logo=linux&logoColor=black">  <img src="https://img.shields.io/badge/Travis CI-3EAAAF?style=for-the-badge&logo=Travis CI&logoColor=black">  <img src="https://img.shields.io/badge/NGINX-009639?style=for-the-badge&logo=NGINX&logoColor=black">
 
 # 3. 👯‍♂️역할 분담
-- 최호상 : DBA 담당<br>
-- 방민혁 : CSS, 및 브라우저 이벤트 담당<br>
+- 최호상 : 게시글 목록 페이지,조건검색 페이지담당<br>
+- 방민혁 : 게시글 작성 페이지,파일첨부,메인페이지 담당<br>
 - 이정국 : 요구사항에 맞는 MVC 구현 담당<br>
-- 남현재 : 시큐리티 담당<br>
-- 김승철 : 배포,프로젝트관리(형상관리) 담당<br>
+- 남현재 : 타임라인 담당<br>
+- 김승철 : 유저정보,소셜로그인(시큐리티)<br>
 
 # 4. 개발해야 하는 기능
 ## 1. 공통 기능
