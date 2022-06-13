@@ -3,6 +3,7 @@ package com.group3.project_green.controller;
 import com.group3.project_green.DTO.CommentDTO;
 import com.group3.project_green.DTO.FileImageDTO;
 import com.group3.project_green.DTO.PostDTO;
+import com.group3.project_green.Service.CommentService;
 import com.group3.project_green.Service.MemberService;
 import com.group3.project_green.Service.PostService;
 import com.group3.project_green.Session.LoginUser;
@@ -46,6 +47,7 @@ public class ListController {
     private final MemberInfoService memberInfoService;
 
     private final HeartService heartService;
+    private final CommentService commentService;
 
     @GetMapping("/list")
     public String goList(Model model, @AuthenticationPrincipal SessionUser sessionUser ,
@@ -180,13 +182,10 @@ public class ListController {
         Long memberId = user.getId();
         log.info("===========================" + heartService.getHeart(memberId,pno) + "============================");
         Heart heart = heartService.getHeart(memberId,pno);
-        Long cnt = heartService.countHeart(pno);
-        log.info("===========================" + cnt + "============================");
         if(heart != null){
             log.info("===================================GetHeart가 들어온다=====================================");
             model.addAttribute("heart", heartService.getHeart(memberId,pno));
-            model.addAttribute("heartCnt", cnt);
-        }
+        } else model.addAttribute("heart", null);
     }
 
     @GetMapping("/login")

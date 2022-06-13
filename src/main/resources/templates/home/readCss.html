@@ -68,16 +68,16 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav  mx-auto ">
                         <li class="nav-item active">
-                            <a class="nav-link" href="home.html">글 목록<span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="/home/list">글 목록<span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="list.html">글 쓰기</a>
+                            <a class="nav-link" href="/home/insert">글 쓰기</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="about.html">내 정보</a>
+                            <a class="nav-link" href="/userinfo/userDetail">내 정보</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="book.html">로그아웃</a>
+                            <a class="nav-link" href="/home/login">로그아웃</a>
                         </li>
                     </ul>
                     <div class="user_option">
@@ -165,7 +165,7 @@
 
             <a class="contentBtn">
                 <img id="like_img" src="/images/heart_empty.png">
-                <span id="like_cnt">[[${heartCnt}]]</span>
+                <span id="like_cnt"></span>
             </a><!-- .contentBtn -->
 
         </div><!-- #contentBtns -->
@@ -291,6 +291,8 @@
         var list = $("#commentsList");
         var likeCnt = $("#like_cnt");
         if([[${heartCnt}]]==null) likeCnt.html(0);
+        var userId = [[${user.id}]];
+        var heartImg = $("#like_img");
 
         function formatTime(str){
             var date = new Date(str);
@@ -354,12 +356,15 @@
         $(document).on('click','.remove',function(){
             var cno = $("input[name='cno']").val();
             $.ajax({
-                url: '/comments/' + cno + '/remove',
+                url: '/comments/' + cno + "/" + pno + '/remove',
                 method: 'delete',
-                success:function (result) {
-                    console.log("리뷰 삭제 : ", result);
-                    if(result==='success') {
+                success: function (result) {
+                    console.log("댓글 삭제 : ", result)
+                    if (result === true) {
                         alert("댓글이 삭제되었습니다");
+                        loadJSONData();
+                    }else{
+                        alert("본인 댓글만 삭제 가능합니다");
                         loadJSONData();
                     }
                 }
@@ -417,15 +422,31 @@
                 }
             });
         }
+        //////////////////////////////////////////////heartCount////////////////////
+        function loadHeartCount() {
+            $.getJSON('/heart/' + pno + "/count",function (count) {
+                console.log(count);
+                $('#like_cnt').html(count);
+            })
+        }
 
+        loadHeartCount();
+        ///////////////////////////////
+        function getHeartInfo() {
+            $.getJSON('/heart/' + pno + "/info",function (info) {
+                var heartImg = $("#like_img");
+                console.log(info.member.id);
+                if(info.member.id == userId) heartImg.attr("src", "/images/heart_full.png");
+                else heartImg.attr("src", "/images/heart_empty.png")
+            })
+        }
+        getHeartInfo();
         $(document).on("click","#like_img",function () {
-            var userId = [[${user.id}]];
-            var heartImg = $("#like_img");
             var heart={
                 pno,
                 id: userId
             }
-            // if(userId == null){
+            if([[${heart}]] == null){
                 console.log("아이디가 없다")
                 $.ajax({
                     url: "/heart",
@@ -436,19 +457,28 @@
                     success: function (data) {
                         alert("좋아요 추가");
                         heartImg.attr("src", "/images/heart_full.png");
+                        loadHeartCount();
                     }
                 })
-            // } else{
-            //     console.log("아이디가 있다")
-            //     $.ajax({
-            //         url: "/heart/" + [[${user.id}]] + "/remove",
-            //         type: "DELETE",
-            //         success:function (data) {
-            //             console.log("삭제 성공")
-            //             heartImg.attr("src", "/images/heart_empty.png")
-            //         }
-            //     })
-            // }
+            }
+
+            $.getJSON('/heart/' + pno + "/info",function (info) {
+                console.log(info);
+                if(info != null){
+                    console.log("아이디가 있다")
+                    $.ajax({
+                        url: "/heart/"  + info.hno +"/" + pno + "/remove",
+                        type: "DELETE",
+                        success:function (data) {
+                            if(data === true){
+                                console.log("삭제 성공")
+                                heartImg.attr("src", "/images/heart_empty.png")
+                                loadHeartCount();
+                            }
+                        }
+                    })
+                }
+            })
         })
     })
 </script>

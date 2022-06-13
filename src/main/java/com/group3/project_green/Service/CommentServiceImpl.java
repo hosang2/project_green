@@ -32,8 +32,7 @@ public class CommentServiceImpl implements CommentService{
 
     @Override
     public void modify(CommentDTO commentDTO) {
-        Comment comment = dtoToEntity(commentDTO);
-        repository.save(comment);
+
     }
 
     @Override
