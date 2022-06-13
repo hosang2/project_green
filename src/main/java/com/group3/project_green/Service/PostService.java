@@ -32,6 +32,8 @@ public interface PostService {
 
     PostDTO get(Long pno);
 
+    void removePost(Long pno);
+
     List<PostDTO> getPostList(Long pno);
     Page<Post> getPostListPage(Long pno, String title, String content , Pageable pageable);
     Page<Post> getPostByFoodFid(Long pno, String title,String content ,Pageable pageable);

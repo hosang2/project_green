@@ -29,6 +29,7 @@ public class PostServiceImpl implements PostService{
     private final SightRepository sightRepository;
 
     private final AccomRepository accomRepository;
+    private final CommentRepository commentRepository;
 
     @Override
     public Food saveFood(Food food) {
@@ -105,6 +106,12 @@ public class PostServiceImpl implements PostService{
     public PostDTO get(Long pno) {
         PostDTO result = entityToDTO(repository.getById(pno));
         return result;
+    }
+
+    @Override
+    public void removePost(Long pno) {
+        commentRepository.deleteByPno(pno);
+        repository.deleteById(pno);
     }
 
     @Override
