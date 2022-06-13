@@ -1,6 +1,7 @@
 package com.group3.project_green.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -22,6 +23,7 @@ public class FileImage {
 
     private String path;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     private Post post;
 }

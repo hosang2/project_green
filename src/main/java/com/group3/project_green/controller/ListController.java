@@ -47,7 +47,6 @@ public class ListController {
     private final MemberInfoService memberInfoService;
 
     private final HeartService heartService;
-    private final CommentService commentService;
 
     @GetMapping("/list")
     public String goList(Model model, @AuthenticationPrincipal SessionUser sessionUser ,
@@ -186,6 +185,8 @@ public class ListController {
             log.info("===================================GetHeart가 들어온다=====================================");
             model.addAttribute("heart", heartService.getHeart(memberId,pno));
         } else model.addAttribute("heart", null);
+        model.addAttribute("imgList", postService.getImageList(pno));
+        log.info("=====================" + postService.getImageList(pno) + "=====================");
     }
 
     @GetMapping("/login")

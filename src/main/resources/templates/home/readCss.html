@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <!-- Basic -->
     <meta charset="utf-8"/>
@@ -135,7 +135,9 @@
     </div><!-- #contentTitle -->
 
     <div id="contentmain">
-        <img src="https://www.science.org/do/10.1126/science.abi5787/abs/main_puppies_1280p.jpg"/>
+        <th:block id="imgTag" th:each="img : ${imgList}">
+            <img th:attr="src=@{'/display?fileName=' + ${img.path}+ '/' + ${img.uuid} +'_'+ ${img.imgName}}"/>
+        </th:block>
         <p>[[${result.content}]]</p>
     </div><!-- #contentmain -->
 
@@ -294,6 +296,16 @@
         var userId = [[${user.id}]];
         var heartImg = $("#like_img");
 
+        ///////////////////////////////////////function img//////////////////////////
+        function img() {
+            var img = $("#contentmain > img").attr("src");
+            console.log(img);
+            img = img.replaceAll("\\","/");
+            $("#contentmain > img").attr("src", img);
+        }
+        img();
+        //////////////////////////////////////
+
         function formatTime(str){
             var date = new Date(str);
             return date.getFullYear()+'/'+(date.getMonth()+1)+'/'+date.getDate()+' '+date.getHours()+':'+date.getMinutes();
@@ -327,10 +339,8 @@
             $.getJSON('/comments/' + pno +'/all', function (arr) {
                 console.log(arr);
                 var str=""
-                // $('.pull-right text-muted').html([[${result.likeNum}]] + "likes -" + arr.length + " comments");
                 $.each(arr,function (idx,comment) {
                     str += '<input type="hidden" name="cno">'
-                    // str += '<img class="img-circle img-sm" src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="User Image">';
                     str += '<div class="comment-text" data-cno="'+ comment.cno +'">';
                     str += '<span class="username">';
                     str += comment.replyer;
@@ -455,7 +465,6 @@
                     contentType: 'application/json; charset-utf-8',
                     dataType: 'json',
                     success: function (data) {
-                        alert("좋아요 추가");
                         heartImg.attr("src", "/images/heart_full.png");
                         loadHeartCount();
                     }
