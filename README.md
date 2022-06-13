@@ -1,11 +1,9 @@
 # 🚌관광지 정보 공유 플랫폼✈
 ....
 # 1. 기획 의도
-여행에 관련한 다양한 정보 공유 및 사용자들의 직접적인 커뮤니케이션을 위한 웹사이트 입니다.<br><br>
-많은 정보들이 인터넷에 떠돌아 다니고 직접 가본 뒤 실망한 적도 있으실 겁니다.<br><br>
-본인만 알고있는 관광지, 맛집, 숙소 등등 다양한 정보를 공유하실 수 있습니다.<br><br>
-평범한 관광지는 물론 사용자들이 직접 가보고 발견한 정보들을 위주로
-정보들을 구성하기 위해 제작되었습니다.
+팀원들이 모여 팀프로젝트의 주제를 선정함에 앞서<br>
+같은 취미나 공감대를 서로 공유하고 찾아 보다가 여행이란 주제가 공통적으로 나왔습니다.<br> 
+허나 계획 짜는데 하나같이 어려움을 느꼈고 그걸 공유하는 플랫폼이 있으면 좋겠다 하는 마음에 선정 하게 되었습니다.
 
 # 2. 🛠기술 스택
 ## Front-End  
@@ -18,28 +16,19 @@
 <img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white">  <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">  <img src="https://img.shields.io/badge/amazon aws-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white">  <img src="https://img.shields.io/badge/linux-FCC624?style=for-the-badge&logo=linux&logoColor=black">  <img src="https://img.shields.io/badge/Travis CI-3EAAAF?style=for-the-badge&logo=Travis CI&logoColor=black">  <img src="https://img.shields.io/badge/NGINX-009639?style=for-the-badge&logo=NGINX&logoColor=black">
 
 # 3. 👯‍♂️역할 분담
-- 최호상 : 게시글 목록 페이지,조건검색 페이지담당<br>
-- 방민혁 : 게시글 작성 페이지,파일첨부,메인페이지 담당<br>
-- 이정국 : 요구사항에 맞는 MVC 구현 담당<br>
+- 최호상 : 전체 게시글 목록페이지,조건검색 담당<br>
+- 방민혁 : 게시글 작성 페이지,파일첨부기능,메인페이지 담<br>
+- 이정국 : 세부 게시글 조회,댓글,좋아요 기능 담당<br>
 - 남현재 : 타임라인 담당<br>
-- 김승철 : 유저정보,소셜로그인(시큐리티)<br>
+- 김승철 : 유저정보,소셜로그인(시큐리티) 담당<br>
 
 # 4. 개발해야 하는 기능
 ## 1. 공통 기능
 > - 게시글 CRUD<br>
-> ![image](https://user-images.githubusercontent.com/81150979/168015099-fec0aad2-6bf8-4955-b862-c26ce7c79b42.png)
+> ![image](https://user-images.githubusercontent.com/81150979/173308071-a74e6338-9af8-4eb9-81ba-1812976e4c1d.png)
 > - 스크롤 이벤트로 게시글 리스트 불러오기 <br>
-> ![image](https://user-images.githubusercontent.com/104888619/168012450-93a82c32-159a-4255-8906-6bb92baa046f.png)
 > - 게시글 검색<br>
 > - 카테고리로 게시글 정렬<br>
-
-
-
-## 2. 개별 기능 (컨텐츠별 이벤트)
-> - 숙박 카테고리 게시글의 야놀자 바로가기 기능<br>
-> - 음식 카테고리 게시글의 배민 바로가기 기능<br>
-> - 같은 관광지에 있는 유저와 실시간 채팅<br>
-> - OAuth2 소셜 로그인 기능<br>
 
 # 5. 📜세부 일정
 ![image](https://user-images.githubusercontent.com/81150979/168008787-52f3f2e3-90b4-4655-b450-a61264e7d5a3.png)
