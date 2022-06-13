@@ -53,7 +53,7 @@
             <nav class="navbar navbar-expand-lg custom_nav-container ">
                 <a class="navbar-brand" href="/home/list">
             <span>
-              Feane
+              T-Level
             </span>
                 </a>
 
@@ -290,12 +290,21 @@
 <script th:inline="javascript">
     $(document).ready(function(){
 
-    var img =$('#postimg').attr("src")
+    var img =$('.img-box').attr("src")
      console.log(img);
-     img = img.replaceAll("\\","/");
+<!--     img = img.replaceAll("\\","/");-->
 
-     $('#postimg').attr("src",img );
-     console.log(img);
+
+     $($('img#postimg')).each((i,j)=>{
+        console.log(i,j);
+        var img =  $(j).attr("src");
+        console.log(img);
+        var text =$(j).attr("src");
+        console.log(text);
+        text = text.replaceAll("\\","/");
+        $(j).attr("src",text);
+
+    });
 
 
 
