@@ -447,7 +447,14 @@
         <div class="profile-wrapper">
             <div class="profile-section-user">
                 <div class="profile-cover-img"><img src="https://bootdey.com/img/Content/flores-amarillas-wallpaper.jpeg" alt=""></div>
-                <div class="profile-info-brief p-3"><img class="img-fluid user-profile-avatar" src="https://avatars.githubusercontent.com/u/81150979?s=400&u=01ae909d19e26c8d355b27cae585d67ad7f0c064&v=4" alt="">
+                <div class="profile-info-brief p-3" type="file">
+                    <div id="contentmain">
+                        <th:block id="imgTag" th:each="img : ${img}">
+                            <img class="img-fluid user-profile-avatar"
+                                 th:attr="src=@{'/profileDisplay?fileName=' + ${img.path}+ '/' + ${img.uuid} +'_'+ ${img.imgName}}"/>
+                        </th:block>
+                    </div>
+                    <!-- #contentmain -->
                     <div class="text-center">
                         <h5>[[${userDetail.email}]]</h5>
                         <p class="text-muted fz-base">[[${userInfoDetail.name}]] </p>
@@ -628,7 +635,17 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
 </script>
 <!-- End Google Map -->
-
+<script th:inline="javascript">
+    $(document).ready(function () {
+        function img() {
+            var img = $("#contentmain > img").attr("src");
+            console.log(img);
+            img = img.replaceAll("\\","/");
+            $("#contentmain > img").attr("src", img);
+        }
+        img();
+    })
+</script>
 </body>
 
 </html>

@@ -1,47 +1,34 @@
-package com.group3.project_green.entity;
+package com.group3.project_green.DTO;
 
-import com.group3.project_green.BaseEntity;
-import com.group3.project_green.DTO.ProfileImageDTO;
+import com.group3.project_green.entity.Member;
 import lombok.*;
 
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
+@Data
+@ToString
 @Builder
 @AllArgsConstructor
-@NoArgsConstructor
 @Getter
-@Setter
-@ToString
-public class MemberInfo extends BaseEntity {
+@NoArgsConstructor
+public class MemberInfoProfileDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long ino;
 
-    @ManyToOne
-    private Member member;
-
     private String name;
-
+    private Member member;
     private String phone;
-
     private String birthDate;
-
     private String address;
-
     private String detailAddress;
-
     private String location;
-
     private String favoriteFood;
     private String favoriteAccom;
     private String favoriteLocation;
 
     //프로필 사진추가를 위한 칼럼
-    @Transient
+    @Builder.Default
     private List<ProfileImageDTO> profileImageDTOList = new ArrayList<>();
 
 }

@@ -383,7 +383,7 @@
     <header class="header_section">
         <div class="container">
             <nav class="navbar navbar-expand-lg custom_nav-container ">
-                <a class="navbar-brand" href="home.html">
+                <a class="navbar-brand" href="/home/list">
             <span>
               Feane
             </span>
@@ -410,46 +410,15 @@
                             <a class="nav-link" href="book.html">로그아웃</a>
                         </li>
                     </ul>
-                    <div class="user_option">
-                        <a href="" class="user_link">
-                            <i class="fa fa-user" aria-hidden="true"></i>
-                        </a>
-                        <a class="cart_link" href="#">
-                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                                 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                 viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;"
-                                 xml:space="preserve">
-                  <g>
-                    <g>
-                      <path d="M345.6,338.862c-29.184,0-53.248,23.552-53.248,53.248c0,29.184,23.552,53.248,53.248,53.248
-                   c29.184,0,53.248-23.552,53.248-53.248C398.336,362.926,374.784,338.862,345.6,338.862z"/>
-                    </g>
-                  </g>
-                                <g>
-                    <g>
-                      <path d="M439.296,84.91c-1.024,0-2.56-0.512-4.096-0.512H112.64l-5.12-34.304C104.448,27.566,84.992,10.67,61.952,10.67H20.48
-                   C9.216,10.67,0,19.886,0,31.15c0,11.264,9.216,20.48,20.48,20.48h41.472c2.56,0,4.608,2.048,5.12,4.608l31.744,216.064
-                   c4.096,27.136,27.648,47.616,55.296,47.616h212.992c26.624,0,49.664-18.944,55.296-45.056l33.28-166.4
-                   C457.728,97.71,450.56,86.958,439.296,84.91z"/>
-                    </g>
-                  </g>
-                                <g>
-                    <g>
-                      <path d="M215.04,389.55c-1.024-28.16-24.576-50.688-52.736-50.688c-29.696,1.536-52.224,26.112-51.2,55.296
-                   c1.024,28.16,24.064,50.688,52.224,50.688h1.024C193.536,443.31,216.576,418.734,215.04,389.55z"/>
-                    </g>
-                  </g>
-                </svg>
-                        </a>
-                        <form class="form-inline">
-                            <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
-                                <i class="fa fa-search" aria-hidden="true"></i>
-                            </button>
-                        </form>
-                        <a href="" class="order_online">
-                            Order Online
-                        </a>
-                    </div>
+
+                    <a class="cart_link" href="#">
+                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                             viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;"
+                             xml:space="preserve">
+
+                        </svg>
+                    </a>
                 </div>
             </nav>
         </div>
@@ -464,7 +433,13 @@
         <div class="profile-wrapper">
             <div class="profile-section-user">
                 <div class="profile-cover-img"><img src="https://bootdey.com/img/Content/flores-amarillas-wallpaper.jpeg" alt=""></div>
-                <div class="profile-info-brief p-3"><img class="img-fluid user-profile-avatar" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="">
+                <div class="profile-info-brief p-3">
+                    <div id="contentmain">
+                        <th:block id="imgTag" th:each="img : ${img}">
+                            <img class="img-fluid user-profile-avatar"
+                                 th:attr="src=@{'/profileDisplay?fileName=' + ${img.path}+ '/' + ${img.uuid} +'_'+ ${img.imgName}}"/>
+                        </th:block>
+                    </div>
                     <div class="text-center">
                         <h5 class="text-uppercase mb-4">[[${result.member.email}]]</h5>
                         <p class="text-muted fz-base">추가 text 공간 </p>
@@ -574,20 +549,27 @@
                         <!-- 타임 라인 시작 -->
                         <div class="stream-posts" id="test" th:each="dto : ${post}" >
                             <div class="stream-post" >
-                                <div class="sp-author">
-                                    <a href="#" class="sp-author-avatar"><img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt=""></a>
+                                <div class="sp-author" style="padding-top: 40px">
+                                    <a href="#" class="sp-author-avatar" >
+                                        <div id="contentmain" >
+                                            <th:block id="imgTag" th:each="img : ${img}" >
+                                                <img th:attr="src=@{'/profileDisplay?fileName=' + ${img.path}+ '/' + ${img.uuid} +'_'+ ${img.imgName}}"/>
+                                            </th:block>
+                                        </div>
+                                    </a>
                                     <h6 class="sp-author-name"><a href="#">[[${dto.member.email}]]</a></h6>
                                 </div>
                                 <div class="sp-content">
                                     <div class="sp-info" id="post_title">[[${dto.title}]]</div>
                                     <p class="sp-paragraph mb-0">
-                                        <a th:href="@{/home/read(pno=${dto.pno})}">[[${dto.content}]]</a><br>
-                                        <h7>등록일:[[${dto.modDate}]]</h7>
+                                        <a th:href="@{/home/readCss(pno=${dto.pno})}">[[${dto.content}]]</a><br>
+                                        <p id="date">등록일:[[${#temporals.format(result.regDate,'yyyy/MM/dd')}]]</p>
                                     </p>
                                 </div>
                                 <!-- /.sp-content -->
                             </div>
                         </div>
+                        <!-- 페이지 -->
                         <nav aria-label="Page navigation example">
                             <ul class="pagination justify-content-center">
                                 <li class="page-item" id="abc" th:classappend="${ 1 == post.pageable.pageNumber+1} ? 'disabled'">
@@ -596,14 +578,16 @@
                                        searchText=${param.searchText})}"  tabindex="-1" aria-disabled="true">Previous
                                     </a>
                                 </li>
-                                <li class="page-item" th:classappend="${ i == post.pageable.pageNumber+1} ? 'disabled'" th:each="i : ${#numbers.sequence(startPage, endPage)}">
+                                <li class="page-item" th:classappend="${ i == post.pageable.pageNumber+1} ? 'disabled'"
+                                    th:each="i : ${#numbers.sequence(startPage, endPage)}">
                                     <a class="page-link"
                                        th:href="@{/home/memberPostList(pno=${result.getPno()},page=${i -1},
                                        searchText=${param.searchText})}"  th:text="${i}">1
                                     </a>
                                 </li>
                                 <li class="page-item" th:classappend="${ post.totalPages == post.pageable.pageNumber+1} ? 'disabled'">
-                                    <a class="page-link" th:href="@{/home/memberPostList(pno=${result.getPno()},page=${post.pageable.pageNumber +1},
+                                    <a class="page-link"
+                                       th:href="@{/home/memberPostList(pno=${result.getPno()},page=${post.pageable.pageNumber +1},
                                     searchText=${param.searchText})}" >Next
                                     </a>
                                 </li>
@@ -731,7 +715,17 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
 </script>
 <!-- End Google Map -->
-
+<script th:inline="javascript">
+    $(document).ready(function () {
+        function img() {
+            var img = $("#contentmain > img").attr("src");
+            console.log(img);
+            img = img.replaceAll("\\","/");
+            $("#contentmain > img").attr("src", img);
+        }
+        img();
+    })
+</script>
 </body>
 
 </html>

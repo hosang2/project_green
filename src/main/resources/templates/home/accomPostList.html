@@ -383,7 +383,7 @@
     <header class="header_section">
         <div class="container">
             <nav class="navbar navbar-expand-lg custom_nav-container ">
-                <a class="navbar-brand" href="home.html">
+                <a class="navbar-brand" href="/home/list">
             <span>
               Feane
             </span>
@@ -464,7 +464,13 @@
         <div class="profile-wrapper">
             <div class="profile-section-user">
                 <div class="profile-cover-img"><img src="https://bootdey.com/img/Content/flores-amarillas-wallpaper.jpeg" alt=""></div>
-                <div class="profile-info-brief p-3"><img class="img-fluid user-profile-avatar" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="">
+                <div class="profile-info-brief p-3">
+                    <div id="contentmain">
+                        <th:block id="imgTag" th:each="img : ${img}">
+                            <img class="img-fluid user-profile-avatar"
+                                 th:attr="src=@{'/profileDisplay?fileName=' + ${img.path}+ '/' + ${img.uuid} +'_'+ ${img.imgName}}"/>
+                        </th:block>
+                    </div>
                     <div class="text-center">
                         <h5 class="text-uppercase mb-4">[[${result.member.email}]]</h5>
                         <p class="text-muted fz-base">추가 text 공간 </p>
@@ -573,15 +579,21 @@
                         <!-- /.post-editor -->
                         <!-- 타임 라인 시작 -->
                         <div class="stream-posts" id="test" th:each="dto : ${post}" >
-                            <div class="stream-post" >
-                                <div class="sp-author">
-                                    <a href="#" class="sp-author-avatar"><img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt=""></a>
+                            <div class="stream-post"  >
+                                <div class="sp-author" style="padding-top: 40px">
+                                    <a href="#" class="sp-author-avatar" >
+                                        <div id="contentmain" >
+                                            <th:block id="imgTag" th:each="img : ${img}" >
+                                                <img th:attr="src=@{'/profileDisplay?fileName=' + ${img.path}+ '/' + ${img.uuid} +'_'+ ${img.imgName}}"/>
+                                            </th:block>
+                                        </div>
+                                    </a>
                                     <h6 class="sp-author-name"><a href="#">[[${dto.member.email}]]</a></h6>
                                 </div>
                                 <div class="sp-content">
                                     <div class="sp-info" id="post_title">[[${dto.title}]]</div>
                                     <p class="sp-paragraph mb-0">
-                                        <a th:href="@{/home/read(pno=${dto.pno})}">[[${dto.content}]]</a><br>
+                                        <a th:href="@{/home/readCss(pno=${dto.pno})}">[[${dto.content}]]</a><br>
                                         <h7>등록일:[[${dto.modDate}]]</h7>
                                     </p>
                                 </div>
@@ -732,7 +744,17 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
 </script>
 <!-- End Google Map -->
-
+<script th:inline="javascript">
+    $(document).ready(function () {
+        function img() {
+            var img = $("#contentmain > img").attr("src");
+            console.log(img);
+            img = img.replaceAll("\\","/");
+            $("#contentmain > img").attr("src", img);
+        }
+        img();
+    })
+</script>
 </body>
 
 </html>
