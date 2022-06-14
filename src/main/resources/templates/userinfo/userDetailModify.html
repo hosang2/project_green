@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <!-- Basic -->
     <meta charset="utf-8"/>
@@ -442,7 +441,21 @@
         <div class="profile-wrapper">
             <div class="profile-section-user">
                 <div class="profile-cover-img"><img src="https://bootdey.com/img/Content/flores-amarillas-wallpaper.jpeg" alt=""></div>
-                <div class="profile-info-brief p-3"><img class="img-fluid user-profile-avatar" src="https://avatars.githubusercontent.com/u/81150979?s=400&u=01ae909d19e26c8d355b27cae585d67ad7f0c064&v=4" alt="">
+                <div class="profile-info-brief p-3">
+                    <form action="/userinfo/ProfileInsert" method="post" id="profile-form" >
+                        <div class="form-group fileForm">
+                            <label for="">이미지</label>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input files" id="fileInput" multiple/>
+                                <label for="" class="custom-file-label" data-browse="첨부파일"></label>
+                            </div>
+                        </div>
+                        <div class="box"></div>
+                        <div class="uploadResult">
+                            <ul></ul>
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="imagesubmit">등록</button>
+                    </form>
                     <div class="text-center">
                         <h5>[[${userDetail.email}]]</h5>
                         <p class="text-muted fz-base">[[${userInfoDetail.name}]] </p>
@@ -642,6 +655,11 @@
 </form>
 
 </body>
+<script
+        src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+        crossorigin="anonymous"
+></script>
 
 <script>
     $(document).on("click", "#btnQuit", function () {
@@ -653,4 +671,128 @@
     })
 </script>
 
+
+<script>
+    $(document).ready(function (e) {
+        var regex = new RegExp("(.*?)\.(exe|sh|zip|alz|tiff)$");
+        var maxSize = 10485760; // 10MB
+        const checkExtension = (fileName, fileSize) => {
+            if (fileSize >= maxSize) {
+                alert("파일 사이즈 초과");
+                return false;
+            }
+            if (regex.test(fileName)) {
+                alert("해당 종류의 파일은 업로드 할 수 없습니다");
+                return false;
+            }
+            return true;
+        };
+        $(".custom-file-input").change(function (e) {
+            console.log("체인지 하이");
+            var fileName = $(this).val().split("\\").pop();
+            $(this)
+                .siblings(".custom-file-label")
+                .addClass("selected")
+                .html(fileName);
+            var formData = new FormData();
+            var inputFile = $(this);
+            var files = inputFile[0].files;
+            var appended = false;
+            for (var i = 0; i < files.length; i++) {
+                if (!checkExtension(files[i].name, files[i].size)) {
+                    return false;
+                }
+                console.log(files[i]);
+                formData.append("uploadFiles", files[i]);
+                appended = true;
+            }
+            //upload를 하지 않는다.
+            if (!appended) {
+                return;
+            }
+            for (var value of formData.values()) {
+                console.log(value);
+            }
+            //실제 업로드 부분
+            $.ajax({
+                url: "/profileAjax",
+                processData: false,
+                contentType: false,
+                data: formData,
+                type: "POST",
+                dataType: "json",
+                success: function (result) {
+                    console.log(result);
+                    showResult(result); //호출
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(textStatus);
+                },
+            });
+        }); //event change
+        function showResult(uploadResultArr) {
+            console.log(uploadResultArr);
+            var uploadUL = $(".uploadResult ul");
+            var str = "";
+            $(uploadResultArr).each(function (i, obj) {
+                str +=
+                    "<li data-name='" +
+                    obj.fileName +
+                    "' data-path='" +
+                    obj.folderPath +
+                    "' data-uuid='" +
+                    obj.uuid +
+                    "'>";
+                str += " <div>";
+                str += "<img class='"+"img-fluid user-profile-avatar'"+" "+ "src='"+"/profileDisplay?fileName=" + obj.thumbnailURL + "'>";
+                str += "</div>";
+                str += "</li>";
+            });
+            uploadUL.append(str);
+        }
+        $(".uploadResult").on("click", "li button", function (e) {
+            console.log("delete file");
+            var targetFile = $(this).data("file");
+            var targetLi = $(this).closest("li");
+            $.ajax({
+                url: "/ProfileRemoveFile",
+                data: { fileName: targetFile },
+                dataType: "text",
+                type: "POST",
+                success: function (result) {
+                    alert(result);
+                    targetLi.remove();
+                },
+            });
+        });
+        $("#imagesubmit").click(function (e) {
+            e.preventDefault();
+            var str = "";
+            $(".uploadResult li").each(function (i, obj) {
+                var target = $(obj);
+                str +=
+                    "<input type='hidden' name='profileImageDTOList[" +
+                    i +
+                    "].imgName' value='" +
+                    target.data("name") +
+                    "'>";
+                str +=
+                    "<input type='hidden' name='profileImageDTOList[" +
+                    i +
+                    "].path' value='" +
+                    target.data("path") +
+                    "'>";
+                str +=
+                    "<input type='hidden' name='profileImageDTOList[" +
+                    i +
+                    "].uuid' value='" +
+                    target.data("uuid") +
+                    "'>";
+                //태그들이 추가된 것을 확인한 후에 comment 제거
+                $(".box").html(str);
+                $("#profile-form").submit();
+            });
+        });
+    });
+</script>
 </html>

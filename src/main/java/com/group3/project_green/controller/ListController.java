@@ -15,6 +15,7 @@ import com.group3.project_green.memberInfo.MemberDetailDTO;
 import com.group3.project_green.memberInfo.MemberInfoDTO;
 import com.group3.project_green.memberInfo.service.MemberInfoService;
 import com.group3.project_green.repository.PostRepository;
+import com.group3.project_green.repository.ProfileImageRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
@@ -47,6 +48,9 @@ public class ListController {
     private final MemberInfoService memberInfoService;
 
     private final HeartService heartService;
+
+    //프로필 이미지
+    private final ProfileImageRepository profileImageRepository;
 
     @GetMapping("/list")
     public String goList(Model model, @AuthenticationPrincipal SessionUser sessionUser ,
@@ -211,6 +215,9 @@ public class ListController {
         MemberDetailDTO memberDetailDTO = memberInfoService.getDetail(sessionUser.getId());
         int startPage = Math.max(1,post.getPageable().getPageNumber() -4);
         int endPage = Math.min(post.getTotalPages(), post.getPageable().getPageNumber() +4);
+        //프로필 이미지
+        List<ProfileImage> profileImages = profileImageRepository.findByMemberInfoIno(sessionUser.getId());
+        model.addAttribute("img", profileImages);
         model.addAttribute("startPage", startPage);
         model.addAttribute("endPage", endPage);
         model.addAttribute("result", result);
@@ -229,6 +236,9 @@ public class ListController {
         MemberDetailDTO memberDetailDTO = memberInfoService.getDetail(sessionUser.getId());
         int startPage = Math.max(1,post.getPageable().getPageNumber() -4);
         int endPage = Math.min(post.getTotalPages(), post.getPageable().getPageNumber() +4);
+        //프로필 이미지
+        List<ProfileImage> profileImages = profileImageRepository.findByMemberInfoIno(sessionUser.getId());
+        model.addAttribute("img", profileImages);
         model.addAttribute("startPage", startPage);
         model.addAttribute("endPage", endPage);
         model.addAttribute("result", result);
@@ -247,6 +257,9 @@ public class ListController {
         MemberDetailDTO memberDetailDTO = memberInfoService.getDetail(sessionUser.getId());
         int startPage = Math.max(1,post.getPageable().getPageNumber() -4);
         int endPage = Math.min(post.getTotalPages(), post.getPageable().getPageNumber() +4);
+        //프로필 이미지
+        List<ProfileImage> profileImages = profileImageRepository.findByMemberInfoIno(sessionUser.getId());
+        model.addAttribute("img", profileImages);
         model.addAttribute("startPage", startPage);
         model.addAttribute("endPage", endPage);
         model.addAttribute("result", result);
@@ -265,6 +278,9 @@ public class ListController {
         MemberDetailDTO memberDetailDTO = memberInfoService.getDetail(sessionUser.getId());
         int startPage = Math.max(1,post.getPageable().getPageNumber() -4);
         int endPage = Math.min(post.getTotalPages(), post.getPageable().getPageNumber() +4);
+        //프로필 이미지
+        List<ProfileImage> profileImages = profileImageRepository.findByMemberInfoIno(sessionUser.getId());
+        model.addAttribute("img", profileImages);
         model.addAttribute("startPage", startPage);
         model.addAttribute("endPage", endPage);
         model.addAttribute("result", result);
