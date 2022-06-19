@@ -25,6 +25,8 @@
 # 4. 개발해야 하는 기능
 ## 1. 공통 기능
 > - 게시글 CRUD<br>
+> ![Uploading main.PNG…]()
+
 > ![image](https://user-images.githubusercontent.com/81150979/173308071-a74e6338-9af8-4eb9-81ba-1812976e4c1d.png)
 > - 스크롤 이벤트로 게시글 리스트 불러오기 <br>
 > - 게시글 검색<br>
