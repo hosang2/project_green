@@ -22,15 +22,28 @@
 - 남현재 : 타임라인 담당<br>
 - 김승철 : 유저정보,소셜로그인(시큐리티) 담당<br>
 
-# 4. 개발해야 하는 기능
+# 4. 개발 기능
 ## 1. 공통 기능
-> - 게시글 CRUD<br>
-> ![Uploading main.PNG…]()
+> - main page <br>
+> ![main](https://user-images.githubusercontent.com/105187624/174466538-ce372335-d0a0-48f3-9c2e-ce8f0980e43d.PNG)
 
+> - 게시글 CRUD<br>
 > ![image](https://user-images.githubusercontent.com/81150979/173308071-a74e6338-9af8-4eb9-81ba-1812976e4c1d.png)
 > - 스크롤 이벤트로 게시글 리스트 불러오기 <br>
-> - 게시글 검색<br>
-> - 카테고리로 게시글 정렬<br>
+> ![list](https://user-images.githubusercontent.com/105187624/174466547-60bdc65e-fc69-4c8b-b3d6-20df9f3acf29.PNG)
+> - 게시글 검색, 카테고리로 게시글 정렬<br><br>
+> ![search](https://user-images.githubusercontent.com/105187624/174466551-556f77cb-1184-4b47-b676-519ee6b330db.PNG)
+> - 게시글 작성 <br>
+> ![insert](https://user-images.githubusercontent.com/105187624/174466591-0cd71133-2c03-4935-a2b0-402fac6f00e7.PNG)
+> - 세부 게시글 페이지 및 좋아요 기능 <br>
+> ![read](https://user-images.githubusercontent.com/105187624/174466614-93d268d0-b4bc-4141-9ea9-935d2da410eb.PNG)
+> - 유저의 작성글 목록 및 카테고리별 게시글 
+> ![member](https://user-images.githubusercontent.com/105187624/174466638-43aeed04-1858-4784-9ad8-2c71190b15ed.PNG)
+> - 유저 개인정보 업데이트 
+> ![member2](https://user-images.githubusercontent.com/105187624/174466682-a866f911-75a0-4f6d-9025-b697fdf624a7.PNG)
+
+
+> 
 
 # 5. 📜세부 일정
 ![image](https://user-images.githubusercontent.com/81150979/168008787-52f3f2e3-90b4-4655-b450-a61264e7d5a3.png)
@@ -58,16 +71,19 @@
   
   # 핵심 트러블 슈팅
 <details>
-<summary> <strong>1. !!를 ??하면 발생할 수 있는 문제</strong> </summary>
-  - ~!!하면 @!$때문에 차후에 문제가 발생할 수 있습니다.<br><br>
-  - !@$하여 해결할 수 
+<summary> <strong>1.home/list에서 조건조회를 하게되면 첫post이외 나머지 post의 img파일이 조회가 되지않음.</strong> </summary>
+  - 문장열 결합으로 해당 jpg file의 url을 만들어주기 때문에 문자열 결합 내용을 확인해 보게 되면 경로에 들어가는 / 가 \로 결합되어있습니다 . 
+  해당내용은 JS로 replaceAll 함수사용하여 해결해 보았으나 최초 한번 호출되기 때문에 첫게시글 이후 게시글에는 문자열 결합시 \로 결합되어 있는 것을 확인하여 
+  each 문으로 각 게시글에 해당내용 적용시켜주어 디버깅 하였습니다 .<br><br>
 </details>
 
 # 그 외 이슈
 <details>
 <summary> <strong>
-  1.home/list에서 조건조회를 하게되면 첫post이외 나머지 post의 img파일이 조회가 되지않음.</strong> </summary>
+  </strong> </summary>
   해결 진행중 <br>
 </details>
+  
+  
 
   
