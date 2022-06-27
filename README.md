@@ -42,6 +42,10 @@
 > - 유저 개인정보 업데이트 
 > ![member2](https://user-images.githubusercontent.com/105187624/174466682-a866f911-75a0-4f6d-9025-b697fdf624a7.PNG)
 
+## 2. DB 구조 
+> - data base  <br>
+> ![image](https://user-images.githubusercontent.com/105187624/175934428-b22276c6-0c09-4179-8a4a-f49245c475e9.png)
+
 
 > 
 
